@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    background-color: #4f7faa;
+}
+
+h1 {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2, h3 {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+button {
+    padding: 10px;
+    border: 1px solid #4f7faa;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.bg-primary {
+    background-color: #4f7faa;
+}
+
+.tx-primary {
+    color: #4f7faa;
+}
+
+.bg-secondary {
+    background-color: white;
+}
+
+.tx-secondary {
+    color: white;
+}
