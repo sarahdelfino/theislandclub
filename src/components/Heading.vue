@@ -1,6 +1,6 @@
 <template>
     <div class="heading-container">
-        <div class="hamburger-container"></div>
+        <HeaderNav />
         <div class="text-container"> 
         <div class="title">
             <h1>The Island Club</h1>
@@ -12,7 +12,8 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import HeaderNav from './nav/HeaderNav.vue';
 
 </script>
 
@@ -26,6 +27,10 @@ h2 {
     margin-top: 10px;
 }
 
+h3 {
+    margin: 10px;
+}
+
 .heading-container {
     height: 85vh;
     background-image: url('../assets/matt-benson-TzdnVuPzY1g-unsplash.jpg');
@@ -35,10 +40,10 @@ h2 {
 }
 
 .hamburger-container {
-    width: 50px;
-    height: 50px;
+    width: fit-content;
+    padding: 5px;
     background-color: white;
-    border: 1px solid red;
+    border-radius: 5px;
 }
 
 .text-container {
