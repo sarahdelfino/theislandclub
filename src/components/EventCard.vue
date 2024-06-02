@@ -53,6 +53,7 @@ h3 {
     padding-top: 5px;
     border-radius: 15px;
     background-color: white;
+    color: #4f7faa;
 }
 
 .title {
@@ -68,6 +69,10 @@ h3 {
     margin-bottom: 10px;
     border: 1px solid gray;
     border-radius: 5px;
+}
+
+.card-title {
+    font-weight: bold;
 }
 
 .card-text {

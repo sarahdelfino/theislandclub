@@ -7,7 +7,7 @@ import HeaderNav from './components/nav/HeaderNav.vue';
   <header>
 
     <div>
-      <!-- <HeaderNav /> -->
+      <HeaderNav />
       <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
       </nav> -->

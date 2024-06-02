@@ -1,19 +1,19 @@
 <template>
     <div class="heading-container">
-        <HeaderNav />
-        <div class="text-container"> 
+        <div class="text-container tx-secondary"> 
         <div class="title">
             <h1>The Island Club</h1>
         </div>
         <div class="tagline">
             <h2>A community gathering place for residents of Sullivan's Island,<br> South Carolina</h2>
         </div>
+        <button class="bg-primary"><RouterLink class="tx-secondary router-link" to="/membership">Membership</RouterLink></button>
+        <button class="bg-secondary"><RouterLink class="tx-primary router-link" to="/donate">Donate</RouterLink></button>
     </div>
     </div>
 </template>
 
 <script setup>
-import HeaderNav from './nav/HeaderNav.vue';
 
 </script>
 

@@ -2,12 +2,11 @@
     <div class="nav-container">
         <button class="menu-button bg-secondary tx-primary" @click="menuClicked = !menuClicked">Menu</button>
         <span class="nav-items bg-secondary" v-if="menuClicked">
-            <a v-for="item in navBar" class="nav-item tx-primary" :href="`${item.link}`">{{ item.title }}</a>
+            <RouterLink v-for="item in navBar" class="nav-item tx-primary" :to="`${item.link}`">{{ item.title }}</RouterLink>
         </span>
     </div>
 </template>
 <script setup>
-import Toolbar from 'primevue/toolbar';
 import { ref, onMounted } from 'vue';
 
 import data from './data.json';
@@ -31,6 +30,7 @@ a {
 .nav-container {
     display: flex;
     flex-direction: column;
+    padding: 10px;
     /* align-items: center; */
 }
 
@@ -39,8 +39,8 @@ a {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 50px;
-    left: 5px;
+    top: 4rem;
+    left: 1rem;
     z-index: 999;
     border-radius: 5px;
 }
@@ -61,5 +61,8 @@ a {
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
 </style>
