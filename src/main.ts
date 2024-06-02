@@ -10,14 +10,13 @@ import { getAnalytics } from "firebase/analytics";
 import PrimeVue from 'primevue/config';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCB53Y83ltLikNjuG9T7kmMs4G9ksH4DQQ",
-    authDomain: "the-island-club.firebaseapp.com",
-    projectId: "the-island-club",
-    storageBucket: "the-island-club.appspot.com",
-    messagingSenderId: "465061089515",
-    appId: "1:465061089515:web:c5f94dabcbe98de7416eae",
-    measurementId: "G-1QS1ZY8QV5"
-  };
+  apiKey: "AIzaSyC6vSLkiU0Mzb0cpJm7NKlyuNwdnymXqcE",
+  authDomain: "theislandclub.firebaseapp.com",
+  projectId: "theislandclub",
+  storageBucket: "theislandclub.appspot.com",
+  messagingSenderId: "939559041500",
+  appId: "1:939559041500:web:6e456a66fd2c8852aef719"
+};
 
   const firebase = initializeApp(firebaseConfig);
   const analytics = getAnalytics(firebase);
