@@ -1,11 +1,13 @@
 <script setup>
 import Heading from '../components/Heading.vue';
-import Events from '../components/Events.vue';
+import EventCard from '../components/EventCard.vue';
+import InstaCard from '../components/InstaCard.vue';
 </script>
 
 <template>
   <main>
     <Heading />
-    <Events />
+    <EventCard />
+    <InstaCard />
   </main>
 </template>

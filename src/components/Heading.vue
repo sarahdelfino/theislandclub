@@ -1,18 +1,19 @@
 <template>
     <div class="heading-container">
-        <div class="hamburger-container"></div>
-        <div class="text-container"> 
+        <div class="text-container tx-secondary"> 
         <div class="title">
             <h1>The Island Club</h1>
         </div>
         <div class="tagline">
             <h2>A community gathering place for residents of Sullivan's Island,<br> South Carolina</h2>
         </div>
+        <button class="bg-primary"><RouterLink class="tx-secondary router-link" to="/membership">Membership</RouterLink></button>
+        <button class="bg-secondary"><RouterLink class="tx-primary router-link" to="/donate">Donate</RouterLink></button>
     </div>
     </div>
 </template>
 
-<script>
+<script setup>
 
 </script>
 
@@ -26,6 +27,10 @@ h2 {
     margin-top: 10px;
 }
 
+h3 {
+    margin: 10px;
+}
+
 .heading-container {
     height: 85vh;
     background-image: url('../assets/matt-benson-TzdnVuPzY1g-unsplash.jpg');
@@ -35,10 +40,10 @@ h2 {
 }
 
 .hamburger-container {
-    width: 50px;
-    height: 50px;
+    width: fit-content;
+    padding: 5px;
     background-color: white;
-    border: 1px solid red;
+    border-radius: 5px;
 }
 
 .text-container {

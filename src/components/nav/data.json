@@ -1,0 +1,32 @@
+{
+  "nav": [
+    {
+      "title": "Home",
+      "link": "/"
+    },
+    {
+      "title": "About",
+      "link": "/about"
+    },
+    {
+      "title": "Events",
+      "link": "/events"
+    },
+    {
+      "title": "Donate",
+      "link": "/donate"
+    },
+    {
+      "title": "Membership",
+      "link": "/membership"
+    },
+    {
+      "title": "Gallery",
+      "link": "/gallery"
+    },
+    {
+      "title": "Blog",
+      "link": "/blog"
+    }
+  ]
+}
