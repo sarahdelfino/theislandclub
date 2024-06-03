@@ -10,6 +10,8 @@
   "compilerOptions": {
     "composite": true,
     "noEmit": true,
+    "noImplicitAny": false,
+    "allowJs": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
 
     "module": "ESNext",
