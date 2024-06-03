@@ -1,7 +1,6 @@
 {
   "hosting": {
-    "site": "theislandclub",
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
