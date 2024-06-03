@@ -2,7 +2,7 @@
     <div class="nav-container">
         <button class="menu-button bg-secondary tx-primary" @click="menuClicked = !menuClicked">Menu</button>
         <span class="nav-items bg-secondary" v-if="menuClicked">
-            <RouterLink v-for="item in navBar" class="nav-item tx-primary" :to="`${item.link}`">{{ item.title }}</RouterLink>
+            <RouterLink @click="menuClicked = !menuClicked" v-for="item in navBar" class="nav-item tx-primary" :to="`${item.link}`">{{ item.title }}</RouterLink>
         </span>
     </div>
 </template>
