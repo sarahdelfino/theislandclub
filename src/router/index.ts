@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import DonateView from '../views/DonateView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,9 +19,9 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/fundraiser',
-      name: 'fundraiser',
-      component: () => import('../views/FundraiserView.vue')
+      path: '/donate',
+      name: 'donate',
+      component: () => import('../views/DonateView.vue')
     },
     {
       path: '/events',
