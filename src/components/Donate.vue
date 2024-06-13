@@ -3,16 +3,16 @@
         <div class="donate-img"></div>
         <!-- <img class="donate-img" src="../assets/caroline-sterr-2hJhdrsE3hw-unsplash.jpg"> -->
         <div class="donate-text tx-primary">
-            <h1 class="donate-title">Donate</h1>
+            <!-- <h1 class="donate-title">Donate</h1> -->
             <div class="donate-text">
                 <div class="donate-tagline">
             <h2>Our goal is simple:</h2>
             <h3>We want to provide a place to bring neighbors <span style="font-weight: bold;">together.</span></h3>
+            <h3>To be a successful community center, the building needs to be safe, attractive, and functional.</h3>
+            <a href="#" target="_blank"><button class="bg-secondary tx-primary">Download Plans</button></a>
             <a href="https://buy.stripe.com/aEU5kmaWy9MYbew9AD" target="_blank"><button class="bg-primary tx-secondary">Donate</button></a>
         </div>
-            <p>To be a successful community center, the building needs to be safe, attractive, and functional. We have
-                worked with local architect Steve Herlong and David Lugo of Paverscapes to come up with a plan to
-                achieve those goals:</p>
+            <p>We've worked with local architect Steve Herlong and David Lugo of Paverscapes to come up with a plan to achieve these goals:</p>
                 <ul>
                     <li>Drastically improve the curb appeal, with architectural and landscaping upgrades</li>
                     <li>Restore the center door and add a porch</li>
@@ -51,6 +51,7 @@ h2 {
 .donate-title {
     position: absolute;
     top: 10%;
+    right: 5%;
 }
 
 .donate-img {
@@ -58,8 +59,9 @@ h2 {
     width: 100vw;
     height: 200px;
     background-size: cover;
-    border-radius: 15px;
     background-blend-mode: lighten;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .donate-text {

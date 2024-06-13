@@ -1,9 +1,15 @@
 <template>
     <div class="nav-container">
+        <div class="menu-container">
         <button class="menu-button bg-secondary tx-primary" @click="menuClicked = !menuClicked">Menu</button>
         <span class="nav-items bg-secondary" v-if="menuClicked">
             <RouterLink @click="menuClicked = !menuClicked" v-for="item in navBar" class="nav-item tx-primary" :to="`${item.link}`">{{ item.title }}</RouterLink>
         </span>
+    </div>
+    <div v-if="$route.name !== 'home'" class="title-container tx-primary">
+        <h1>{{ $route.name }}</h1>
+    </div>
+    <div class="logo-container"></div>
     </div>
 </template>
 <script setup>
@@ -13,6 +19,7 @@ import data from './data.json';
 
 const navBar = ref();
 let menuClicked = ref(false);
+let route = ref();
 
 onMounted(() => {
     navBar.value = data.nav;
@@ -29,9 +36,17 @@ a {
 
 .nav-container {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+}
+
+.menu-container {
+    display: flex;
     flex-direction: column;
-    padding: 10px;
-    /* align-items: center; */
 }
 
 .nav-items {
@@ -63,6 +78,13 @@ a {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.logo-container {
+    width: 50px;
+    height: 50px;
+    border: 1px solid red;
+    margin: 5px;
 }
 
 </style>

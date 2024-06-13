@@ -1,9 +1,9 @@
 <template>
-    <h1>Gallery</h1>
+    <Gallery />
 </template>
 
-<script>
-
+<script setup>
+    import Gallery from '../components/Gallery.vue';
 </script>
 
 <style></style>

@@ -1,9 +1,9 @@
 <template>
-    <h1>Fundraiser</h1>
+    <Events />
 </template>
 
-<script>
-
+<script setup>
+import Events from '../components/Events.vue';
 </script>
 
 <style></style>
