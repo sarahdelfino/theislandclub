@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="upcoming-event-buttons">
-        <button class="view-events-button bg-primary tx-secondary">View All Events</button>
+        <button class="view-events-button bg-primary tx-secondary"><RouterLink class="tx-secondary router-link" to="/events">View All Events</RouterLink></button>
         <button class="req-events-button bg-secondary tx-primary">Request Event</button>
     </div>
     </div>
