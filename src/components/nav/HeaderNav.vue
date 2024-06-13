@@ -19,7 +19,6 @@ import data from './data.json';
 
 const navBar = ref();
 let menuClicked = ref(false);
-let route = ref();
 
 onMounted(() => {
     navBar.value = data.nav;
@@ -83,7 +82,6 @@ a {
 .logo-container {
     width: 50px;
     height: 50px;
-    border: 1px solid red;
     margin: 5px;
 }
 
