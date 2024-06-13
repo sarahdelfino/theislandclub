@@ -1,9 +1,9 @@
 <template>
-    <h1>Membership</h1>
+    <Membership />
 </template>
 
-<script>
-
+<script setup>
+    import Membership from '../components/Membership.vue';
 </script>
 
 <style></style>

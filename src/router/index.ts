@@ -19,14 +19,19 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/events',
+      name: 'events',
+      component: () => import('../views/EventsView.vue')
+    },
+    {
       path: '/donate',
       name: 'donate',
       component: () => import('../views/DonateView.vue')
     },
     {
-      path: '/events',
-      name: 'events',
-      component: () => import('../views/EventsView.vue')
+      path: '/membership',
+      name: 'membership',
+      component: () => import('../views/MembershipView.vue')
     },
     {
       path: '/gallery',
@@ -34,9 +39,9 @@ const router = createRouter({
       component: () => import('../views/GalleryView.vue')
     },
     {
-      path: '/membership',
-      name: 'membership',
-      component: () => import('../views/MembershipView.vue')
+      path: '/blog',
+      name: 'blog',
+      component: () => import('../views/BlogView.vue')
     }
   ]
 })
