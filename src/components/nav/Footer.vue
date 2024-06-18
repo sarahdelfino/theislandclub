@@ -36,6 +36,10 @@ h2 {
     margin-top: 10px;
 }
 
+p {
+    font-size: .65rem;
+}
+
 .footer-container {
     position: relative;
     bottom: 0px;
