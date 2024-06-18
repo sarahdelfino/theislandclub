@@ -61,7 +61,7 @@ h2 {
     background-size: cover;
     background-blend-mode: lighten;
     border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .donate-text {
