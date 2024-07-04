@@ -7,8 +7,8 @@
         <div class="tagline">
             <h2>A community gathering place for residents of Sullivan's Island,<br> South Carolina</h2>
         </div>
-        <button class="bg-primary"><RouterLink class="tx-secondary router-link" to="/membership">Membership</RouterLink></button>
-        <button class="bg-secondary"><RouterLink class="tx-primary router-link" to="/donate">Donate</RouterLink></button>
+        <button style="border: 1px solid white" class="bg-primary"><RouterLink class="tx-secondary router-link" to="/membership">Membership</RouterLink></button>
+        <button style="border: 1px solid #4f7faa" class="bg-secondary"><RouterLink class="tx-primary router-link" to="/donate">Donate</RouterLink></button>
     </div>
     </div>
 </template>

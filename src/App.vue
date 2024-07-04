@@ -5,21 +5,23 @@ import Footer from './components/nav/Footer.vue';
 </script>
 
 <template>
-  <header>
-
-    <div>
+<div class="app-container bg-primary">
       <HeaderNav />
-      <!-- <nav>
-        <RouterLink to="/">Home</RouterLink>
-      </nav> -->
-    </div>
-  </header>
 
   <RouterView />
 
   <Footer />
+</div>
 </template>
 
 <style scoped>
+
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 
 </style>

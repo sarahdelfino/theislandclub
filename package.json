@@ -13,12 +13,17 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
+    "@primevue/themes": "^4.0.0-rc.2",
     "axios": "^1.7.2",
     "firebase": "^10.12.2",
+    "ics": "^3.7.6",
     "pinia": "^2.1.7",
     "primevue": "^3.52.0",
+    "uuid": "^10.0.0",
     "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "vuefire": "^3.1.23"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",

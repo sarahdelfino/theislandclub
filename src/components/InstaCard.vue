@@ -44,9 +44,11 @@ h3 {
 .insta-container {
     margin: 10px;
     padding-top: 5px;
+    padding-bottom: 20px;
     border-radius: 15px;
     background-color: white;
     color: #4f7faa;
+    border: 1px solid #4f7faa;
 }
 
 .title {

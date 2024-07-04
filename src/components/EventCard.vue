@@ -48,12 +48,14 @@ h3 {
 }
 
 .upcoming-events-container {
-    margin: 10px;
-    margin-top: -50px;
+    margin: 10px 10px 20px 10px;
+    margin-top: -150px;
     padding-top: 5px;
+    padding-bottom: 20px;
     border-radius: 15px;
     background-color: white;
     color: #4f7faa;
+    border: 1px solid #4f7faa;
 }
 
 .title {

@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import Blog from '../components/Blog.vue';
+import Blog from '../components/blog/Blog.vue';
 
 
 </script>
