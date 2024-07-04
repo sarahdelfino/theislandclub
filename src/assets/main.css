@@ -2,9 +2,12 @@
     font-family: "Ubuntu", sans-serif;
 }
 
+html {
+    background-color: #4f7faa;
+}
+
 body {
     margin: 0;
-    background-color: #4f7faa;
 }
 
 h1 {
@@ -19,6 +22,10 @@ h2, h3 {
     font-style: normal;
 }
 
+a {
+    text-decoration: none;
+}
+
 button {
     width: fit-content;
     padding: .8em;
@@ -28,13 +35,26 @@ button {
     margin: 5px;
 }
 
+input {
+    height: 30px;
+    border: 1px solid f;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+textarea {
+    height: 50px;
+    border: 1px solid #4f7faa;
+    border-radius: 2px;
+    padding: 5px;
+}
+
 .router-link {
     text-decoration: none;
 }
 
 .bg-primary {
     background-color: #4f7faa;
-    border: 1px solid white;
 }
 
 .tx-primary {
