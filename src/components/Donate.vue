@@ -69,7 +69,7 @@ ul li:before {
 }
 
 .donate-text {
-    background-color: white;
+    background-color: #4f7faa;
     padding: 5px 20px 10px 20px;
     border-radius: 15px;
     margin: -20px 10px 10px 10px;

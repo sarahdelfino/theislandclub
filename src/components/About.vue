@@ -1,7 +1,7 @@
 <template>
-    <div class="about-container">
+    <div class="about-container bg-primary">
         <div class="about-img"></div>
-        <div class="about-text tx-primary">
+        <div class="about-text tx-secondary">
             <div class="about-text">
                 <div class="about-tagline">
             <h2>Our goal is simple:</h2>
@@ -21,14 +21,6 @@ h1 {
 
 h2 {
     margin-top: 10px;
-}
-
-.about-container {
-    background-color: white;
-    /* margin: 10px; */
-    /* min-height: 500px; */
-    border-radius: 15px;
-    /* height: 85vh; */
 }
 
 .about-title {

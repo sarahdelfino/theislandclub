@@ -5,7 +5,7 @@
                 <div class="blog-post-img"></div>
                 <div class="blog-text">
                 <div class="blog-title">
-                    <h2>{{ blogPost.title }}</h2>
+                    <!-- <h2>{{ post.title }}</h2> -->
                 </div>
                 <div class="blog-info">
                     <!-- <p>{{ blogPost.post_date }}</p> -->
@@ -24,11 +24,16 @@ import { useRoute } from 'vue-router';
 
 import posts from './blog_posts.json';
 
+defineProps("post");
+
 const route = useRoute();
 let blogPost = ref();
 
 onMounted(() => {
-    console.log(route.params.id);
+    // console.log(props.blog);
+    // console.log(blog);
+    // console.log(this.blog);
+    // console.log(route.params.id);
     let tmp;
     posts.forEach(blog => {
         if(blog.id == route.params.id) {
@@ -51,7 +56,7 @@ h2 {
 }
 
 .blog-post-container {
-    background-color: white;
+    background-color: #4f7faa;
     /* margin: 10px; */
     /* min-height: 500px; */
     border-radius: 15px;

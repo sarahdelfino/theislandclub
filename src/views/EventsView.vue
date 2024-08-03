@@ -2,7 +2,7 @@
     <Events />
 </template>
 
-<script setup>
+<script>
 import Events from '../components/Events.vue';
 </script>
 

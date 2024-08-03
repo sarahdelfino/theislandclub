@@ -1,10 +1,11 @@
 <template>
-    <div class="blog-container tx-primary">
-        <div class="blog-img"></div>
+    <img class="top-img" src="../../assets/cody-silver-U_uv5Tfke9U-unsplash.jpg">
+    <div class="blog-container tx-secondary">
+        <!-- <div class="blog-img"></div> -->
         <div class="blog-posts-container">
             <div v-for="blog in posts" :key="blog.id" class="blog-post">
                 <div class="blog-post-img"></div>
-                <router-link class="tx-primary" :to="`/blog/${blog.id}`">
+                <router-link class="tx-secondary" :to="{name: 'blog-post', params: { id: blog.id, post: blog } }">
                 <div class="blog-text">
                 <div class="blog-title">
                     <h2>{{ blog.blog_title }}</h2>
@@ -17,6 +18,7 @@
                 </div>
                 </div>
             </router-link>
+            <i style="align-self: center;" class="arrow pi pi-caret-right"></i>
                 </div>
         </div>
     </div>
@@ -46,6 +48,12 @@ p {
     font-size: 14px;
 }
 
+.blog-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .blog-img {
     background-image: url("../../assets/cody-silver-U_uv5Tfke9U-unsplash.jpg");
     width: 100vw;
@@ -62,16 +70,17 @@ p {
 
 .blog-post {
     display: flex;
-    margin: 8px;
-    border: 1px solid gray;
+    margin: 8px 8px 15px 8px;
+    border: 1px solid #4f7faa;
     border-radius: 5px;
+    box-shadow: #4f7faa 8px 8px 10px -10px;
 }
 
 .blog-post-img {
     width: 35vw;
     height: 150px;
     margin-right: 10px;
-    border: 1px solid red;
+    border: 1px solid #4f7faa;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }

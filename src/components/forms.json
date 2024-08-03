@@ -1,0 +1,37 @@
+{
+    "requestForm": [
+        {
+            "name": "first_name",
+            "placeholder": "First Name"
+        },
+        {
+            "name": "last_name",
+            "placeholder": "Last Name"
+        },
+        {
+            "name": "email",
+            "placeholder": "Email"
+        },
+        {
+            "name": "event_date",
+            "placeholder": "Event Date"
+        },
+        {
+            "name": "event_start",
+            "placeholder": "Event Start"
+        },
+        {
+            "name": "event_end",
+            "placeholder": "Event End"
+        },
+        {
+            "name": "event_name",
+            "placeholder": "Event Name"
+        },
+        {
+            "name": "event_description",
+            "placeholder": "Event Description"
+        }
+        
+    ]
+}

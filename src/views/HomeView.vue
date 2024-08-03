@@ -6,7 +6,7 @@ import Polaroids from '@/components/Polaroids.vue';
 </script>
 
 <template>
-  <main style="background-color: #4f7faa;">
+  <main>
     <Heading />
     <EventCard />
     <InstaCard />
