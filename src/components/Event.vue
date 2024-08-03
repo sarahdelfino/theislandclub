@@ -1,5 +1,5 @@
 <template>
-    <div class="event-container tx-primary">
+    <div class="event-container tx-secondary">
         <div class="event-img"></div>
         <div class="event-text-container">
         <div class="event-title-container">
@@ -7,7 +7,7 @@
                 <h1>{{ event?.title }}</h1>
             </div>
             <div class="event-add-button">
-                <a class="tx-primary" href="#" target="_blank">Add to Calendar</a>
+                <a class="tx-secondary" href="#" target="_blank">Add to Calendar</a>
             </div>
         </div>
         <div class="event-info-container">
@@ -53,10 +53,6 @@ onMounted(async () => {
 
 </script>
 <style scoped>
-.event-container {
-    background-color: #4f7faa;
-}
-
 .event-img {
     background-image: url("../assets/cody-silver-U_uv5Tfke9U-unsplash.jpg");
     width: 100vw;
