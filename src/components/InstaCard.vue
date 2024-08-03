@@ -18,11 +18,29 @@
             </div>
         </div>
         <div class="insta-button">
-            <button @click="imageButtonClick()" class="view-events-button bg-primary tx-secondary">View All Images</button>
+            <button @click="imageButtonClick()" class="view-events-button btn-primary">View All Images</button>
         </div>
     </div>
 </template>
 <script setup>
+import axios from 'axios';
+// import { onMounted } from 'vue';
+
+// onMounted(() => {
+//     axios({
+//         headers: {
+//             'Access-Control-Allow-Origin': '*',
+//         },
+//         method: 'get',
+//         url: 'https://www.instagram.com/sullivansislandclubfun/?__a=1',
+//         withCredentials: false
+//     }).then((res) => {
+//         console.log(res);
+//     })
+//     // axios.get('https://www.instagram.com/sullivansislandclubfun/?__a=1').then((res) => {
+//     //     console.log(res);
+//     // });
+// });
 
 function imageButtonClick() {
     console.log("image button clicked");
@@ -42,8 +60,9 @@ h3 {
 }
 
 .insta-container {
-    margin: 10px;
-    padding-top: 5px;
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 5px 10px;
     padding-bottom: 20px;
     border-radius: 15px;
     background-color: white;
@@ -64,10 +83,10 @@ h3 {
 }
 
 .card-img {
-    width: 10em;
+    width: 12em;
     height: 150px;
     margin-bottom: 10px;
-    border: 1px solid gray;
+    border: 1px solid #4f7faa;
     border-radius: 5px;
 }
 

@@ -3,7 +3,7 @@
 }
 
 html {
-    background-color: #4f7faa;
+    background-color: white;
 }
 
 body {
@@ -37,8 +37,9 @@ button {
 
 input {
     height: 30px;
-    border: 1px solid f;
-    border-radius: 2px;
+    margin-bottom: 8px;
+    border: 1px solid gray;
+    border-radius: 5%;
     padding: 5px;
 }
 
@@ -51,21 +52,40 @@ textarea {
 
 .router-link {
     text-decoration: none;
-}
-
-.bg-primary {
-    background-color: #4f7faa;
-}
-
-.tx-primary {
     color: #4f7faa;
 }
 
-.bg-secondary {
+.bg-primary {
     background-color: white;
+}
+
+.tx-primary {
+    color: white;
+}
+
+.btn-primary {
+    background-color: #4f7faa;
+    color: white;
+    border: 1px solid white;
+}
+
+.bg-secondary {
+    background-color: #4f7faa;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #4f7faa;
     border: 1px solid #4f7faa;
 }
 
 .tx-secondary {
-    color: white;
+    color: #4f7faa;
+}
+
+.top-img {
+    max-width: 100%;
+    max-height: 200px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }

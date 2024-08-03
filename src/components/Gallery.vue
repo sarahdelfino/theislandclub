@@ -25,7 +25,7 @@ h2 {
 }
 
 .gallery-container {
-    background-color: white;
+    background-color: #4f7faa;
     /* margin: 10px; */
     /* min-height: 500px; */
     border-radius: 15px;

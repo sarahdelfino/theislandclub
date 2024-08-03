@@ -1,11 +1,14 @@
 <template>
-    <div style="background-color: #4f7faa;" class="footer-container">
+    <div class="footer-container">
         <div style="background-color: #4f7faa;" class="tx-primary box">
             <div class="footer-text">
+                <div class="footer-links">
                 <RouterLink v-for="item in footerNav" class="footer-link router-link tx-primary" :to="item.link">{{ item.title }}</RouterLink>
-                <div class="copyrights">
-                    <p>Designed & Developed by Sarah Delfino</p>
-                </div>
+            </div>
+
+            </div>
+            <div class="copyrights">
+                <p>Designed & Developed by Sarah Delfino</p>
             </div>
         </div>
     </div>
@@ -38,6 +41,8 @@ h2 {
 
 p {
     font-size: .65rem;
+    margin: 0;
+    padding-bottom: 10px;
 }
 
 .footer-container {
@@ -51,21 +56,26 @@ p {
 }
 
 .footer-text {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: white;
+    background-color: #4f7faa;
     text-align: center;
     margin-top: 30px;
     padding: 50px 10px 10px 10px;
 }
 
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 .footer-link {
+    width: 75px;
     margin: 10px 20px 10px 20px;
 }
 
-.footer-tagline {
-    text-align: center;
-    margin: 20px 0px 20px 0px;
+.copyrights {
+    background-color: #4f7faa;
 }
+
 </style>
