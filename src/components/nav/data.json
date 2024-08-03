@@ -5,16 +5,12 @@
       "link": "/"
     },
     {
-      "title": "About",
-      "link": "/about"
+      "title": "Membership",
+      "link": "/membership"
     },
     {
       "title": "Capital Project",
       "link": "/capital-project"
-    },
-    {
-      "title": "Membership",
-      "link": "/membership"
     },
     {
       "title": "Gallery",
