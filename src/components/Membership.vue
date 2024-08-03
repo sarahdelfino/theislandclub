@@ -60,7 +60,7 @@
                         <input required id="email" name="email" v-model="email" />
                         <label for="address">Address</label>
                         <input required id="address" name="address" v-model="address" />
-                        <button style="margin-left: 0;" class="bg-primary tx-secondary" type="submit">Submit</button>
+                        <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
                     </form>
         </div>
         <Events />
