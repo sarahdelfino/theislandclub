@@ -66,7 +66,8 @@ h3 {
 }
 
 .heading-btn-container {
-    position: fixed;
+    width: 300px;
+    position: relative;
     right: 3rem;
 }
 
@@ -88,7 +89,7 @@ h3 {
 }
 
 @media screen and (min-width: 960px) {
-    .text-container, .heading-btn-container {
+    .text-container {
         right: 8rem;
     }
 }
