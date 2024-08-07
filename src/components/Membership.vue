@@ -37,7 +37,7 @@
                         <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'"/>
 
                     <form id="membershipForm" ref="membershipForm" class="membership-form"
-                        @submit.prevent="submitMembership">
+                        @submit.prevent="submitMembership()">
                         <h1 class="tx-secondary">Become a Member</h1>
                         <div class="radio-buttons">
                             <div class="radio-button">
@@ -62,21 +62,14 @@
                         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
                     </form>
         </div>
-        <!-- <Events /> -->
     </div>
 </template>
 
 <script setup>
-import Events from '@/components/Events.vue';
 import { ref, onMounted } from 'vue'
 import emailjs from '@emailjs/browser';
 
-import Accordion from 'primevue/accordion';
-import AccordionTab from 'primevue/accordiontab';
-
-
 import Alert from './Alert.vue';
-import requestForm from './forms.json'
 
 const signUp = ref(false);
 const requestFormVisible = ref(false);
@@ -103,6 +96,7 @@ onMounted(() => {
 })
 
 function toggleSignup() {
+    console.log("le whyyyyyy");
     requestFormVisible.value = false;
     signUp.value = !signUp.value;
 }
@@ -110,6 +104,10 @@ function toggleSignup() {
 function toggleRequest() {
     signUp.value = false;
     requestFormVisible.value = !requestFormVisible.value;
+}
+
+function submitEvent() { 
+    console.log("what to heck");
 }
 
 function submitMembership() {
