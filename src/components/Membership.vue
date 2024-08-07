@@ -31,10 +31,10 @@
                 </form>
             </div>
         <div v-if="signUp" class="membership-text tx-primary">
-                    <Alert text="You will be sent to Stripe to complete your payment once you click submit."
+                    <!-- <Alert text="You will be sent to Stripe to complete your payment once you click submit."
                         type="info" />
 
-                        <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'"/>
+                        <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'"/> -->
 
                     <form id="membershipForm" ref="membershipForm" class="membership-form"
                         @submit.prevent="submitMembership()">
