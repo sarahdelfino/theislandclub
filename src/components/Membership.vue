@@ -5,10 +5,10 @@
         <h3 class="tx-secondary" style="padding: 10px;">The Island Club is open to all current and prior residents of Sullivan's Island. Membership
             allows you to attend & host events and includes one free private rental per year.</h3>
             <div class="member-buttons">
-                <button @click="toggleSignup" class="btn-primary">Become a Member</button>
-                <button @click="toggleRequest" class="btn-secondary">Request an Event</button>
+                <!-- <button @click="toggleSignup" class="btn-primary">Become a Member</button> -->
+                <!-- <button @click="toggleRequest" class="btn-secondary">Request an Event</button> -->
             </div>
-            <div v-if="requestFormVisible" class="membership-text">
+            <!-- <div v-if="requestFormVisible" class="membership-text">
                 <form id="eventForm" ref="form" class="event-form" @submit.prevent="submitEvent">
                     <h1 class="tx-secondary">Request an Event</h1>
                     <label for="first_name">First Name</label>
@@ -29,17 +29,17 @@
                     <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description"></textarea>
                     <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
                 </form>
-            </div>
-        <div v-if="signUp" class="membership-text tx-primary">
-                    <!-- <Alert text="You will be sent to Stripe to complete your payment once you click submit."
+            </div> -->
+        <div class="membership-text tx-primary">
+                    <Alert text="You will be sent to Stripe to complete your payment once you click submit."
                         type="info" />
 
-                        <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'"/> -->
+                        <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'"/>
 
                     <form id="membershipForm" ref="membershipForm" class="membership-form"
                         @submit.prevent="submitMembership()">
                         <h1 class="tx-secondary">Become a Member</h1>
-                        <!-- <div class="radio-buttons">
+                        <div class="radio-buttons">
                             <div class="radio-button">
                                 <input required type="radio" id="indv" name="mem_type" 
                                     value="individual" />
@@ -58,7 +58,7 @@
                         <label for="email">Email</label>
                         <input required id="email" name="email" />
                         <label for="address">Address</label>
-                        <input required id="address" name="address" /> -->
+                        <input required id="address" name="address" />
                         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
                     </form>
         </div>
@@ -96,7 +96,6 @@ onMounted(() => {
 })
 
 function toggleSignup() {
-    console.log("le whyyyyyy");
     requestFormVisible.value = false;
     signUp.value = !signUp.value;
 }
