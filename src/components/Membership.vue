@@ -10,6 +10,7 @@
             </div>
             <div v-if="requestFormVisible" class="membership-text">
                 <form id="eventForm" ref="form" class="event-form" @submit.prevent="submitEvent">
+                    <h1 class="tx-secondary">Request an Event</h1>
                     <label for="first_name">First Name</label>
                     <input required id="first_name" name="first_name" />
                     <label for="last_name">Last Name</label>
@@ -30,13 +31,14 @@
                 </form>
             </div>
         <div v-if="signUp" class="membership-text tx-primary">
-                    <Alert text="You will be sent to Stripe to complete your payment once you click submit."
+                    <!-- <Alert text="You will be sent to Stripe to complete your payment once you click submit."
                         type="info" />
 
-                        <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'"/>
+                        <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'"/> -->
 
                     <form id="membershipForm" ref="membershipForm" class="membership-form"
                         @submit.prevent="submitMembership">
+                        <h1 class="tx-secondary">Become a Member</h1>
                         <div class="radio-buttons">
                             <div class="radio-button">
                                 <input required type="radio" id="indv" name="mem_type" 
@@ -101,23 +103,13 @@ onMounted(() => {
 })
 
 function toggleSignup() {
-    console.log('req: ', requestFormVisible.value);
-    console.log('signup: ', signUp.value);
     requestFormVisible.value = false;
     signUp.value = !signUp.value;
-    console.log('AFTER::::::');
-    console.log('req: ', requestFormVisible.value);
-    console.log('signup: ', signUp.value);
 }
 
 function toggleRequest() {
-    console.log('req: ', requestFormVisible.value);
-    console.log('signup: ', signUp.value);
     signUp.value = false;
     requestFormVisible.value = !requestFormVisible.value;
-    console.log('AFTER::::::');
-    console.log('req: ', requestFormVisible.value);
-    console.log('signup: ', signUp.value);
 }
 
 function submitMembership() {
