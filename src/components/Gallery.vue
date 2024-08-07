@@ -1,12 +1,11 @@
 <template>
     <div class="gallery-container">
         <div class="gallery-img"></div>
-        <div class="gallery-text tx-primary">
+        <div class="gallery-text tx-secondary">
             <div class="gallery-text">
                 <div class="gallery-tagline">
             <h2>Our goal is simple:</h2>
             <h3>We want to provide a place to bring neighbors <span style="font-weight: bold;">together.</span></h3>
-            <a href="#" target="_blank"><button class="bg-primary tx-secondary">Suggest an Event</button></a>
                 </div>
             </div>
         </div>
@@ -25,7 +24,6 @@ h2 {
 }
 
 .gallery-container {
-    background-color: #4f7faa;
     /* margin: 10px; */
     /* min-height: 500px; */
     border-radius: 15px;

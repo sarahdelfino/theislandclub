@@ -11,24 +11,21 @@
             <div v-if="requestFormVisible" class="membership-text">
                 <form id="eventForm" ref="form" class="event-form" @submit.prevent="submitEvent">
                     <label for="first_name">First Name</label>
-                    <input required id="first_name" name="first_name" v-model="first_name" />
+                    <input required id="first_name" name="first_name" />
                     <label for="last_name">Last Name</label>
-                    <input required id="last_name" name="last_name" v-model="last_name" />
+                    <input required id="last_name" name="last_name" />
                     <label for="email">Email</label>
-                    <input required id="email" name="email" v-model="email" />
+                    <input required id="email" name="email" />
                     <label for="event_date">Event Date</label>
-                    <input required id="event_date" name="event_date" type="date"
-                        v-model="event_date" />
+                    <input required id="event_date" name="event_date" type="date" />
                         <label for="event_start">Start Time</label>
-                        <input required id="event_start" name="event_start" type="time"
-                        v-model="event_start" />
+                        <input required id="event_start" name="event_start" type="time" />
                         <label for="event_end">End Time</label>
-                        <input required id="event_end" name="event_end" type="time"
-                        v-model="event_end" />
+                        <input required id="event_end" name="event_end" type="time" />
                         <label for="event_name">Event Name</label>
-                    <input required id="event_name" name="event_name" v-model="event_name" />
+                    <input required id="event_name" name="event_name" />
                     <label for="event_description">Event Description</label>
-                    <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description" v-model="event_description" ></textarea>
+                    <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description"></textarea>
                     <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
                 </form>
             </div>
@@ -42,24 +39,24 @@
                         @submit.prevent="submitMembership">
                         <div class="radio-buttons">
                             <div class="radio-button">
-                                <input required type="radio" id="indv" name="mem_type" v-model="mem_type"
+                                <input required type="radio" id="indv" name="mem_type" 
                                     value="individual" />
                                 <label style="text-align: center;" for="mem_indv">Individual $250</label>
                             </div>
                             <div class="radio-button">
-                                <input required type="radio" id="fam" name="mem_type" v-model="mem_type"
+                                <input required type="radio" id="fam" name="mem_type" 
                                     value="family" />
                                 <label style="text-align: center;" for="mem_fam">Family $350</label>
                             </div>
                         </div>
                         <label for="first_name">First Name</label>
-                        <input required id="first_name" name="first_name" v-model="first_name" />
+                        <input required id="first_name" name="first_name" />
                         <label for="last_name">Last Name</label>
-                        <input required id="last_name" name="last_name" v-model="last_name" />
+                        <input required id="last_name" name="last_name" />
                         <label for="email">Email</label>
-                        <input required id="email" name="email" v-model="email" />
+                        <input required id="email" name="email" />
                         <label for="address">Address</label>
-                        <input required id="address" name="address" v-model="address" />
+                        <input required id="address" name="address" />
                         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
                     </form>
         </div>
@@ -101,22 +98,32 @@ let membershipForm = {
 onMounted(() => {
     success.value = false;
     error.value = false;
-
-    console.log(requestForm)
 })
 
 function toggleSignup() {
+    console.log('req: ', requestFormVisible.value);
+    console.log('signup: ', signUp.value);
     requestFormVisible.value = false;
     signUp.value = !signUp.value;
+    console.log('AFTER::::::');
+    console.log('req: ', requestFormVisible.value);
+    console.log('signup: ', signUp.value);
 }
 
 function toggleRequest() {
+    console.log('req: ', requestFormVisible.value);
+    console.log('signup: ', signUp.value);
     signUp.value = false;
     requestFormVisible.value = !requestFormVisible.value;
+    console.log('AFTER::::::');
+    console.log('req: ', requestFormVisible.value);
+    console.log('signup: ', signUp.value);
 }
 
 function submitMembership() {
     // submit membership to firebase
+    console.log(membershipForm.mem_type);
+    console.log(membershipForm.mem_type.value);
     console.log("error: ", error.value, " success: ", success.value);
         emailjs.sendForm("service_66ijhfa", "template_de4aoh4", membershipForm, {
         publicKey: 'pp0s7qlmsjt-_40XH',
