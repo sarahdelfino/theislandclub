@@ -39,7 +39,7 @@
                     <form id="membershipForm" ref="membershipForm" class="membership-form"
                         @submit.prevent="submitMembership()">
                         <h1 class="tx-secondary">Become a Member</h1>
-                        <div class="radio-buttons">
+                        <!-- <div class="radio-buttons">
                             <div class="radio-button">
                                 <input required type="radio" id="indv" name="mem_type" 
                                     value="individual" />
@@ -58,7 +58,7 @@
                         <label for="email">Email</label>
                         <input required id="email" name="email" />
                         <label for="address">Address</label>
-                        <input required id="address" name="address" />
+                        <input required id="address" name="address" /> -->
                         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
                     </form>
         </div>
