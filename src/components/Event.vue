@@ -6,9 +6,9 @@
             <div class="event-title">
                 <h1>{{ event?.title }}</h1>
             </div>
-            <!-- <div class="event-add-button">
+            <div class="event-add-button">
                 <a class="tx-secondary" href="#" target="_blank">Add to Calendar</a>
-            </div> -->
+            </div>
         </div>
         <div class="event-info-container">
             <div class="event-info-img">
