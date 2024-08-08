@@ -44,24 +44,22 @@
                         <h1 class="tx-secondary">Become a Member</h1>
                         <div class="radio-buttons">
                             <div class="radio-button">
-                                <input required type="radio" id="indv" name="mem_type" v-model="mem_type"
-                                    value="individual" />
+                                <input required type="radio" id="indv" name="mem_type" value="individual" />
                                 <label style="text-align: center;" for="mem_indv">Individual $250</label>
                             </div>
                             <div class="radio-button">
-                                <input required type="radio" id="fam" name="mem_type" v-model="mem_type"
-                                    value="family" />
+                                <input required type="radio" id="fam" name="mem_type" value="family" />
                                 <label style="text-align: center;" for="mem_fam">Family $350</label>
                             </div>
                         </div>
                         <label for="first_name">First Name</label>
-                        <input required id="first_name" name="first_name" v-model="first_name" />
+                        <input required id="first_name" name="first_name" />
                         <label for="last_name">Last Name</label>
-                        <input required id="last_name" name="last_name" v-model="last_name" />
+                        <input required id="last_name" name="last_name" />
                         <label for="email">Email</label>
-                        <input required id="email" name="email" v-model="email" />
+                        <input required id="email" name="email" />
                         <label for="address">Address</label>
-                        <input required id="address" name="address" v-model="address" />
+                        <input required id="address" name="address" />
                         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
                     </form>
         </div>
@@ -96,8 +94,6 @@ let membershipForm = {
 onMounted(() => {
     success.value = false;
     error.value = false;
-
-    console.log(requestForm)
 })
 
 function toggleSignup() {
