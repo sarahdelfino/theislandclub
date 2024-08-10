@@ -11,5 +11,5 @@ export const routes: Routes = [
     { path: 'membership', component: MembershipComponent },
     { path: 'capital-project', component: CapitalComponent },
     { path: 'blog', component: BlogComponent },
-    { path: '**', component: HomeComponent }
+    { path: '**', component: AppComponent }
 ];
