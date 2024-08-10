@@ -1,27 +1,41 @@
 <div class="heading-container">
-  <div class="text-container tx-primary"> 
-  <div class="title">
+  <div class="text-container tx-primary">
+    <div class="title">
       <h1>The Island Club</h1>
-  </div>
-  <div class="tagline">
+    </div>
+    <div class="tagline">
       <h2>A community gathering place for residents of Sullivan's Island,<br> South Carolina</h2>
+    </div>
+    <div class="heading-btn-container">
+      <button routerLink="/membership" class="btn-primary">
+        Membership
+      </button>
+      <button routerLink="/capital-project" class="btn-secondary">
+        Capital Project
+      </button>
+    </div>
   </div>
-  <!-- <div class="alert-container">
-      <div class="alert-text">
-          <div class="alert-title">
-              The Island Club is expanding!
-          </div>
+</div>
+<div class="upcoming-events-container bg-primary">
+  <h2>Upcoming Events</h2>
+  <div *ngFor="let event of events" class="upcoming-event-card">
+    <!-- <RouterLink class="router-link" :to="{ name: 'event', params: { id: event.id } }">  -->
+    <div class="row">
+      <div class="row-img"></div>
+      <div class="row-text">
+        <h2 class="row-title">{{ event.title }}</h2>
+        <div class="row-tagline">
+          <h3>{{ event.date }}</h3>
+          <h3>{{ event.start }} - {{ event.end }}</h3>
+        </div>
       </div>
-  </div> -->
-  <div class="heading-btn-container">
-  <button class="btn-primary">
-    <!-- <RouterLink style="color: white;" class="router-link" to="/membership">Membership</RouterLink> -->
-    Membership
-  </button>
-  <button class="btn-secondary">
-    <!-- <RouterLink class="router-link" to="/capital-project">Capital Project</RouterLink> -->
-    Capital Project
-  </button>
-</div>
-</div>
-</div>
+      <p class="arrow"></p>
+      <i class="arrow pi pi-caret-right"></i>
+    </div>
+    <!-- </RouterLink> -->
+  </div>
+  <div class="upcoming-event-buttons">
+    <button routerLink="/membership" class="view-events-button btn-primary">View All Events
+    </button>
+    <!-- <button class="req-events-button btn-secondary">Request Event</button> -->
+  </div>

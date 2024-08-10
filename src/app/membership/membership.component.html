@@ -1,1 +1,65 @@
-<p>membership works!</p>
+<div class="title">
+    <h1 class="tx-secondary">Membership</h1>
+</div>
+<img class="top-img" src="/alex-diaz-8LCj_78lT_E-unsplash.jpg">
+<h3 class="tx-secondary" style="padding: 10px;">The Island Club is open to all current and prior residents of
+    Sullivan's Island. Membership
+    allows you to attend & host events and includes one free private rental per year.</h3>
+<div class="member-buttons">
+<button (click)="toggleSignup()" class="btn-primary">Become a Member</button>
+<button (click)="toggleRequest()" class="btn-secondary">Request an Event</button>
+</div>
+<div *ngIf="requestFormVisible" class="membership-text">
+            <form id="eventForm" ref="form" class="event-form" submit.prevent="submitEvent">
+                <h2 class="tx-secondary">Request an Event</h2>
+                <label for="first_name">First Name</label>
+                <input required id="first_name" name="first_name" v-model="first_name" />
+                <label for="last_name">Last Name</label>
+                <input required id="last_name" name="last_name" v-model="last_name" />
+                <label for="email">Email</label>
+                <input required id="email" name="email" v-model="email" />
+                <label for="event_date">Event Date</label>
+                <input required id="event_date" name="event_date" type="date"
+                    v-model="event_date" />
+                    <label for="event_start">Start Time</label>
+                    <input required id="event_start" name="event_start" type="time"
+                    v-model="event_start" />
+                    <label for="event_end">End Time</label>
+                    <input required id="event_end" name="event_end" type="time"
+                    v-model="event_end" />
+                    <label for="event_name">Event Name</label>
+                <input required id="event_name" name="event_name" v-model="event_name" />
+                <label for="event_description">Event Description</label>
+                <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description" v-model="event_description" ></textarea>
+                <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+<div *ngIf="signUpVisible" class="membership-text tx-primary">
+    <!-- <Alert text="You will be sent to Stripe to complete your payment once you click submit." type="info" />
+
+    <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'" /> -->
+
+    <form id="membershipForm" ref="membershipForm" class="membership-form" submit.prevent="submitMembership()">
+        <h2 class="tx-secondary">Become a Member</h2>
+        <div class="radio-buttons">
+            <div class="radio-button">
+                <input required type="radio" id="indv" name="mem_type_indv" value="individual" />
+                <label style="text-align: center;" for="mem_type_indv">Individual $250</label>
+            </div>
+            <div class="radio-button">
+                <input required type="radio" id="fam" name="mem_type_fam" value="family" />
+                <label style="text-align: center;" for="mem_type_fam">Family $350</label>
+            </div>
+        </div>
+        <label for="first_name">First Name</label>
+        <input required id="first_name" name="first_name" />
+        <label for="last_name">Last Name</label>
+        <input required id="last_name" name="last_name" />
+        <label for="email">Email</label>
+        <input required id="email" name="email" />
+        <label for="address">Address</label>
+        <input required id="address" name="address" />
+        <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+<app-events></app-events>

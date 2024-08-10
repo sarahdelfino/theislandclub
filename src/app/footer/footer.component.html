@@ -1,1 +1,13 @@
-<p>footer works!</p>
+<div class="footer-container">
+    <div style="background-color: #4f7faa;" class="tx-primary box">
+        <div class="footer-text">
+            <div class="footer-links">
+                <a *ngFor="let item of navLinks" class="footer-link router-link tx-primary" href="{{ item.link }}">{{ item.title }}</a>
+        </div>
+
+        </div>
+        <div class="copyrights">
+            <p>Designed & Developed by Sarah Delfino</p>
+        </div>
+    </div>
+</div>

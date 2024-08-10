@@ -1,0 +1,92 @@
+h1 {
+    margin: 0px;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+ul li:before {
+    content: '✓';
+    margin-right: 5px;
+}
+
+.title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 375px;
+    text-align: center;
+}
+
+.capital-container {
+    max-width: 1200px;
+    min-width: 375px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.capital-title {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+.capital-img {
+    background-image: url("/elise-wilcox-n1MMS7zb3FI-unsplash (1).jpg");
+    width: 100vw;
+    height: 200px;
+    background-size: cover;
+    background-position: top 25%;
+}
+
+.capital-img::before {
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    filter: opacity(0.9);
+}
+
+.capital-text {
+    padding: 5px 20px 10px 20px;
+    border-radius: 15px;
+    margin: 0px 10px 10px 10px;
+}
+
+.capital-tagline {
+    text-align: center;
+    margin: 20px 0px 20px 0px;
+}
+
+.reno-img {
+    text-align: center;
+}
+
+.project-img {
+    width: -webkit-fill-available;
+    display: block;
+    margin: auto;
+}
+
+@media screen and (min-width: 500px) {
+    img {
+        max-height: 300px;
+    }
+}
+
+@media screen and (min-width: 760px) {
+    .project-img {
+        max-height: 100%;
+    }
+}

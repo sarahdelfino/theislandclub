@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "../dist/islandclub/browser",
+    "public": "./dist/islandclub/browser",
     "rules": "database.rules.json",
     "ignore": [
       "firebase.json",
