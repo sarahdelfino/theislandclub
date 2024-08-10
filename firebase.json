@@ -1,14 +1,17 @@
 {
   "hosting": {
-    "public": "./dist/islandclub/browser"
-  },
-  "database": {
-    "rules": "database.rules.json"
-  },
-  "rewrites": [
-    {
-      "source": "**",
-      "destination": "/index.html"
-    }
-  ]
+    "public": "../dist/islandclub/browser",
+    "rules": "database.rules.json",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
