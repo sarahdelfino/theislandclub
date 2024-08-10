@@ -1,0 +1,65 @@
+h1 {
+    margin-bottom: 0px;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+h3 {
+    margin: 10px;
+}
+
+.heading-container {
+    height: 85vh;
+    background-image: url('../assets/matt-benson-TzdnVuPzY1g-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 75%;
+}
+
+.text-container {
+    width: 250px;
+    margin-top: 20px;
+    text-align: right;
+    position: absolute;
+    right: 3rem;
+}
+
+.title {
+    font-size: 32px;
+    line-height: 70px;
+}
+
+.tagline {
+    font-size: 14px;
+}
+
+.heading-btn-container {
+    width: 300px;
+    position: relative;
+    right: 3rem;
+}
+
+@media screen and (max-width: 400px) {
+    button {
+        margin-top: 0;
+        margin-right: 0;
+    }
+    .text-container {
+        margin-top: 0;
+        right: 1rem;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .heading-container {
+        background-position: top 15% left 5%;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .text-container {
+        right: 8rem;
+    }
+}

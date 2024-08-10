@@ -1,1 +1,11 @@
-<p>navbar works!</p>
+<div class="nav-container">
+    <div class="menu-container">
+    <button (click)="menuClicked = !menuClicked" class="menu-button btn-primary">Menu</button>
+    <span class="nav-items bg-primary" *ngIf="menuClicked">
+        <a class="nav-item tx-secondary" *ngFor="let link of navLinks" href="{{ link.link }}">{{ link.title }}</a>
+    </span>
+</div>
+<div class="title-container tx-secondary">
+</div>
+<div class="logo-container"></div>
+</div>
