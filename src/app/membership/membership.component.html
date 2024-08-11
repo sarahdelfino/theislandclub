@@ -1,7 +1,12 @@
-<div class="title">
-    <h1 class="tx-secondary">Membership</h1>
+<div class="module top-img">
+    <header>
+        <h1 class="tx-primary title">Membership</h1>
+    </header>
 </div>
-<img class="top-img" src="/alex-diaz-8LCj_78lT_E-unsplash.jpg">
+<!-- <div class="title">
+    <h1 class="tx-secondary">Membership</h1>
+</div> -->
+<!-- <img class="top-img" src="/alex-diaz-8LCj_78lT_E-unsplash.jpg"> -->
 <h3 class="tx-secondary" style="padding: 10px;">The Island Club is open to all current and prior residents of
     Sullivan's Island. Membership
     allows you to attend & host events and includes one free private rental per year.</h3>
@@ -10,27 +15,24 @@
 <button (click)="toggleRequest()" class="btn-secondary">Request an Event</button>
 </div>
 <div *ngIf="requestFormVisible" class="membership-text">
-            <form id="eventForm" ref="form" class="event-form" submit.prevent="submitEvent">
+            <form id="eventForm" class="event-form" submit.prevent="submitEvent">
                 <h2 class="tx-secondary">Request an Event</h2>
                 <label for="first_name">First Name</label>
-                <input required id="first_name" name="first_name" v-model="first_name" />
+                <input required id="first_name" name="first_name" />
                 <label for="last_name">Last Name</label>
-                <input required id="last_name" name="last_name" v-model="last_name" />
+                <input required id="last_name" name="last_name" />
                 <label for="email">Email</label>
-                <input required id="email" name="email" v-model="email" />
+                <input required id="email" name="email" />
                 <label for="event_date">Event Date</label>
-                <input required id="event_date" name="event_date" type="date"
-                    v-model="event_date" />
+                <input required id="event_date" name="event_date" type="date" />
                     <label for="event_start">Start Time</label>
-                    <input required id="event_start" name="event_start" type="time"
-                    v-model="event_start" />
+                    <input required id="event_start" name="event_start" type="time" />
                     <label for="event_end">End Time</label>
-                    <input required id="event_end" name="event_end" type="time"
-                    v-model="event_end" />
+                    <input required id="event_end" name="event_end" type="time" />
                     <label for="event_name">Event Name</label>
-                <input required id="event_name" name="event_name" v-model="event_name" />
+                <input required id="event_name" name="event_name" />
                 <label for="event_description">Event Description</label>
-                <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description" v-model="event_description" ></textarea>
+                <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description" ></textarea>
                 <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
             </form>
         </div>
@@ -39,7 +41,7 @@
 
     <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'" /> -->
 
-    <form id="membershipForm" ref="membershipForm" class="membership-form" submit.prevent="submitMembership()">
+    <form id="membershipForm" class="membership-form" (submit)="submitMembership($event)">
         <h2 class="tx-secondary">Become a Member</h2>
         <div class="radio-buttons">
             <div class="radio-button">

@@ -43,7 +43,7 @@ h3 {
 
 .upcoming-events-container {
     max-width: 1200px;
-    min-width: 350px;
+    width: 353px;
     padding: 10px;
     border-radius: 15px;
     color: #4f7faa;
@@ -93,6 +93,11 @@ h3 {
 
 .upcoming-event-buttons {
     text-align: center;
+}
+
+.polaroids-container {
+    text-align: center;
+    margin: 30px 0 30px 0;
 }
 
 @media screen and (max-width: 389px) {
