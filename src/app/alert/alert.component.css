@@ -7,11 +7,11 @@ h3 {
 .alert-flex {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .alert-icon {
-    width: 100px;
-    border: 1px solid white;
+    width: 35px;
     margin-right: 5px;
 }
 

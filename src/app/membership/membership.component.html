@@ -11,7 +11,7 @@
 </div>
 <div *ngIf="requestFormVisible" class="membership-text">
     <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
-            <form id="eventForm" class="event-form" (submit)="submitEvent($event)">
+            <form id="eventForm" class="event-form" (submit)="submit($event)">
                 <h2 class="tx-secondary">Request an Event</h2>
                 <label for="first_name">First Name</label>
                 <input required id="first_name" name="first_name" />
@@ -37,7 +37,7 @@
 
     <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
 
-    <form #membershipForm id="membershipForm" class="membership-form" (submit)="submitMembership($event)">
+    <form #membershipForm id="membershipForm" class="membership-form" (submit)="submit($event)">
         <h2 class="tx-secondary">Become a Member</h2>
         <div class="radio-buttons">
             <div class="radio-button">

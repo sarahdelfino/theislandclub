@@ -24,68 +24,65 @@ export class MembershipComponent {
   toggleSignup() {
     this.requestFormVisible = false;
     this.signUpVisible = !this.signUpVisible;
-}
+  }
 
-toggleRequest() {
-  this.signUpVisible = false;
+  toggleRequest() {
+    this.signUpVisible = false;
     this.requestFormVisible = !this.requestFormVisible;
-}
+  }
 
-submitMembership(e: Event) {
-  e.preventDefault();
-  let membershipForm = e.target as HTMLFormElement;
-  let memberType = membershipForm['mem_type'].value;
-  console.log(membershipForm['mem_type']);
-  console.log(membershipForm['mem_type'].value);
-  // submit membership to firebase
-  // console.log("error: ", error.value, " success: ", success.value);
-  emailjs.sendForm("service_66ijhfa", "template_de4aoh4", membershipForm, {
-      publicKey: 'pp0s7qlmsjt-_40XH',
-  }).then(() => {
-    this.alertText = 'Your submission has been received!';
-    this.alertType = 'success';
-    this.success  = true;
-    membershipForm.reset();
-    let url = '';
-    if (memberType === 'individual') {
-      url = 'https://buy.stripe.com/bIYaEG5Ce1gs5Uc7ss';
-    } else {
-      url = 'https://buy.stripe.com/eVa28ae8K0cociA146';
-    }
-    window.open(url, '_blank')?.focus();
-  },
-      (error) => {
-         this.alertText = 'We were not able to process this submission at this time. Please try again.';
+  submit(e: Event) {
+    e.preventDefault();
+    let form = e.target as HTMLFormElement;
+    if (form['mem_type']) {
+      let memberType = form['mem_type'].value;
+      emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
+        publicKey: 'pp0s7qlmsjt-_40XH',
+      }).then(() => {
+        this.success = true;
+        this.alertText = 'Your submission has been received!';
+        this.alertType = 'success';
+        setTimeout(() => {
+          this.success = false;
+        }, 2000);
+        form.reset();
+        let url = '';
+        if (memberType === 'individual') {
+          url = 'https://buy.stripe.com/bIYaEG5Ce1gs5Uc7ss';
+        } else {
+          url = 'https://buy.stripe.com/eVa28ae8K0cociA146';
+        }
+        window.open(url, '_blank')?.focus();
+      },
+        (error) => {
+          this.alertText = 'We were not able to process your submission at this time. Please try again.';
           this.err = true;
           this.alertType = 'err';
           console.log('FAILED...', error);
-      }
-  );
-}
-
-submitEvent(e: Event) {
-  e.preventDefault();
-  let eventForm = e.target as HTMLFormElement;
-  emailjs
-      .sendForm('service_66ijhfa', 'template_jfj2cqe', eventForm, {
+        }
+      );
+    } else {
+      emailjs
+        .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
           publicKey: 'pp0s7qlmsjt-_40XH',
-      })
-      .then(
+        })
+        .then(
           () => {
+            this.success = true;
             this.alertText = 'Your submission has been received!';
             this.alertType = 'success';
-            this.success  = true;
+            form.reset();
             setTimeout(() => {
               this.success = false;
             }, 2000);
           },
           (error) => {
-            this.alertText = 'We were not able to process this submission at this time. Please try again.';
+            this.alertText = 'We were not able to process your submission at this time. Please try again.';
             this.err = true;
             this.alertType = 'err';
             console.log('FAILED...', error);
           },
-      );
-}
-
+        );
+    }
+  }
 }
