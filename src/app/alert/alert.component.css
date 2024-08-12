@@ -1,0 +1,28 @@
+h3 {
+    margin: 0px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.alert-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.alert-icon {
+    width: 100px;
+    border: 1px solid white;
+    margin-right: 5px;
+}
+
+.info {
+    background-color:  lightblue;
+}
+
+.success {
+    background-color: green;
+}
+
+.err {
+    background-color: lightcoral;
+}

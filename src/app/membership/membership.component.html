@@ -1,12 +1,7 @@
-<div class="module top-img">
-    <header>
-        <h1 class="tx-primary title">Membership</h1>
-    </header>
+<div class="title">
+    <h1 class="tx-primary">Membership</h1>
 </div>
-<!-- <div class="title">
-    <h1 class="tx-secondary">Membership</h1>
-</div> -->
-<!-- <img class="top-img" src="/alex-diaz-8LCj_78lT_E-unsplash.jpg"> -->
+<img class="top-img membership-img" src="/roger-starnes-sr-cQmZOv8FoFM-unsplash.jpg">
 <h3 class="tx-secondary" style="padding: 10px;">The Island Club is open to all current and prior residents of
     Sullivan's Island. Membership
     allows you to attend & host events and includes one free private rental per year.</h3>
@@ -15,7 +10,8 @@
 <button (click)="toggleRequest()" class="btn-secondary">Request an Event</button>
 </div>
 <div *ngIf="requestFormVisible" class="membership-text">
-            <form id="eventForm" class="event-form" submit.prevent="submitEvent">
+    <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
+            <form id="eventForm" class="event-form" (submit)="submitEvent($event)">
                 <h2 class="tx-secondary">Request an Event</h2>
                 <label for="first_name">First Name</label>
                 <input required id="first_name" name="first_name" />
@@ -36,21 +32,21 @@
                 <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
             </form>
         </div>
-<div *ngIf="signUpVisible" class="membership-text tx-primary">
-    <!-- <Alert text="You will be sent to Stripe to complete your payment once you click submit." type="info" />
+<div *ngIf="signUpVisible" class="membership-text tx-secondary">
+    <app-alert text="You will be sent to Stripe to complete your payment once you click submit." type="info"></app-alert>
 
-    <Alert v-if="success || error" :text="alertText" :type="success ? 'success' : 'error'" /> -->
+    <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
 
-    <form id="membershipForm" class="membership-form" (submit)="submitMembership($event)">
+    <form #membershipForm id="membershipForm" class="membership-form" (submit)="submitMembership($event)">
         <h2 class="tx-secondary">Become a Member</h2>
         <div class="radio-buttons">
             <div class="radio-button">
-                <input required type="radio" id="indv" name="mem_type_indv" value="individual" />
-                <label style="text-align: center;" for="mem_type_indv">Individual $250</label>
+                <input required type="radio" id="indv" name="mem_type" value="individual" />
+                <label style="text-align: center;" for="indv">Individual $250</label>
             </div>
             <div class="radio-button">
-                <input required type="radio" id="fam" name="mem_type_fam" value="family" />
-                <label style="text-align: center;" for="mem_type_fam">Family $350</label>
+                <input required type="radio" id="fam" name="mem_type" value="family" />
+                <label style="text-align: center;" for="fam">Family $350</label>
             </div>
         </div>
         <label for="first_name">First Name</label>

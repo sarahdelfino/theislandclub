@@ -6,10 +6,6 @@ h2 {
     margin-top: 10px;
 }
 
-img {
-    max-width: 100%;
-}
-
 ul {
     list-style: none;
     padding-left: 20px;
@@ -46,7 +42,6 @@ ul li:before {
 .capital-img {
     background-image: url("/elise-wilcox-n1MMS7zb3FI-unsplash (1).jpg");
     width: 100vw;
-    height: 200px;
     background-size: cover;
     background-position: top 25%;
 }
