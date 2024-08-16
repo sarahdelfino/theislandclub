@@ -1,5 +1,8 @@
 <div class="heading-container">
   <div class="text-container tx-primary">
+    <div class="logo-container">
+      <img class="nav-logo" src="../logo.png">
+    </div>
     <div class="title">
       <h1>The Island Club</h1>
     </div>
@@ -16,6 +19,9 @@
     </div>
   </div>
 </div>
+<app-alert style="position: relative; bottom: 100px;"
+  text="The Island Club is expanding! Please view our Capital Project page for more information."
+  type="info"></app-alert>
 <div class="upcoming-events-container bg-primary">
   <h2>Upcoming Events</h2>
   <div *ngFor="let event of events" class="upcoming-event-card">
@@ -39,10 +45,10 @@
     </button>
     <!-- <button class="req-events-button btn-secondary">Request Event</button> -->
   </div>
-  </div>
-  <div class="polaroids-container">
-    <!-- <a href="/about"><img src="/about.svg"></a> -->
-    <a href="/membership"><img src="/membership.svg"></a>
-    <a href="https://buy.stripe.com/aEU5kmaWy9MYbew9AD" target="_blank"><img src="/donate.svg"></a>
-    <a href="/blog"><img src="/blog.svg"></a>
-  </div>
+</div>
+<div class="polaroids-container">
+  <!-- <a href="/about"><img src="/about.svg"></a> -->
+  <a href="/membership"><img src="/membership.svg"></a>
+  <a href="https://buy.stripe.com/aEU5kmaWy9MYbew9AD" target="_blank"><img src="/donate.svg"></a>
+  <a href="/blog"><img src="/blog.svg"></a>
+</div>

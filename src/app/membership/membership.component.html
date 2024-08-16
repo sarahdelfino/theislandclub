@@ -1,39 +1,44 @@
 <div class="title">
     <h1 class="tx-primary">Membership</h1>
 </div>
-<img class="top-img membership-img" src="/roger-starnes-sr-cQmZOv8FoFM-unsplash.jpg">
+<div class="membership-container">
+<img class="top-img membership-img" srcset="
+/roger-starnes-s.jpg 650w,
+/roger-starnes-m.jpg 1920w,
+" sizes="(max-width: 1000px) 100vw, 1000px">
 <h3 class="tx-secondary" style="padding: 10px;">The Island Club is open to all current and prior residents of
     Sullivan's Island. Membership
     allows you to attend & host events and includes one free private rental per year.</h3>
-<div class="member-buttons">
-<button (click)="toggleSignup()" class="btn-primary">Become a Member</button>
-<button (click)="toggleRequest()" class="btn-secondary">Request an Event</button>
+<div id="buttons" class="member-buttons">
+    <button (click)="toggleSignup()" class="btn-primary">Become a Member</button>
+    <button (click)="toggleRequest()" class="btn-secondary">Request an Event</button>
 </div>
 <div *ngIf="requestFormVisible" class="membership-text">
     <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
-            <form id="eventForm" class="event-form" (submit)="submit($event)">
-                <h2 class="tx-secondary">Request an Event</h2>
-                <label for="first_name">First Name</label>
-                <input required id="first_name" name="first_name" />
-                <label for="last_name">Last Name</label>
-                <input required id="last_name" name="last_name" />
-                <label for="email">Email</label>
-                <input required id="email" name="email" />
-                <label for="event_date">Event Date</label>
-                <input required id="event_date" name="event_date" type="date" />
-                    <label for="event_start">Start Time</label>
-                    <input required id="event_start" name="event_start" type="time" />
-                    <label for="event_end">End Time</label>
-                    <input required id="event_end" name="event_end" type="time" />
-                    <label for="event_name">Event Name</label>
-                <input required id="event_name" name="event_name" />
-                <label for="event_description">Event Description</label>
-                <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description" ></textarea>
-                <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
-            </form>
-        </div>
+    <form id="eventForm" class="event-form" (submit)="submit($event)">
+        <h2 class="tx-secondary">Request an Event</h2>
+        <label for="first_name">First Name</label>
+        <input required id="first_name" name="first_name" />
+        <label for="last_name">Last Name</label>
+        <input required id="last_name" name="last_name" />
+        <label for="email">Email</label>
+        <input required id="email" name="email" />
+        <label for="event_date">Event Date</label>
+        <input required id="event_date" name="event_date" type="date" />
+        <label for="event_start">Start Time</label>
+        <input required id="event_start" name="event_start" type="time" />
+        <label for="event_end">End Time</label>
+        <input required id="event_end" name="event_end" type="time" />
+        <label for="event_name">Event Name</label>
+        <input required id="event_name" name="event_name" />
+        <label for="event_description">Event Description</label>
+        <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description"></textarea>
+        <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
+    </form>
+</div>
 <div *ngIf="signUpVisible" class="membership-text tx-secondary">
-    <app-alert text="You will be sent to Stripe to complete your payment once you click submit." type="info"></app-alert>
+    <app-alert text="You will be sent to Stripe to complete your payment once you click submit."
+        type="info"></app-alert>
 
     <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
 
@@ -61,3 +66,4 @@
     </form>
 </div>
 <app-events></app-events>
+</div>

@@ -1,0 +1,68 @@
+h1 {
+    margin: 0px;
+}
+
+h2 {
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+p {
+    margin-top: 0px;
+    font-size: 14px;
+}
+
+.title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 375px;
+    text-align: center;
+}
+
+.blog-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blog-img {
+    background-image: url("/cody-silver-U_uv5Tfke9U-unsplash.jpg");
+    width: 100vw;
+    height: 200px;
+    background-size: cover;
+    background-blend-mode: lighten;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.blog-posts-container {
+    padding-top: 20px;
+}
+
+.blog-post {
+    display: flex;
+    margin: 8px 8px 15px 8px;
+    border: 1px solid #4f7faa;
+    border-radius: 5px;
+    box-shadow: #4f7faa 8px 8px 10px -10px;
+}
+
+.blog-post-img {
+    width: 35vw;
+    height: 150px;
+    margin-right: 10px;
+    border: 1px solid #4f7faa;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.blog-text {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-info {
+    font-size: 14px;
+}

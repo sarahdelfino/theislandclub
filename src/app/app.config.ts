@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
@@ -17,5 +17,5 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideFirebaseApp(() => initializeApp({"projectId":"theislandclub","appId":"1:939559041500:web:6e456a66fd2c8852aef719","databaseURL":"https://theislandclub-default-rtdb.firebaseio.com","storageBucket":"theislandclub.appspot.com","apiKey":"AIzaSyC6vSLkiU0Mzb0cpJm7NKlyuNwdnymXqcE","authDomain":"theislandclub.firebaseapp.com","messagingSenderId":"939559041500"})), provideAnalytics(() => getAnalytics()), ScreenTrackingService, provideFirestore(() => getFirestore()), NavbarComponent, FooterComponent],
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes, withComponentInputBinding()), provideFirebaseApp(() => initializeApp({"projectId":"theislandclub","appId":"1:939559041500:web:6e456a66fd2c8852aef719","databaseURL":"https://theislandclub-default-rtdb.firebaseio.com","storageBucket":"theislandclub.appspot.com","apiKey":"AIzaSyC6vSLkiU0Mzb0cpJm7NKlyuNwdnymXqcE","authDomain":"theislandclub.firebaseapp.com","messagingSenderId":"939559041500"})), provideAnalytics(() => getAnalytics()), ScreenTrackingService, provideFirestore(() => getFirestore()), NavbarComponent, FooterComponent],
 };

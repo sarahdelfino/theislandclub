@@ -4,11 +4,12 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { Event } from '../event';
+import { AlertComponent } from "../alert/alert.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, NavbarComponent, FooterComponent, CommonModule],
+  imports: [RouterLink, NavbarComponent, FooterComponent, CommonModule, AlertComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

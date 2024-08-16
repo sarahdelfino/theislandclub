@@ -5,11 +5,13 @@ import { HomeComponent } from './home/home.component';
 import { MembershipComponent } from './membership/membership.component';
 import { CapitalComponent } from './capital/capital.component';
 import { BlogComponent } from './blog/blog.component';
+import { BlogPostComponent } from './blog-post/blog-post.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'membership', component: MembershipComponent },
-    { path: 'capital-project', component: CapitalComponent },
-    { path: 'blog', component: BlogComponent },
+    { path: '', title: 'Home', component: HomeComponent },
+    { path: 'membership', title: 'Membership', component: MembershipComponent },
+    { path: 'capital-project', title: 'Capital Project', component: CapitalComponent },
+    { path: 'blog', title: 'Blog', component: BlogComponent },
+    { path: 'blog/:id', component: BlogPostComponent },
     { path: '**', component: AppComponent }
 ];

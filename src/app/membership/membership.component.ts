@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventsComponent } from '../events/events.component';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { AlertComponent } from "../alert/alert.component";
@@ -39,13 +39,13 @@ export class MembershipComponent {
       emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
         publicKey: 'pp0s7qlmsjt-_40XH',
       }).then(() => {
+        form.reset();
         this.success = true;
         this.alertText = 'Your submission has been received!';
         this.alertType = 'success';
         setTimeout(() => {
           this.success = false;
-        }, 2000);
-        form.reset();
+        }, 8000);
         let url = '';
         if (memberType === 'individual') {
           url = 'https://buy.stripe.com/bIYaEG5Ce1gs5Uc7ss';
@@ -84,5 +84,8 @@ export class MembershipComponent {
           },
         );
     }
+    let alert = document.getElementById('buttons');
+    console.log(alert);
+    alert?.scrollIntoView({ behavior: 'smooth' });
   }
 }
