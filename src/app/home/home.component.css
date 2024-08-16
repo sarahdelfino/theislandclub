@@ -53,8 +53,7 @@ h3 {
     border-radius: 15px;
     color: #4f7faa;
     border: 1px solid #4f7faa;
-    margin-left: auto;
-    margin-right: auto;
+    margin: -125px auto 0px auto;
 }
 
 .title {
