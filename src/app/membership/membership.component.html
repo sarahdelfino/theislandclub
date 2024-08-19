@@ -16,11 +16,13 @@
 <div *ngIf="requestFormVisible" class="membership-text">
     <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
     <form id="eventForm" class="event-form" (submit)="submit($event)">
-        <h2 class="tx-secondary">Request an Event</h2>
+        <h2 class="tx-secondary">Submit an Event</h2>
         <label for="first_name">First Name</label>
         <input required id="first_name" name="first_name" />
         <label for="last_name">Last Name</label>
         <input required id="last_name" name="last_name" />
+        <label for="phone">Phone Number</label>
+        <input required id="phone" name="phone" />
         <label for="email">Email</label>
         <input required id="email" name="email" />
         <label for="event_date">Event Date</label>
@@ -60,10 +62,12 @@
         <input required id="last_name" name="last_name" />
         <label for="email">Email</label>
         <input required id="email" name="email" />
+        <label for="phone">Phone</label>
+        <input required id="phone" name="phone" />
         <label for="address">Address</label>
         <input required id="address" name="address" />
         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
     </form>
 </div>
-<app-events></app-events>
+<app-events id="events"></app-events>
 </div>

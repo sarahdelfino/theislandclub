@@ -3,6 +3,9 @@ import { Component, Input } from '@angular/core';
 import { EventsComponent } from '../events/events.component';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { AlertComponent } from "../alert/alert.component";
+import { Member } from '../member';
+import { FirebaseService } from '../firebase.service';
+import { Event as event } from '../event';
 
 @Component({
   selector: 'app-membership',
@@ -13,6 +16,10 @@ import { AlertComponent } from "../alert/alert.component";
 })
 export class MembershipComponent {
 
+  constructor(private firebaseService: FirebaseService) {}
+
+  @Input() scrollToEvents: false;
+
   alertText = '';
   alertType = '';
   err = false;
@@ -20,6 +27,14 @@ export class MembershipComponent {
 
   signUpVisible = false;
   requestFormVisible = false;
+
+  ngOnInit() {
+    if (this.scrollToEvents) {
+      let events = document.getElementById('events');
+      console.log(events);
+      events?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   toggleSignup() {
     this.requestFormVisible = false;
@@ -35,6 +50,9 @@ export class MembershipComponent {
     e.preventDefault();
     let form = e.target as HTMLFormElement;
     if (form['mem_type']) {
+      const member = new Member (form['first_name'].value, form['last_name'].value, form['email'].value, form['address'].value, form['mem_type'].value, form['phone'].value
+      );
+      this.firebaseService.addMember(member);
       let memberType = form['mem_type'].value;
       emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
         publicKey: 'pp0s7qlmsjt-_40XH',
@@ -62,6 +80,8 @@ export class MembershipComponent {
         }
       );
     } else {
+      const submittedEvent = new event(Date.now(), form['event_name'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, 'pending approval', form['phone'].value);
+      this.firebaseService.addEvent(submittedEvent);
       emailjs
         .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
           publicKey: 'pp0s7qlmsjt-_40XH',

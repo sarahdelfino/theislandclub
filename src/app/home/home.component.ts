@@ -5,6 +5,10 @@ import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { Event } from '../event';
 import { AlertComponent } from "../alert/alert.component";
+import { FirebaseService } from '../firebase.service';
+import { CalendarService } from '../calendar.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
@@ -15,43 +19,40 @@ import { AlertComponent } from "../alert/alert.component";
 })
 export class HomeComponent {
 
+  events: Array<Event>;
+
   constructor(
     private router: Router,
+    public firebaseService: FirebaseService,
   ) {}
 
-  events: Array<Event> = [
-    {
-      "id": 490238029,
-      "title": "Test Event One",
-      "description": "Test description one",
-      "organizer": "Sarah Delf",
-      "email": "blah@test.com",
-      "date": this.getDate(),
-      "start":"12:12",
-      "end": "13:34",
-      "state": "Pending approval",
-      "phone": "867-5309"
-  },
-  {
-      "id": 234565432,
-      "title": "Test Event Two",
-      "description": "Test description tew",
-      "organizer": "Sarah Delf",
-      "email": "blah@test.com",
-      "date": this.getDate(),
-      "start":"01:12",
-      "end": "02:34",
-      "state": "Pending approval",
-      "phone": "867-5309"
+  async ngOnInit() {
+    this.firebaseService.getEvents().valueChanges().subscribe((resp: any) => {
+      let tmp = resp;
+      for (let row in tmp) {
+        tmp[row].date = this.formatDate(tmp[row].date);
+        tmp[row].start = this.formatTime(tmp[row].start);
+        tmp[row].end = this.formatTime(tmp[row].end);
+      }
+      this.events = tmp;
+    });
   }
-  ]
 
   membershipBtnClick() {
     this.router.navigateByUrl('/membership');
   }
 
-  getDate() {
-    let date = new Date();
+  formatTime(data: any) {
+    let hours = data[0] + data[1];
+    let minutes = data[3] + data[4];
+    let amOrPm = hours >= 12 ? 'pm' : 'am';
+    hours = (hours % 12) || 12;
+    let finalTime = hours + ':' + minutes + amOrPm;
+    return finalTime;
+  }
+
+  formatDate(data: any) {
+    let date = new Date(data);
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
       month: 'long',

@@ -6,10 +6,12 @@ import { MembershipComponent } from './membership/membership.component';
 import { CapitalComponent } from './capital/capital.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogPostComponent } from './blog-post/blog-post.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 export const routes: Routes = [
     { path: '', title: 'Home', component: HomeComponent },
     { path: 'membership', title: 'Membership', component: MembershipComponent },
+    { path: 'events/:id', title: 'Event', component: EventDetailComponent },
     { path: 'capital-project', title: 'Capital Project', component: CapitalComponent },
     { path: 'blog', title: 'Blog', component: BlogComponent },
     { path: 'blog/:id', component: BlogPostComponent },

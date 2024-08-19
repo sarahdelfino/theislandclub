@@ -25,10 +25,10 @@ export class NavbarComponent {
         "title": "Capital Project",
         "link": "/capital-project"
       },
-      {
-        "title": "Blog",
-        "link": "/blog"
-      }
+      // {
+      //   "title": "Blog",
+      //   "link": "/blog"
+      // }
   ]
 
 }

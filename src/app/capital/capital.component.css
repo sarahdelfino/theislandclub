@@ -86,6 +86,16 @@ ul li:before {
     margin: auto;
 }
 
+@media screen and (max-width: 500px) {
+    .chart-container {
+        flex-direction: column;
+    }
+    .img-text {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
 @media screen and (min-width: 500px) {
     img {
         max-height: 300px;

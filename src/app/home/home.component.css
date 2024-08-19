@@ -5,10 +5,16 @@ h1 {
 
 h2 {
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 h3 {
-    margin: 10px;
+    margin: 5px;
+}
+
+.alert-comp {
+    position: relative;
+    bottom: 150px;
 }
 
 .heading-container {
@@ -119,16 +125,13 @@ h3 {
         margin-top: 0;
         right: 1rem;
     }
+    .alert-comp {
+        bottom: 95px;
+    }
 }
 
 @media screen and (min-width: 500px) {
     .heading-container {
         background-position: top 15% left 5%;
-    }
-}
-
-@media screen and (min-width: 760px) {
-    .text-container {
-        right: 5rem;
     }
 }

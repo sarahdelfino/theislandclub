@@ -20,7 +20,10 @@
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
     "@emailjs/browser": "^4.4.1",
+    "@types/gapi": "^0.0.47",
+    "dotenv": "^16.4.5",
     "firebase": "^10.12.5",
+    "googleapis": "^142.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

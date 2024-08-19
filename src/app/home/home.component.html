@@ -19,15 +19,19 @@
     </div>
   </div>
 </div>
-<app-alert style="position: relative; bottom: 130px;"
+<app-alert class="alert-comp"
   text="The Island Club is expanding! Please view our Capital Project page for more information."
   type="info"></app-alert>
 <div class="upcoming-events-container bg-primary">
-  <h2>Upcoming Events</h2>
+  <h2 style="text-align: center;">Upcoming Events</h2>
   <div *ngFor="let event of events" class="upcoming-event-card">
     <!-- <RouterLink class="router-link" :to="{ name: 'event', params: { id: event.id } }">  -->
     <div class="row">
-      <div class="row-img"></div>
+        <img *ngIf="event.title === 'Trinity Wellness Yoga'" class="row-img" srcset="
+        /chelsea-gates-s.jpg 650w,
+        /chelsea-gates-m.jpg 1920w,
+        " sizes="(max-width: 1000px) 100vw, 1000px" />
+        <img *ngIf="event.title === 'Mah Jong'" class="row-img" src="/majong.jpg" />
       <div class="row-text">
         <h2 class="row-title">{{ event.title }}</h2>
         <div class="row-tagline">
@@ -41,7 +45,7 @@
     <!-- </RouterLink> -->
   </div>
   <div class="upcoming-event-buttons">
-    <button routerLink="/membership" class="view-events-button btn-primary">View All Events
+    <button routerLink="/membership" [queryParams]="{ scrollToEvents: true }" class="view-events-button btn-primary">View All Events
     </button>
     <!-- <button class="req-events-button btn-secondary">Request Event</button> -->
   </div>
@@ -50,5 +54,5 @@
   <!-- <a href="/about"><img src="/about.svg"></a> -->
   <a href="/membership"><img src="/membership.svg"></a>
   <a href="https://buy.stripe.com/aEU5kmaWy9MYbew9AD" target="_blank"><img src="/donate.svg"></a>
-  <a href="/blog"><img src="/blog.svg"></a>
+  <!-- <a href="/blog"><img src="/blog.svg"></a> -->
 </div>
