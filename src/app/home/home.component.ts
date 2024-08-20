@@ -29,7 +29,6 @@ export class HomeComponent {
   async ngOnInit() {
     this.firebaseService.getEvents().valueChanges().subscribe((resp: any) => {
       let tmp = resp;
-      console.log("BEFORE :", tmp);
       for (let row in tmp) {
         tmp[row].date = this.formatDate(tmp[row].date);
         tmp[row].start = this.formatTime(tmp[row].start);
@@ -53,9 +52,7 @@ export class HomeComponent {
   }
 
   formatDate(data: any) {
-    console.log("here we gooooo: ", data);
     let date = new Date(data);
-    console.log(date);
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
       month: 'long',
@@ -63,7 +60,6 @@ export class HomeComponent {
       timeZone: 'UTC'
     };
     const formattedDate: string = date.toLocaleDateString('en-US', options);
-    console.log("AFTER: ", formattedDate);
     return formattedDate;
   }
 
