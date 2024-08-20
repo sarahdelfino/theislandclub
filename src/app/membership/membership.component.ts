@@ -31,7 +31,6 @@ export class MembershipComponent {
   ngOnInit() {
     if (this.scrollToEvents) {
       let events = document.getElementById('events');
-      console.log(events);
       events?.scrollIntoView({ behavior: 'smooth' });
     }
   }
@@ -105,7 +104,6 @@ export class MembershipComponent {
         );
     }
     let alert = document.getElementById('buttons');
-    console.log(alert);
     alert?.scrollIntoView({ behavior: 'smooth' });
   }
 }

@@ -14,7 +14,7 @@ export class BlogComponent {
   blogs = blogPosts;
 
   ngOnInit() {
-    console.log(this.blogs);
+    
   }
 
 }

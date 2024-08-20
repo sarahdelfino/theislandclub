@@ -15,12 +15,11 @@ export class BlogPostComponent {
   constructor(private firebaseService: FirebaseService) {}
 
   @Input() set id(blogId: number) {
-    this.blogPost = this.firebaseService.mockGetBlogPost(blogId);
+    // this.blogPost = this.firebaseService.mockGetBlogPost(blogId);
   }
 
   ngOnInit() {
-    console.log(this.blogPost);
-    console.log(this.blogPost.title);
+    
   }
 
 }
