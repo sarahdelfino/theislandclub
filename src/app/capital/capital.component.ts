@@ -12,10 +12,8 @@ export class CapitalComponent {
 
   constructor(private firebaseService: FirebaseService) {}
 
-  donations = 0;
-
   ngOnInit() {
-    this.donations = this.firebaseService.getDonationAmount();
+
   }
 
 }
