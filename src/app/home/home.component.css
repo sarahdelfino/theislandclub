@@ -15,7 +15,7 @@ h3 {
 
 .alert-comp {
     position: relative;
-    bottom: 150px;
+    bottom: 7.5rem;
 }
 
 .heading-container {
@@ -126,9 +126,6 @@ h3 {
     .text-container {
         margin-top: 0;
         right: 1rem;
-    }
-    .alert-comp {
-        bottom: 100px;
     }
 }
 
