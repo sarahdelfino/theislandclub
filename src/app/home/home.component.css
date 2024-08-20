@@ -10,6 +10,7 @@ h2 {
 
 h3 {
     margin: 5px;
+    font-size: 1rem;
 }
 
 .alert-comp {
@@ -126,7 +127,7 @@ h3 {
         right: 1rem;
     }
     .alert-comp {
-        bottom: 95px;
+        bottom: 100px;
     }
 }
 
