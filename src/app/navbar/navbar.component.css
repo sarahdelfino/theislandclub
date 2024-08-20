@@ -56,3 +56,9 @@ a {
     cursor: pointer;
     font-size: 17px;
 }
+
+@media screen and (max-width: 400px) {
+    .nav-container {
+        padding: 0.5rem;
+    }
+}
