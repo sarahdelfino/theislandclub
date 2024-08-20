@@ -49,6 +49,11 @@ p {
     margin: 10px 20px 10px 20px;
 }
 
+.social-img {
+    width: 1rem;
+    margin: .5rem;
+}
+
 .copyrights {
     background-color: #4f7faa;
 }
