@@ -25,7 +25,7 @@ export class FirebaseService {
   }
 
   addEvent(eventData: Event) {
-    const eventListRef = ref(this.database.database, '/events');
+    const eventListRef = ref(this.database.database, '/submittedEvents');
     const eventsRef = push(eventListRef);
     set(eventsRef, eventData).then(() => {
       console.log('Event data saved successfully!');

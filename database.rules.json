@@ -1,6 +1,23 @@
 {
   "rules": {
-    ".read": "now < 1722398400000",  // 2024-7-31
-    ".write": "now < 1722398400000",  // 2024-7-31
+  "events": {
+    ".read": "true",
+  "$uid": {
+  ".write": "newData.exists()",
+    ".read": "true"
   }
-}
+  },
+    "members": {
+      ".read": "false",
+        "$uid": {
+          ".write": "newData.exists()"
+        }
+    },
+      "submittedEvents": {
+        ".read": "false",
+          "$uid": {
+            ".write": "newData.exists()"
+          }
+      }
+  }
+ }
