@@ -88,6 +88,7 @@ h3 {
 
 .row-img {
     width: 25vw;
+    max-width: 235px;
     height: 90px;
     margin-right: 10px;
     border: 1px solid #4f7faa;
@@ -132,5 +133,24 @@ h3 {
 @media screen and (min-width: 500px) {
     .heading-container {
         background-position: top 15% left 5%;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .row-img {
+        width: 20vw;
+        height: 100px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .text-container {
+        right: 8rem;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .text-container {
+        right: 20rem;
     }
 }
