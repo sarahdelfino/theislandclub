@@ -27,16 +27,12 @@
   <div *ngFor="let event of events" class="upcoming-event-card">
     <!-- <RouterLink class="router-link" :to="{ name: 'event', params: { id: event.id } }">  -->
     <div class="row">
-        <img *ngIf="event.title === 'Trinity Wellness Yoga'" class="row-img" srcset="
-        /chelsea-gates-s.jpg 650w,
-        /chelsea-gates-m.jpg 1920w,
-        " sizes="(max-width: 1000px) 100vw, 1000px" />
-        <img *ngIf="event.title === 'Mah Jong'" class="row-img" src="/majong.jpg" />
+      <img class="row-img" srcset="{{ event.img }}-s.jpg 650w, {{ event.img }}-m.jpg 1920w" sizes="(max-width: 1000px) 100vw, 1000px" />
       <div class="row-text">
         <h2 style="margin: 0;" class="row-title">{{ event.title }}</h2>
         <div class="row-tagline">
           <h3>{{ event.date }}</h3>
-          <h3>{{ event.start }} - {{ event.end }}</h3>
+          <h3 *ngIf="event.start.length > 1 && event.end.length > 1">{{ event.start }} - {{ event.end }}</h3>
         </div>
       </div>
       <p class="arrow"></p>

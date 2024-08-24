@@ -79,7 +79,7 @@ export class MembershipComponent {
         }
       );
     } else {
-      const submittedEvent = new event(Date.now(), form['event_name'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, 'pending approval', form['phone'].value);
+      const submittedEvent = new event(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
       this.firebaseService.addEvent(submittedEvent);
       emailjs
         .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
