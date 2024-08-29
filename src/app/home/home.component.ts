@@ -32,7 +32,7 @@ export class HomeComponent {
       let arr = [];
       for (let row in resp) {
         let tmp = {
-          "date": this.formatDate(resp[row].start),
+          "date": resp[row].start,
           "start": this.formatTime(resp[row].start),
           "end": this.formatTime(resp[row].end),
           "id": resp[row].id,
@@ -40,8 +40,10 @@ export class HomeComponent {
           "img": this.getImg(resp[row])
         }
         arr.push(tmp);
-        arr.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0)
+        arr.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
       }
+      arr[0].date = this.formatDate(arr[0].date);
+      arr[1].date = this.formatDate(arr[1].date);
       this.events.push(arr[0]);
       this.events.push(arr[1]);
     });
@@ -82,6 +84,8 @@ export class HomeComponent {
       return '/chelsea-gates'
     } else if (data.title === 'Mah Jong') {
       return '/majong'
+    } else if (data.title === 'AA') {
+      return '/cody-silver'
     } else {
       return '/matt-briney-2'
     }
