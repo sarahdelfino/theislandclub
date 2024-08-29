@@ -11,12 +11,13 @@ h3 {
 }
 
 ul {
-    list-style: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 20px;
 }
 
 ul li:before {
-    content: '✓';
     margin-right: 5px;
 }
 
@@ -57,7 +58,7 @@ ul li:before {
 }
 
 .capital-text {
-    text-align: center;
+    /* text-align: center; */
     padding: 5px 10px 10px 10px;
     border-radius: 15px;
     margin: 0px 10px 10px 10px;
@@ -68,7 +69,7 @@ ul li:before {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0px 50px 0px;
 }
 
 .capital-tagline {
@@ -109,7 +110,10 @@ ul li:before {
 }
 
 @media screen and (min-width: 760px) {
-    img {
+    .capital-img {
         max-height: 400px;
+    }
+    img {
+        max-height: 800px;
     }
 }

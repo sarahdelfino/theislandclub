@@ -37,11 +37,7 @@ export class FirebaseService {
   addMember(memberData: Member) {
     const memberListRef = ref(this.database.database, 'members');
     const memberRef = push(memberListRef);
-    set(memberRef, memberData).then(() => {
-      console.log('Member data saved successfully!');
-    }).catch((error) => {
-      console.log('Failed to save member data with the following error: ', error);
-    });
+    return set(memberRef, memberData);
   }
 
 }
