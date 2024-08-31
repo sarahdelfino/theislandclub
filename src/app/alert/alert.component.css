@@ -27,7 +27,7 @@ h3 {
     background-color: lightcoral;
 }
 
-@media screen and (min-width: 1200px) {
+/* @media screen and (min-width: 1200px) {
     img {
         padding-left: 8rem;
     }
@@ -37,4 +37,4 @@ h3 {
     img {
         padding-left: 20rem;
     }
-}
+} */

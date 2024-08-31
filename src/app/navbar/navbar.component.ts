@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +12,12 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
 
+  constructor(private location: Location) {
+    console.log(this.location.path());
+    this.getPageName();
+  }
+
+  title = '';
   menuClicked = false;
   
   navLinks = [
@@ -30,5 +38,13 @@ export class NavbarComponent {
       //   "link": "/blog"
       // }
   ]
+
+  getPageName() { 
+    for (let link in this.navLinks) {
+      if (this.navLinks[link].link === this.location.path()) {
+        this.title = this.navLinks[link].title;
+      }
+    }
+  }
 
 }
