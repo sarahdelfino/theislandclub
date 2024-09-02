@@ -3,7 +3,7 @@ import blogPosts from './blog/blogPosts.json';
 import { Event } from './event';
 import { Member } from './member';
 import { Database, ref, set, onValue, push, objectVal, object } from '@angular/fire/database';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject, snapshotChanges } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class FirebaseService {
   eventsArray: Array<Event>;
   eventObj: AngularFireObject<any>;
   eventList: AngularFireList<any>;
+  blogsList: AngularFireList<any>;
+  blogPost: AngularFireObject<any>;
 
   constructor(
   private database: AngularFireDatabase,
@@ -22,6 +24,18 @@ export class FirebaseService {
   getEvents(): any {
     this.eventList = this.database.list('events')
     return this.eventList;
+  }
+
+  getBlogs(): any {
+    this.blogsList = this.database.list('blogs');
+    return this.blogsList;
+  }
+
+  getBlogPost(id: string): any {
+    console.log(id);
+    this.blogPost = this.database.object('blog-posts/' + id);
+    console.log(this.blogPost);
+    return this.blogPost;
   }
 
   addEvent(eventData: Event) {
@@ -35,9 +49,15 @@ export class FirebaseService {
   }
 
   addMember(memberData: Member) {
-    const memberListRef = ref(this.database.database, 'members');
+    const memberListRef = ref(this.database.database, '/members');
     const memberRef = push(memberListRef);
     return set(memberRef, memberData);
   }
+
+  // addBlog(blogData: any) {
+  //   const blogListRef = ref(this.database.database, '/blog-posts');
+  //   const blogRef = push(blogListRef);
+  //   return set(blogRef, blogData);
+  // }
 
 }

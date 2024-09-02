@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import blogPosts from './blogPosts.json';
 import { CommonModule } from '@angular/common';
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-blog',
@@ -11,10 +12,13 @@ import { CommonModule } from '@angular/common';
 })
 export class BlogComponent {
   
-  blogs = blogPosts;
+  constructor(private db: FirebaseService) {}
+  blogs: any;
 
   ngOnInit() {
-    
+    this.db.getBlogs().valueChanges().subscribe((resp: any) => {
+      this.blogs = resp;
+    })
   }
 
 }

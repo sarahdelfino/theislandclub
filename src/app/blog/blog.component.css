@@ -3,21 +3,12 @@ h1 {
 }
 
 h2 {
-    margin-bottom: 5px;
-    margin-top: 10px;
+    margin: 0px;
 }
 
 p {
-    margin-top: 0px;
-    font-size: 14px;
-}
-
-.title {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 375px;
-    text-align: center;
+    margin: 0px;
+    font-size: .75rem;
 }
 
 .blog-container {
@@ -27,13 +18,14 @@ p {
 }
 
 .blog-img {
-    background-image: url("/cody-silver-U_uv5Tfke9U-unsplash.jpg");
+    background-image: url("/kelsey-schisler-m.jpg");
+    background-position: center;
+    background-size: 100%;
     width: 100vw;
     height: 200px;
-    background-size: cover;
-    background-blend-mode: lighten;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .blog-posts-container {
@@ -42,6 +34,7 @@ p {
 
 .blog-post {
     display: flex;
+    align-items: center;
     margin: 8px 8px 15px 8px;
     border: 1px solid #4f7faa;
     border-radius: 5px;
@@ -49,20 +42,25 @@ p {
 }
 
 .blog-post-img {
-    width: 35vw;
-    height: 150px;
-    margin-right: 10px;
-    border: 1px solid #4f7faa;
+    width: 37vw;
+    max-width: 250px;
+    /* height: 150px; */
+    /* margin-right: 10px; */
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
 .blog-text {
-    width: 200px;
+    /* width: 200px; */
+    padding: 0px 0px 8px 8px;
     display: flex;
     flex-direction: column;
 }
 
+.blog-title {
+    margin-bottom: 2px;
+}
+
 .blog-info {
-    font-size: 14px;
+    margin-bottom: 2px;
 }

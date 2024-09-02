@@ -1,31 +1,21 @@
-<div class="title">
-    <h1 class="tx-secondary">Blog</h1>
-</div>
-<img class="top-img" src="/cody-silver-U_uv5Tfke9U-unsplash.jpg">
 <div class="blog-container tx-secondary">
-    <!-- <div class="blog-img"></div> -->
+    <div class="blog-img"></div>
     <div class="blog-posts-container">
-        <h1 style="padding-left: 10px;">Coming soon</h1>
         <div *ngFor="let blog of this.blogs" key="blog.id" class="blog-post">
-            <!-- <a class="tx-secondary" routerLink="/blog/{{ blog.id }}" href="/blog/{{ blog.id }}"> -->
-                <div class="blog-post-img"></div>
-                <!-- <router-link class="tx-secondary" :to="{name: 'blog-post', params: { id: blog.id, post: blog } }"> -->
-                    <!-- <a class="tx-secondary" routerLink="/blog/{{ blog.id }}"> -->
-                        <a class="tx-secondary" href="/blog/{{ blog.id }}">
+                <img class="blog-post-img" src="{{ blog.img }}">
+            <a class="tx-secondary" href="/blog/{{ blog.id }}">
                 <div class="blog-text">
                     <div class="blog-title">
-                        <h2>{{ blog.title }}</h2>
+                        <h2 style="font-size: 1.25rem;">{{ blog.title }}</h2>
                     </div>
                     <div class="blog-info">
-                        <p>{{ blog.date }}</p>
+                        <p style="font-size: .7rem;">Posted on {{ blog.date }}</p>
                     </div>
                     <div class="blog-description">
                         <p>{{ blog.description }}</p>
                     </div>
                 </div>
             </a>
-                <!-- </router-link> -->
-            <!-- </a> -->
         </div>
     </div>
 </div>

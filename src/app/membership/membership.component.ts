@@ -18,14 +18,14 @@ export class MembershipComponent {
 
   constructor(private firebaseService: FirebaseService) {}
 
-  @Input() scrollToEvents: false;
+  @Input() scrollToEvents = false;
+  @Input() signUpVisible = false;
 
   alertText = '';
   alertType = '';
   err = false;
   success = false;
 
-  signUpVisible = false;
   requestFormVisible = false;
 
   ngOnInit() {
@@ -33,6 +33,7 @@ export class MembershipComponent {
       let events = document.getElementById('events');
       events?.scrollIntoView({ behavior: 'smooth' });
     }
+    this.toggleSignup();
   }
 
   toggleSignup() {
@@ -68,7 +69,7 @@ export class MembershipComponent {
         } else {
           url = 'https://buy.stripe.com/eVa28ae8K0cociA146';
         }
-        window.open(url, '_blank');
+        window.open(url, 'about:blank');
       }).catch((err) => {
         this.alertText = 'We were not able to process your submission at this time. Please try again.';
           this.err = true;

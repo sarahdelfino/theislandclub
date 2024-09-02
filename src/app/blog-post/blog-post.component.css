@@ -4,34 +4,28 @@ h1 {
 
 h2 {
     margin-top: 10px;
+    font-weight: 400;
 }
 
 .blog-post-container {
-    background-color: #4f7faa;
-    /* margin: 10px; */
-    /* min-height: 500px; */
-    border-radius: 15px;
-    /* height: 85vh; */
-}
-
-.blog-post-title {
-    position: absolute;
-    top: 10%;
-    right: 5%;
+    max-width: 1200px;
+    min-width: 375px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .blog-post-img {
-    background-image: url("/cody-silver-U_uv5Tfke9U-unsplash.jpg");
+    object-fit: cover;
     width: 100vw;
     height: 200px;
-    background-size: cover;
-    background-blend-mode: lighten;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    background-size: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .blog-post-text {
-    padding: 5px 10px 10px 10px;
+    padding: 10px;
 }
 
 .blog-post-tagline {

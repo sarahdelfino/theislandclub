@@ -1,4 +1,13 @@
 <div class="events-container tx-secondary">
+    <div class="events-img"></div>
     <h1 style="margin-left: 10px">Events</h1>
-                    <iframe src="https://calendar.google.com/calendar/embed?src=thesullivansislandclub%40gmail.com&ctz=America%2FNew_York" style="border-width: 0" width="100%" height="600px" frameborder="0" scrolling="no"></iframe>
+    <!-- <iframe src="https://calendar.google.com/calendar/embed?src=thesullivansislandclub%40gmail.com&ctz=America%2FNew_York" style="border-width: 0" width="100%" height="600px" frameborder="0" scrolling="no"></iframe> -->
+    <sx-calendar (click)="eventClick($event)" [calendarApp]="calendarApp">
+        <ng-template #eventModal>
+            <!-- <div style="background-color: #d6c5ea; border: 2px solid #856dc0; height: 100%; width: 100%; border-radius: 5px;
+                        padding: 5px">
+                <div>Time grid event: {{ arg.calendarEvent.title }}</div>
+            </div> -->
+        </ng-template>
+    </sx-calendar>
 </div>

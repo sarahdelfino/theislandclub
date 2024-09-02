@@ -13,7 +13,6 @@ import { Location } from '@angular/common';
 export class NavbarComponent {
 
   constructor(private location: Location) {
-    console.log(this.location.path());
     this.getPageName();
   }
 
@@ -33,10 +32,10 @@ export class NavbarComponent {
         "title": "Capital Project",
         "link": "/capital-project"
       },
-      // {
-      //   "title": "Blog",
-      //   "link": "/blog"
-      // }
+      {
+        "title": "Blog",
+        "link": "/blog"
+      }
   ]
 
   getPageName() { 
