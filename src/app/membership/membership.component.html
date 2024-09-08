@@ -32,7 +32,7 @@
         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
     </form>
 </div>
-<div *ngIf="signUpVisible" class="membership-text tx-secondary">
+<!-- <div *ngIf="signUpVisible" class="membership-text tx-secondary">
     <h2 class="tx-secondary">Become a Member</h2>
     <app-alert text="You will be sent to Stripe to complete your payment once you click submit."
         type="info"></app-alert>
@@ -46,7 +46,7 @@
                 <label style="text-align: center;" for="indv">Individual $250</label>
             </div>
             <div class="radio-button">
-                <input required type="radio" id="fam" name="mem_type" value="family" />
+                <input required type="radio" id="fam" name="mem_type" value="family" (click)="familyChecked = true" />
                 <label style="text-align: center;" for="fam">Family $350</label>
             </div>
         </div>
@@ -54,6 +54,12 @@
         <input required id="first_name" name="first_name" />
         <label for="last_name">Last Name</label>
         <input required id="last_name" name="last_name" />
+        <div *ngIf="familyChecked">
+            <label for="spouse_first_name">Spouse's First Name</label>
+            <input required id="spouse_first_name" name="spouse_first_name" />
+            <label for="spouse_last_name">Spouse's Last Name</label>
+            <input required id="spouse_last_name" name="spouse_last_name" />
+        </div>
         <label for="email">Email</label>
         <input required id="email" name="email" />
         <label for="phone">Phone</label>
@@ -62,5 +68,9 @@
         <input required id="address" name="address" />
         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
     </form>
-</div>
+</div> -->
+ <div *ngIf="signUpVisible" class="membership-text tx-secondary">
+    <h1>test</h1>
+    <app-dynamic-form [questions]="questions$ | async"></app-dynamic-form>
+ </div>
 </div>

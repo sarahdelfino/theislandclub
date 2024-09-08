@@ -1,0 +1,78 @@
+[
+    {
+        "key": "mem_type",
+        "label": "Membership Type",
+        "options": [
+            { 
+                "key": "indv",
+                "value": "Individual $250"
+            },
+            { 
+                "key": "fam",
+                "value": "Family $350"
+            }
+        ],
+        "required": true,
+        "order": 1,
+        "type": "radio"
+    },
+    {
+        "key": "first_name",
+        "label": "First Name",
+        "value": "",
+        "required": true,
+        "order": 2
+    },
+    {
+        "key": "last_name",
+        "label": "Last Name",
+        "value": "",
+        "required": true,
+        "order": 3
+    },
+    {
+        "key": "email",
+        "label": "Email",
+        "value": "",
+        "required": true,
+        "type": "email",
+        "order": 4
+    },
+    {
+        "key": "spouse_first_name",
+        "label": "Spouse's First Name",
+        "value": "",
+        "required": false,
+        "order": 5
+    },
+    {
+        "key": "spouse_last_name",
+        "label": "Spouse's Last Name",
+        "value": "",
+        "required": false,
+        "order": 6
+    },
+    {
+        "key": "spouse_email",
+        "label": "Spouse's Email",
+        "value": "",
+        "required": false,
+        "type": "email",
+        "order": 7
+    },
+    {
+        "key": "phone",
+        "label": "Phone",
+        "value": "",
+        "required": true,
+        "type": "phone",
+        "order": 8
+    },
+    {
+        "key": "address",
+        "label": "Address",
+        "value": "",
+        "required": true,
+        "order": 9
+    }
+]

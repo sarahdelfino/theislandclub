@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { EventsComponent } from '../events/events.component';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
@@ -6,17 +6,27 @@ import { AlertComponent } from "../alert/alert.component";
 import { Member } from '../member';
 import { FirebaseService } from '../firebase.service';
 import { Event as event } from '../event';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { QuestionService } from '../question.service';
+import { QuestionBase } from '../question-base';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [CommonModule, EventsComponent, AlertComponent],
+  providers: [QuestionService],
+  imports: [CommonModule, EventsComponent, AlertComponent, DynamicFormComponent, AsyncPipe, DynamicFormComponent],
   templateUrl: './membership.component.html',
   styleUrl: './membership.component.css'
 })
 export class MembershipComponent {
 
-  constructor(private firebaseService: FirebaseService) {}
+  questions$: Observable<QuestionBase<any>[]>;
+
+  constructor(private firebaseService: FirebaseService, question: QuestionService) {
+    this.questions$ = question.getQuestions();
+  }
 
   @Input() scrollToEvents = false;
   @Input() signUpVisible = false;
@@ -25,7 +35,7 @@ export class MembershipComponent {
   alertType = '';
   err = false;
   success = false;
-
+  familyChecked = false;
   requestFormVisible = false;
 
   ngOnInit() {
