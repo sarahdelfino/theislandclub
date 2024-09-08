@@ -27,7 +27,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "@schedule-x/theme-default/dist/index.css"
             ],
             "scripts": []
           },

@@ -1,26 +1,26 @@
 export class Event {
-    id: number;
+    id: string;
     title: string;
-    description: string;
-    organizer: string;
-    email: string;
     date: string;
     start: string;
     end: string;
-    state: string;
-    phone: string;
+    description?: string;
+    organizer?: string;
+    email?: string;
+    state?: string;
+    phone?: string;
 
     constructor(
-        id: number,
+        id: string,
         title: string,
-        description: string,
-        organizer: string,
-        email: string,
         date: string,
         start: string,
         end: string,
-        state: string,
-        phone: string
+        description?: string,
+        organizer?: string,
+        email?: string,
+        state?: string,
+        phone?: string
     ) {
         this.id = id;
         this.title = title;

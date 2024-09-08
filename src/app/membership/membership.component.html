@@ -1,17 +1,11 @@
-<div class="title">
-    <h1 class="tx-primary">Membership</h1>
-</div>
 <div class="membership-container">
-<img class="top-img membership-img" srcset="
-/roger-starnes-s.jpg 650w,
-/roger-starnes-m.jpg 1920w,
-" sizes="(max-width: 1000px) 100vw, 1000px">
+<div class="membership-img"></div>
 <h3 class="tx-secondary" style="padding: 10px;">The Island Club is open to all current and prior residents of
     Sullivan's Island. Membership
     allows you to attend & host events and includes one free private rental per year.</h3>
 <div id="buttons" class="member-buttons">
-    <button (click)="toggleSignup()" class="btn-primary">Become a Member</button>
-    <button (click)="toggleRequest()" class="btn-secondary">Request an Event</button>
+    <button (click)="toggleSignup()" [ngClass]="this.signUpVisible ? 'btn-secondary' : 'btn-primary'">Become a Member</button>
+    <button (click)="toggleRequest()" [ngClass]="this.requestFormVisible ? 'btn-secondary' : 'btn-primary'">Request an Event</button>
 </div>
 <div *ngIf="requestFormVisible" class="membership-text">
     <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
@@ -39,13 +33,13 @@
     </form>
 </div>
 <div *ngIf="signUpVisible" class="membership-text tx-secondary">
+    <h2 class="tx-secondary">Become a Member</h2>
     <app-alert text="You will be sent to Stripe to complete your payment once you click submit."
         type="info"></app-alert>
 
     <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
 
     <form #membershipForm id="membershipForm" class="membership-form" (submit)="submit($event)">
-        <h2 class="tx-secondary">Become a Member</h2>
         <div class="radio-buttons">
             <div class="radio-button">
                 <input required type="radio" id="indv" name="mem_type" value="individual" />
@@ -69,5 +63,4 @@
         <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
     </form>
 </div>
-<app-events id="events"></app-events>
 </div>

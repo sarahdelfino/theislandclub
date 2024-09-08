@@ -11,20 +11,14 @@ h3 {
 }
 
 ul {
-    list-style: none;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 20px;
 }
 
 ul li:before {
-    content: '✓';
     margin-right: 5px;
-}
-
-.img-container {
-    height: 200px;
-    overflow: hidden;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
 }
 
 .title {
@@ -43,21 +37,19 @@ ul li:before {
     border-bottom-right-radius: 15px;
 }
 
-.capital-title {
-    position: absolute;
-    top: 10%;
-    right: 5%;
-}
-
 .capital-img {
+    background: url('/benjamin-lehman-s.jpg') no-repeat;
+    /* background-size: 100%; */
     width: 100vw;
+    height: 200px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    background-size: cover;
 }
 
 .capital-text {
-    text-align: center;
+    /* text-align: center; */
     padding: 5px 10px 10px 10px;
     border-radius: 15px;
     margin: 0px 10px 10px 10px;
@@ -68,7 +60,7 @@ ul li:before {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0px 20px 0px;
+    margin: 20px 0px 50px 0px;
 }
 
 .capital-tagline {
@@ -109,7 +101,16 @@ ul li:before {
 }
 
 @media screen and (min-width: 760px) {
+    .capital-img {
+        background-image: url('/benjamin-lehman-m.jpg');
+    }
     img {
-        max-height: 400px;
+        max-height: 800px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .capital-img {
+        background-position-y: 10%;
     }
 }

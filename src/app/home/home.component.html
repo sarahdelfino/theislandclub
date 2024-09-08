@@ -1,8 +1,6 @@
 <div class="heading-container">
+  <div class="text">
   <div class="text-container tx-primary">
-    <div class="logo-container">
-      <img class="nav-logo" src="../logo.png">
-    </div>
     <div class="title">
       <h1>The Island Club</h1>
     </div>
@@ -18,41 +16,41 @@
       </button>
     </div>
   </div>
+  </div>
 </div>
-<app-alert class="alert-comp"
-  text="The Island Club is expanding! Please view our Capital Project page for more information."
-  type="info"></app-alert>
-<div class="upcoming-events-container bg-primary">
-  <h2 style="text-align: center;">Upcoming Events</h2>
-  <div *ngFor="let event of events" class="upcoming-event-card">
-    <!-- <RouterLink class="router-link" :to="{ name: 'event', params: { id: event.id } }">  -->
-    <div class="row">
-        <img *ngIf="event.title === 'Trinity Wellness Yoga'" class="row-img" srcset="
-        /chelsea-gates-s.jpg 650w,
-        /chelsea-gates-m.jpg 1920w,
-        " sizes="(max-width: 1000px) 100vw, 1000px" />
-        <img *ngIf="event.title === 'Mah Jong'" class="row-img" src="/majong.jpg" />
-      <div class="row-text">
-        <h2 style="margin: 0;" class="row-title">{{ event.title }}</h2>
-        <div class="row-tagline">
-          <h3>{{ event.date }}</h3>
-          <h3>{{ event.start }} - {{ event.end }}</h3>
+<div class="home-container">
+  <app-alert class="alert-comp"
+    text="Please view our Capital Project page for more information on our renovation plans." type="info"></app-alert>
+  <div class="upcoming-events-container bg-primary">
+    <h2 style="text-align: center;">Upcoming Events</h2>
+    <div *ngFor="let event of events" class="upcoming-event-card">
+      <!-- <RouterLink class="router-link" :to="{ name: 'event', params: { id: event.id } }">  -->
+      <div class="row">
+        <img class="row-img" srcset="{{ event.img }}-s.jpg 650w, {{ event.img }}-m.jpg 1920w"
+          sizes="(max-width: 1000px) 100vw, 1000px" />
+        <div class="row-text">
+          <h2 style="margin: 0;" class="row-title">{{ event.title }}</h2>
+          <div class="row-tagline">
+            <h3>{{ event.date }}</h3>
+            <h3 *ngIf="event.start.length > 1 && event.end.length > 1">{{ event.start }} - {{ event.end }}</h3>
+          </div>
         </div>
+        <p class="arrow"></p>
+        <i class="arrow pi pi-caret-right"></i>
       </div>
-      <p class="arrow"></p>
-      <i class="arrow pi pi-caret-right"></i>
+      <!-- </RouterLink> -->
     </div>
-    <!-- </RouterLink> -->
+    <div class="upcoming-event-buttons">
+      <button routerLink="/membership" [queryParams]="{ scrollToEvents: true }"
+        class="view-events-button btn-primary">View All Events
+      </button>
+      <!-- <button class="req-events-button btn-secondary">Request Event</button> -->
+    </div>
   </div>
-  <div class="upcoming-event-buttons">
-    <button routerLink="/membership" [queryParams]="{ scrollToEvents: true }" class="view-events-button btn-primary">View All Events
-    </button>
-    <!-- <button class="req-events-button btn-secondary">Request Event</button> -->
+  <div class="polaroids-container">
+    <!-- <a href="/about"><img src="/about.svg"></a> -->
+    <a href="/membership"><img src="/membership.svg"></a>
+    <a href="https://buy.stripe.com/aEU5kmaWy9MYbew9AD" target="_blank"><img src="/donate.svg"></a>
+    <a href="/blog"><img src="/blog.svg"></a>
   </div>
-</div>
-<div class="polaroids-container">
-  <!-- <a href="/about"><img src="/about.svg"></a> -->
-  <a href="/membership"><img src="/membership.svg"></a>
-  <a href="https://buy.stripe.com/aEU5kmaWy9MYbew9AD" target="_blank"><img src="/donate.svg"></a>
-  <!-- <a href="/blog"><img src="/blog.svg"></a> -->
 </div>

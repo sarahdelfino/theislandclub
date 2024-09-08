@@ -28,9 +28,9 @@ a {
 
 button {
     width: fit-content;
-    padding: .8em;
+    padding: .8rem;
     border: none;
-    font-size: 1em;
+    font-size: 1rem;
     border-radius: 5px;
     margin: 5px;
 }
@@ -89,6 +89,13 @@ textarea {
 
 .top-img {
     max-width: 100%;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+}
+
+@media screen and (min-width: 1800px) {
+    button {
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        margin: 5px;
+    }
 }

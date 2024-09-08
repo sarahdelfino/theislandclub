@@ -1,24 +1,46 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Pipe } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { Blog } from '../blog';
+import { Location, CommonModule } from '@angular/common';
+import post from './post.json';
+import { DomSanitizer } from '@angular/platform-browser';
+
+@Pipe({
+  name: "safeHtml",
+  standalone: true,
+})
+export class SafeHtmlPipe {
+  constructor(private sanitizer: DomSanitizer) {}
+
+  transform(html: any) {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+}
 
 @Component({
   selector: 'app-blog-post',
   standalone: true,
-  imports: [],
+  imports: [SafeHtmlPipe, CommonModule],
   templateUrl: './blog-post.component.html',
   styleUrl: './blog-post.component.css'
 })
 export class BlogPostComponent {
-  public blogPost: Blog;
+  public blogPost: any;
+  public id: string;
+  public html: string;
+  public mobile: boolean = true;
 
-  constructor(private firebaseService: FirebaseService) {}
-
-  @Input() set id(blogId: number) {
-    // this.blogPost = this.firebaseService.mockGetBlogPost(blogId);
-  }
-
-  ngOnInit() {
+  constructor(private db: FirebaseService,
+    private location: Location
+  ) {
+    if (window.innerWidth > 760) {
+      this.mobile = false;
+    }
+    this.id = this.location.path().split('/')[2];
+    this.db.getBlogPost(this.id).valueChanges().subscribe((resp: any) => {
+      this.blogPost = resp;
+      this.html = this.blogPost.post;
+    });
     
   }
 

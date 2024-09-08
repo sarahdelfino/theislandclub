@@ -13,17 +13,11 @@ h3 {
     font-size: 1rem;
 }
 
-.alert-comp {
-    position: relative;
-    bottom: 7.5rem;
-}
-
 .heading-container {
     height: 85vh;
     background-image: url('/matt-benson-TzdnVuPzY1g-unsplash.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 75%;
 }
 
 .nav-logo {
@@ -31,12 +25,20 @@ h3 {
     padding-top: .75rem;
 }
 
+.text {
+    max-width: 1200px;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: right;
+}
+
 .text-container {
     width: 250px;
-    margin-top: 20px;
     text-align: right;
-    position: absolute;
-    right: 3rem;
+    position: relative;
+    margin-right: 1rem;
 }
 
 .title {
@@ -54,14 +56,17 @@ h3 {
     right: 3rem;
 }
 
+.home-container {
+    max-width: 1200px;
+    margin: -10rem auto 0px auto;
+}
+
 .upcoming-events-container {
     max-width: 1200px;
-    width: 94vw;
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 5px;
     color: #4f7faa;
     border: 1px solid #4f7faa;
-    margin: -125px auto 0px auto;
 }
 
 .title {
@@ -112,13 +117,6 @@ h3 {
     margin: 30px 0 30px 0;
 }
 
-@media screen and (max-width: 389px) {
-    .upcoming-events-container {
-        margin: -100px auto 20px auto;
-    }
-    
-}
-
 @media screen and (max-width: 400px) {
     button {
         margin-top: 0;
@@ -140,17 +138,5 @@ h3 {
     .row-img {
         width: 20vw;
         height: 100px;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    .text-container {
-        right: 8rem;
-    }
-}
-
-@media screen and (min-width: 1800px) {
-    .text-container {
-        right: 20rem;
     }
 }

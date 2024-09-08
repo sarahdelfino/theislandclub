@@ -18,14 +18,14 @@ export class MembershipComponent {
 
   constructor(private firebaseService: FirebaseService) {}
 
-  @Input() scrollToEvents: false;
+  @Input() scrollToEvents = false;
+  @Input() signUpVisible = false;
 
   alertText = '';
   alertType = '';
   err = false;
   success = false;
 
-  signUpVisible = false;
   requestFormVisible = false;
 
   ngOnInit() {
@@ -33,6 +33,7 @@ export class MembershipComponent {
       let events = document.getElementById('events');
       events?.scrollIntoView({ behavior: 'smooth' });
     }
+    this.toggleSignup();
   }
 
   toggleSignup() {
@@ -51,35 +52,32 @@ export class MembershipComponent {
     if (form['mem_type']) {
       const member = new Member (form['first_name'].value, form['last_name'].value, form['email'].value, form['address'].value, form['mem_type'].value, form['phone'].value
       );
-      this.firebaseService.addMember(member);
       let memberType = form['mem_type'].value;
-      emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
-        publicKey: 'pp0s7qlmsjt-_40XH',
-      }).then(() => {
-        form.reset();
+      this.firebaseService.addMember(member).then(() => {
+        emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
+            publicKey: 'pp0s7qlmsjt-_40XH',
+        }).catch((err) => {
+          console.log("Unable to send membership email: ", err);
+        });
         this.success = true;
         this.alertText = 'Your submission has been received!';
         this.alertType = 'success';
-        setTimeout(() => {
-          this.success = false;
-        }, 8000);
+        form.reset();
         let url = '';
-        if (memberType === 'individual') {
+        if (memberType === 'individual' && !this.err) {
           url = 'https://buy.stripe.com/bIYaEG5Ce1gs5Uc7ss';
         } else {
           url = 'https://buy.stripe.com/eVa28ae8K0cociA146';
         }
-        window.open(url, '_blank')?.focus();
-      },
-        (error) => {
-          this.alertText = 'We were not able to process your submission at this time. Please try again.';
+        window.open(url, 'about:blank');
+      }).catch((err) => {
+        this.alertText = 'We were not able to process your submission at this time. Please try again.';
           this.err = true;
           this.alertType = 'err';
-          console.log('FAILED...', error);
-        }
-      );
+          console.log('FAILED...', err);
+      });
     } else {
-      const submittedEvent = new event(Date.now(), form['event_name'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, 'pending approval', form['phone'].value);
+      const submittedEvent = new event(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
       this.firebaseService.addEvent(submittedEvent);
       emailjs
         .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
