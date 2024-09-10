@@ -1,23 +1,35 @@
 {
   "rules": {
-  "events": {
-    ".read": "true",
-  "$uid": {
-  ".write": "newData.exists()",
-    ".read": "true"
-  }
-  },
+    "events": {
+      ".read": "true",
+      "$uid": {
+        ".write": "newData.exists()",
+        ".read": "true"
+      }
+    },
     "members": {
       ".read": "false",
-        "$uid": {
-          ".write": "newData.exists()"
-        }
-    },
-      "submittedEvents": {
-        ".read": "false",
-          "$uid": {
-            ".write": "newData.exists()"
-          }
+      "$uid": {
+        ".write": "newData.exists()"
       }
+    },
+    "submittedEvents": {
+      ".read": "false",
+      "$uid": {
+        ".write": "newData.exists()"
+      }
+    },
+    "blogs": {
+      ".read": "true",
+      "$uid": {
+        ".read": "true"
+      }
+    },
+    "blog-posts": {
+      ".read": "true",
+      "$uid": {
+        ".read": "true"
+      }
+    }
   }
- }
+}
