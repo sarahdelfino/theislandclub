@@ -40,13 +40,7 @@ export class MembershipComponent {
         childName: new FormControl(''),
       }),
     }),
-    committees: new FormGroup({
-      membership: new FormControl(''),
-      events: new FormControl(''),
-      improvements: new FormControl(''),
-      pr: new FormControl(''),
-      no: new FormControl(''),
-    }),
+    committee: new FormControl('')
   });
 
   dynamicFormGroup!: FormGroup;

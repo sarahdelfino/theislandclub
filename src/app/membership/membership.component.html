@@ -64,13 +64,13 @@
             <input required id="email" name="email" formControlName="email" />
             <label for="phone">Phone</label>
             <input required id="phone" name="phone" formControlName="phone" />
-            <div style="display: contents" *ngIf="this.memForm.value.membershipType === 'family'">
+            <div style="display: contents" *ngIf="this.memForm.value.membershipType === 'family'" formGroupName="family">
                 <label for="spouse_first_name">Spouse's First Name</label>
-                <input required id="spouse_first_name" name="spouse_first_name" />
+                <input required id="spouse_first_name" name="spouse_first_name" formControlName="spouseFirstName" />
                 <label for="spouse_email">Spouse's Email</label>
-                <input required id="spouse_email" name="spouse_email" />
+                <input required id="spouse_email" name="spouse_email" formControlName="spouseEmail" />
                 <label for="spouse_phone">Spouse's Phone</label>
-                <input required id="spouse_phone" name="spouse_phone" />
+                <input required id="spouse_phone" name="spouse_phone" formControlName="spousePhone" />
             </div>
             <label for="current_address">Current Address</label>
             <input required id="current_address" name="current_address" formControlName="currentAddress" />
@@ -79,13 +79,14 @@
             <label for="interest">What are your interests in the club?</label>
             <input required id="interest" name="interest" formControlName="interest" />
             <label for="committee">Would you like to volunteer for a committee?</label>
-            <select required id="committee" name="committee" formControlName="committee">
-                <option value="membership" formControlName="membership">Membership Committee</option>
-                <option value="events" formControlName="events">Events Committee</option>
-                <option value="improvements" formControlName="improvements">Improvements/renovations</option>
-                <option value="pr" formControlName="pr">Public Relations</option>
-                <option value="no" formControlName="no">Not Interested</option>
+            <select class="tx-secondary" required id="committee" name="committee" formControlName="committee">
+                <option id="membership" name="membership" value="membership">Membership Committee</option>
+                <option id="events" name="events"  value="events">Events Committee</option>
+                <option id="improvements" name="improvements"  value="improvements">Improvements/renovations</option>
+                <option id="public_relations" name="public_relations" value="public_relations">Public Relations</option>
+                <option id="not_interested" value="not_interested">Not Interested</option>
             </select>
+            <p>With this application, you herby acknowledge and agree that upon membership approval, you voluntarily become a member of the club and must pledge yourself, upon your honor, to abide by the By-laws of The Island Club.</p>
             <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
         </form>
     </div>
