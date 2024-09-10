@@ -6,33 +6,70 @@ import { AlertComponent } from "../alert/alert.component";
 import { Member } from '../member';
 import { FirebaseService } from '../firebase.service';
 import { Event as event } from '../event';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [CommonModule, EventsComponent, AlertComponent],
+  imports: [CommonModule, EventsComponent, AlertComponent, ReactiveFormsModule],
   templateUrl: './membership.component.html',
   styleUrl: './membership.component.css'
 })
 export class MembershipComponent {
 
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder) {}
 
   @Input() scrollToEvents = false;
   @Input() signUpVisible = false;
+
+  memForm = new FormGroup({
+    membershipType: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    currentAddress: new FormControl(''),
+    priorAddress: new FormControl(''),
+    interest: new FormControl(''),
+    family: new FormGroup({
+      spouseFirstName: new FormControl(''),
+      spouseEmail: new FormControl(''),
+      spousePhone: new FormControl(''),
+      children: new FormGroup({
+        childName: new FormControl(''),
+      }),
+    }),
+    committees: new FormGroup({
+      membership: new FormControl(''),
+      events: new FormControl(''),
+      improvements: new FormControl(''),
+      pr: new FormControl(''),
+      no: new FormControl(''),
+    }),
+  });
+
+  dynamicFormGroup!: FormGroup;
 
   alertText = '';
   alertType = '';
   err = false;
   success = false;
+  familyChecked = false;
+  // memForm: FormGroup;
+  items: FormArray;
 
   requestFormVisible = false;
 
   ngOnInit() {
-    if (this.scrollToEvents) {
-      let events = document.getElementById('events');
-      events?.scrollIntoView({ behavior: 'smooth' });
-    }
+;
+    // this.dynamicFormGroup = this.formBuilder.group({
+    //   Spouse: new FormArray([this.createItem])
+    // });
+    // if (this.scrollToEvents) {
+    //   let events = document.getElementById('events');
+    //   events?.scrollIntoView({ behavior: 'smooth' });
+    // }
     this.toggleSignup();
   }
 
@@ -47,12 +84,14 @@ export class MembershipComponent {
   }
 
   submit(e: Event) {
+    console.log(this.memForm.value);
+    let membership = this.memForm.value;
     e.preventDefault();
     let form = e.target as HTMLFormElement;
-    if (form['mem_type']) {
-      const member = new Member (form['first_name'].value, form['last_name'].value, form['email'].value, form['address'].value, form['mem_type'].value, form['phone'].value
-      );
-      let memberType = form['mem_type'].value;
+    console.log(form);
+    if (this.memForm.value.membershipType) {
+      const member = new Member(membership.firstName!, membership.lastName!, membership.email!, membership.currentAddress!, membership.membershipType!, membership.phone!)
+      let memberType = membership.membershipType;
       this.firebaseService.addMember(member).then(() => {
         emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
@@ -69,7 +108,7 @@ export class MembershipComponent {
         } else {
           url = 'https://buy.stripe.com/eVa28ae8K0cociA146';
         }
-        window.open(url, 'about:blank');
+        window.open(url);
       }).catch((err) => {
         this.alertText = 'We were not able to process your submission at this time. Please try again.';
           this.err = true;
