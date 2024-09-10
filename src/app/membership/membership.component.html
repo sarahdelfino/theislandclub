@@ -1,66 +1,93 @@
 <div class="membership-container">
-<div class="membership-img"></div>
-<h3 class="tx-secondary" style="padding: 10px;">The Island Club is open to all current and prior residents of
-    Sullivan's Island. Membership
-    allows you to attend & host events and includes one free private rental per year.</h3>
-<div id="buttons" class="member-buttons">
-    <button (click)="toggleSignup()" [ngClass]="this.signUpVisible ? 'btn-secondary' : 'btn-primary'">Become a Member</button>
-    <button (click)="toggleRequest()" [ngClass]="this.requestFormVisible ? 'btn-secondary' : 'btn-primary'">Request an Event</button>
-</div>
-<div *ngIf="requestFormVisible" class="membership-text">
-    <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
-    <form id="eventForm" class="event-form" (submit)="submit($event)">
-        <h2 class="tx-secondary">Submit an Event</h2>
-        <label for="first_name">First Name</label>
-        <input required id="first_name" name="first_name" />
-        <label for="last_name">Last Name</label>
-        <input required id="last_name" name="last_name" />
-        <label for="phone">Phone Number</label>
-        <input required id="phone" name="phone" />
-        <label for="email">Email</label>
-        <input required id="email" name="email" />
-        <label for="event_date">Event Date</label>
-        <input required id="event_date" name="event_date" type="date" />
-        <label for="event_start">Start Time</label>
-        <input required id="event_start" name="event_start" type="time" />
-        <label for="event_end">End Time</label>
-        <input required id="event_end" name="event_end" type="time" />
-        <label for="event_name">Event Name</label>
-        <input required id="event_name" name="event_name" />
-        <label for="event_description">Event Description</label>
-        <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description"></textarea>
-        <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
-    </form>
-</div>
-<div *ngIf="signUpVisible" class="membership-text tx-secondary">
-    <h2 class="tx-secondary">Become a Member</h2>
-    <app-alert text="You will be sent to Stripe to complete your payment once you click submit."
-        type="info"></app-alert>
+    <div class="membership-img"></div>
+    <h3 class="tx-secondary" style="padding: 10px;">The Island Club is open to all current and prior residents of
+        Sullivan's Island. Membership
+        allows you to attend & host events and includes one free private rental per year.</h3>
+        <h3 class="tx-secondary" style="padding: 10px;">
+            Individual memberships are available for an annual fee of $250 and cover a single voting member. Family memberships are $350 and provide an additional voting member for the household.
+        </h3>
+    <div id="buttons" class="member-buttons">
+        <button (click)="toggleSignup()" [ngClass]="this.signUpVisible ? 'btn-secondary' : 'btn-primary'">Become a
+            Member</button>
+        <button (click)="toggleRequest()" [ngClass]="this.requestFormVisible ? 'btn-secondary' : 'btn-primary'">Request
+            an Event</button>
+    </div>
+    <div *ngIf="requestFormVisible" class="membership-text">
+        <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
+        <form id="eventForm" class="event-form" (submit)="submit($event)">
+            <h2 class="tx-secondary">Submit an Event</h2>
+            <label for="first_name">First Name</label>
+            <input required id="first_name" name="first_name" />
+            <label for="last_name">Last Name</label>
+            <input required id="last_name" name="last_name" />
+            <label for="phone">Phone Number</label>
+            <input required id="phone" name="phone" />
+            <label for="email">Email</label>
+            <input required id="email" name="email" />
+            <label for="event_date">Event Date</label>
+            <input required id="event_date" name="event_date" type="date" />
+            <label for="event_start">Start Time</label>
+            <input required id="event_start" name="event_start" type="time" />
+            <label for="event_end">End Time</label>
+            <input required id="event_end" name="event_end" type="time" />
+            <label for="event_name">Event Name</label>
+            <input required id="event_name" name="event_name" />
+            <label for="event_description">Event Description</label>
+            <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description"></textarea>
+            <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+    <div *ngIf="signUpVisible" class="membership-text tx-secondary">
+        <h2 class="tx-secondary">Become a Member</h2>
+        <app-alert text="You will be sent to Stripe to complete your payment once you click submit."
+            type="info"></app-alert>
 
-    <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
+        <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
 
-    <form #membershipForm id="membershipForm" class="membership-form" (submit)="submit($event)">
-        <div class="radio-buttons">
-            <div class="radio-button">
-                <input required type="radio" id="indv" name="mem_type" value="individual" />
-                <label style="text-align: center;" for="indv">Individual $250</label>
+        <!-- <form #membershipForm id="membershipForm" class="membership-form" (submit)="submit($event)"> -->
+        <form class="membership-form" [formGroup]="memForm" (ngSubmit)="submit($event)">
+            <div class="radio-buttons">
+                <div class="radio-button">
+                    <input required type="radio" id="indv" value="individual" formControlName="membershipType" />
+                    <label style="text-align: center;" for="indv">Individual $250</label>
+                </div>
+                <div class="radio-button">
+                    <input required type="radio" id="fam" value="family" formControlName="membershipType" />
+                    <label style="text-align: center;" for="fam">Family $350</label>
+                </div>
             </div>
-            <div class="radio-button">
-                <input required type="radio" id="fam" name="mem_type" value="family" />
-                <label style="text-align: center;" for="fam">Family $350</label>
+            <label for="first_name">First Name</label>
+            <input required id="first_name" name="first_name" formControlName="firstName" />
+            <label for="last_name">Last Name</label>
+            <input required id="last_name" name="last_name" formControlName="lastName" />
+            <label for="email">Email</label>
+            <input required id="email" name="email" formControlName="email" />
+            <label for="phone">Phone</label>
+            <input required id="phone" name="phone" formControlName="phone" />
+            <div style="display: contents" *ngIf="this.memForm.value.membershipType === 'family'" formGroupName="family">
+                <label for="spouse_first_name">Spouse's First Name</label>
+                <input required id="spouse_first_name" name="spouse_first_name" formControlName="spouseFirstName" />
+                <label for="spouse_email">Spouse's Email</label>
+                <input required id="spouse_email" name="spouse_email" formControlName="spouseEmail" />
+                <label for="spouse_phone">Spouse's Phone</label>
+                <input required id="spouse_phone" name="spouse_phone" formControlName="spousePhone" />
             </div>
-        </div>
-        <label for="first_name">First Name</label>
-        <input required id="first_name" name="first_name" />
-        <label for="last_name">Last Name</label>
-        <input required id="last_name" name="last_name" />
-        <label for="email">Email</label>
-        <input required id="email" name="email" />
-        <label for="phone">Phone</label>
-        <input required id="phone" name="phone" />
-        <label for="address">Address</label>
-        <input required id="address" name="address" />
-        <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
-    </form>
-</div>
+            <label for="current_address">Current Address</label>
+            <input required id="current_address" name="current_address" formControlName="currentAddress" />
+            <label for="prior_address">If your current address is not located on Sullivan's Island, please provide your previous address</label>
+            <input id="prior_address" name="prior_address" formControlName="priorAddress" />
+            <label for="interest">What are your interests in the club?</label>
+            <input required id="interest" name="interest" formControlName="interest" />
+            <label for="committee">Would you like to volunteer for a committee?</label>
+            <select class="tx-secondary" required id="committee" name="committee" formControlName="committee">
+                <option id="membership" name="membership" value="membership">Membership Committee</option>
+                <option id="events" name="events"  value="events">Events Committee</option>
+                <option id="improvements" name="improvements"  value="improvements">Improvements/renovations</option>
+                <option id="public_relations" name="public_relations" value="public_relations">Public Relations</option>
+                <option id="not_interested" value="not_interested">Not Interested</option>
+            </select>
+            <p>With this application, you herby acknowledge and agree that upon membership approval, you voluntarily become a member of the club and must pledge yourself, upon your honor, to abide by the By-laws of The Island Club.</p>
+            <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
 </div>
