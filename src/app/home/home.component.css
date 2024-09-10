@@ -77,7 +77,6 @@ h3 {
 
 .row {
     display: flex;
-    height: 90px;
     margin-bottom: 10px;
     border: 1px solid #4f7faa;
     border-radius: 5px;
