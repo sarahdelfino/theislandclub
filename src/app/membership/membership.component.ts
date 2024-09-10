@@ -24,6 +24,7 @@ export class MembershipComponent {
   @Input() signUpVisible = false;
 
   memForm = new FormGroup({
+    url: new FormControl(''),
     membershipType: new FormControl(''),
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -96,13 +97,13 @@ export class MembershipComponent {
         this.alertText = 'Your submission has been received!';
         this.alertType = 'success';
         form.reset();
-        let url = '';
-        if (memberType === 'individual' && !this.err) {
-          url = 'https://buy.stripe.com/bIYaEG5Ce1gs5Uc7ss';
-        } else {
-          url = 'https://buy.stripe.com/eVa28ae8K0cociA146';
-        }
-        window.open(url);
+        // let url = '';
+        // if (memberType === 'individual' && !this.err) {
+        //   url = 'https://buy.stripe.com/bIYaEG5Ce1gs5Uc7ss';
+        // } else {
+        //   url = 'https://buy.stripe.com/eVa28ae8K0cociA146';
+        // }
+        // window.open(url);
       }).catch((err) => {
         this.alertText = 'We were not able to process your submission at this time. Please try again.';
           this.err = true;

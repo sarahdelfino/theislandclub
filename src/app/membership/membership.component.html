@@ -39,7 +39,7 @@
     </div>
     <div *ngIf="signUpVisible" class="membership-text tx-secondary">
         <h2 class="tx-secondary">Become a Member</h2>
-        <app-alert text="You will be sent to Stripe to complete your payment once you click submit."
+        <app-alert text="You will receive a link to pay your fees in your membership enrollment confirmation email."
             type="info"></app-alert>
 
         <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
@@ -65,6 +65,7 @@
             <label for="phone">Phone</label>
             <input required id="phone" name="phone" formControlName="phone" />
             <div style="display: contents" *ngIf="this.memForm.value.membershipType === 'family'" formGroupName="family">
+                <input type="hidden" id="url" name="url" value="https://buy.stripe.com/eVa28ae8K0cociA146" formControlName="url">
                 <label for="spouse_first_name">Spouse's First Name</label>
                 <input required id="spouse_first_name" name="spouse_first_name" formControlName="spouseFirstName" />
                 <label for="spouse_email">Spouse's Email</label>
