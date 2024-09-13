@@ -29,6 +29,7 @@ export class MembershipComponent {
       currentAddress: new FormControl('', [Validators.required]),
       priorAddress: new FormControl(''),
       interest: new FormControl('', [Validators.required]),
+      hear: new FormControl('', [Validators.required]),
       family: new FormGroup({
         url: new FormControl(''),
         spouseFirstName: new FormControl(''),
