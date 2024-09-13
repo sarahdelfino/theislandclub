@@ -16,6 +16,10 @@ export class FooterComponent {
       "link": "/"
     },
     {
+      "title": "Events",
+      "link": "/events"
+    },
+    {
       "title": "Membership",
       "link": "/membership"
     },

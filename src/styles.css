@@ -53,6 +53,7 @@ textarea, select {
     height: 50px;
     border: 1px solid #4f7faa;
     padding: 5px;
+    background-color: white;
 }
 
 .router-link {

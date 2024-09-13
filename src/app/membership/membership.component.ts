@@ -6,7 +6,7 @@ import { AlertComponent } from "../alert/alert.component";
 import { Member } from '../member';
 import { FirebaseService } from '../firebase.service';
 import { Event as event } from '../event';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -18,31 +18,42 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class MembershipComponent {
 
-  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder) {}
-
-  @Input() scrollToEvents = false;
-  @Input() signUpVisible = false;
-
-  memForm = new FormGroup({
-    url: new FormControl(''),
-    membershipType: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    currentAddress: new FormControl(''),
-    priorAddress: new FormControl(''),
-    interest: new FormControl(''),
-    family: new FormGroup({
-      spouseFirstName: new FormControl(''),
-      spouseEmail: new FormControl(''),
-      spousePhone: new FormControl(''),
-      children: new FormGroup({
-        childName: new FormControl(''),
+  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder) {
+    this.memForm = new FormGroup({
+      submitDate: new FormControl(Date.now(), Validators.required),
+      membershipType: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl('', [Validators.required]),
+      currentAddress: new FormControl('', [Validators.required]),
+      priorAddress: new FormControl(''),
+      interest: new FormControl('', [Validators.required]),
+      family: new FormGroup({
+        url: new FormControl(''),
+        spouseFirstName: new FormControl(''),
+        spouseEmail: new FormControl('', [Validators.email]),
+        spousePhone: new FormControl(''),
+        children: this.formBuilder.array([]),
       }),
-    }),
-    committee: new FormControl('')
-  });
+      committee: new FormControl('', [Validators.required])
+    });
+    
+    this.eventForm = new FormGroup({
+      submitDate: new FormControl(Date.now(), Validators.required),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      eventDate: new FormControl('', [Validators.required]),
+      startTime: new FormControl('', [Validators.required]),
+      endTime: new FormControl('', [Validators.required]),
+      eventName: new FormControl('', [Validators.required]),
+      eventDescription: new FormControl('', [Validators.required, Validators.minLength(50)]),
+    })
+  }
+
+  @Input() signUpVisible = false;
 
   dynamicFormGroup!: FormGroup;
 
@@ -51,21 +62,28 @@ export class MembershipComponent {
   err = false;
   success = false;
   familyChecked = false;
-  // memForm: FormGroup;
-  items: FormArray;
+  memForm: FormGroup;
+  eventForm: FormGroup;
 
   requestFormVisible = false;
 
   ngOnInit() {
-;
-    // this.dynamicFormGroup = this.formBuilder.group({
-    //   Spouse: new FormArray([this.createItem])
-    // });
-    // if (this.scrollToEvents) {
-    //   let events = document.getElementById('events');
-    //   events?.scrollIntoView({ behavior: 'smooth' });
-    // }
     this.toggleSignup();
+  }
+
+  children(): FormArray {
+    return this.memForm.get("family.children") as FormArray
+  }
+
+  newChild(): FormGroup {
+    return this.formBuilder.group({
+      name: ''
+    });
+  }
+
+  addChild(e: Event) {
+    e.preventDefault();
+    this.children().push(this.newChild());
   }
 
   toggleSignup() {
@@ -79,31 +97,27 @@ export class MembershipComponent {
   }
 
   submit(e: Event) {
-    console.log(this.memForm.value);
     let membership = this.memForm.value;
     e.preventDefault();
     let form = e.target as HTMLFormElement;
-    console.log(form);
     if (this.memForm.value.membershipType) {
       const member = new Member(membership.firstName!, membership.lastName!, membership.email!, membership.currentAddress!, membership.membershipType!, membership.phone!)
-      let memberType = membership.membershipType;
       this.firebaseService.addMember(member).then(() => {
         emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
         }).catch((err) => {
           console.log("Unable to send membership email: ", err);
+          this.alertText = 'We were not able to process your submission at this time. Please try again.';
+          this.err = true;
+          this.alertType = 'err';
         });
         this.success = true;
         this.alertText = 'Your submission has been received!';
         this.alertType = 'success';
         form.reset();
-        // let url = '';
-        // if (memberType === 'individual' && !this.err) {
-        //   url = 'https://buy.stripe.com/bIYaEG5Ce1gs5Uc7ss';
-        // } else {
-        //   url = 'https://buy.stripe.com/eVa28ae8K0cociA146';
-        // }
-        // window.open(url);
+        setTimeout(() => {
+          this.success = false;
+        }, 2000);
       }).catch((err) => {
         this.alertText = 'We were not able to process your submission at this time. Please try again.';
           this.err = true;

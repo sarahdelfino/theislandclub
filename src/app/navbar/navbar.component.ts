@@ -25,6 +25,10 @@ export class NavbarComponent {
         "link": "/"
       },
       {
+        "title": "Events",
+        "link": "/events"
+      },
+      {
         "title": "Membership",
         "link": "/membership"
       },
