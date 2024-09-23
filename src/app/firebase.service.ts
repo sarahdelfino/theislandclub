@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import blogPosts from './blog/blogPosts.json';
 import { Event } from './event';
 import { Member } from './member';
-import { Database, ref, set, onValue, push, objectVal, object } from '@angular/fire/database';
+import { Database, ref, set, onValue, push, objectVal, object, update } from '@angular/fire/database';
 import { AngularFireDatabase, AngularFireList, AngularFireObject, snapshotChanges } from '@angular/fire/compat/database';
 
 @Injectable({
@@ -38,14 +38,23 @@ export class FirebaseService {
     return this.blogPost;
   }
 
-  addEvent(eventData: Event) {
+  addEvent(eventData: Event): any {
     const eventListRef = ref(this.database.database, '/submittedEvents');
     const eventsRef = push(eventListRef);
     set(eventsRef, eventData).then(() => {
       console.log('Event data saved successfully!');
     }).catch((error) => {
       console.log('Failed to save event data with the following error: ', error);
+      return error;
     });
+    return eventsRef;
+  }
+
+  updateEventState(id: string) {
+    const eventsRef = ref(this.database.database, '/submittedEvents/' + id + '/state/');
+    set(eventsRef, 'approved').catch((error) => {
+      console.log("unable to update event state at id: ", id, " due to error: ", error);
+    })
   }
 
   addMember(memberData: Member) {

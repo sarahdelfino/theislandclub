@@ -17,7 +17,8 @@
         <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
         <form [formGroup]="eventForm" id="eventForm" class="event-form" (submit)="submit($event)">
             <h2 class="tx-secondary">Submit an Event</h2>
-            <input type="hidden" formControlName="submitDate" />
+            <input type="hidden" id="submit_date" name="submit_date" formControlName="submitDate" />
+            <input type="hidden" id="url" name="url" formControlName="url" />
             <label for="first_name">First Name</label>
             <input required id="first_name" name="first_name" formControlName="firstName" />
             <label for="last_name">Last Name</label>

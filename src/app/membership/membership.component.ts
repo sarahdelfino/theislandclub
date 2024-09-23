@@ -8,6 +8,7 @@ import { FirebaseService } from '../firebase.service';
 import { Event as event } from '../event';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-membership',
@@ -18,7 +19,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class MembershipComponent {
 
-  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder) {
+  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private http: HttpClient,) {
     this.memForm = new FormGroup({
       submitDate: new FormControl(Date.now(), Validators.required),
       membershipType: new FormControl('', [Validators.required]),
@@ -42,6 +43,7 @@ export class MembershipComponent {
     
     this.eventForm = new FormGroup({
       submitDate: new FormControl(Date.now(), Validators.required),
+      url: new FormControl('', [Validators.required]),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
@@ -127,7 +129,17 @@ export class MembershipComponent {
       });
     } else {
       const submittedEvent = new event(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
-      this.firebaseService.addEvent(submittedEvent);
+      this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
+        let host = window.location.host;
+        let ht;
+        if (host === 'localhost:4200') {
+          host = 'http://' + host;
+        } else {
+          host = 'https://' + host;
+        }
+        let id = resp.key;
+        form['url'].value = host + '/events/' + id + '/approve';
+      });
       emailjs
         .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
           publicKey: 'pp0s7qlmsjt-_40XH',
@@ -137,6 +149,17 @@ export class MembershipComponent {
             this.success = true;
             this.alertText = 'Your submission has been received!';
             this.alertType = 'success';
+            //send email to admins
+            emailjs.sendForm('service_66ijhfa', 'template_6r1j5k9', form, {
+              publicKey: 'pp0s7qlmsjt-_40XH',
+            }).then(
+              (response) => {
+                console.log('SUCCESS!', response.status, response.text);
+              },
+              (error) => {
+                console.log('FAILED...', error);
+              },
+            );
             form.reset();
             setTimeout(() => {
               this.success = false;

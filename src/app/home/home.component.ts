@@ -25,9 +25,7 @@ export class HomeComponent {
     private router: Router,
     private http: HttpClient,
     public firebaseService: FirebaseService,
-  ) { }
-
-  async ngOnInit() {    
+  ) {
     this.http.get('https://get-week-of-events-k7ltwigbhq-ue.a.run.app').subscribe((resp: any) => {
       let arr = [];
       for (let row in resp) {
@@ -49,6 +47,30 @@ export class HomeComponent {
     });
     
   }
+  //  }
+
+  // ngOnInit() {    
+  //   this.http.get('https://get-week-of-events-k7ltwigbhq-ue.a.run.app').subscribe((resp: any) => {
+  //     let arr = [];
+  //     for (let row in resp) {
+  //       let tmp = {
+  //         "date": resp[row].start,
+  //         "start": this.formatTime(resp[row].start),
+  //         "end": this.formatTime(resp[row].end),
+  //         "id": resp[row].id,
+  //         "title": resp[row].title,
+  //         "img": this.getImg(resp[row])
+  //       }
+  //       arr.push(tmp);
+  //       arr.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
+  //     }
+  //     arr[0].date = this.formatDate(arr[0].date);
+  //     arr[1].date = this.formatDate(arr[1].date);
+  //     this.events.push(arr[0]);
+  //     this.events.push(arr[1]);
+  //   });
+    
+  // }
 
   membershipBtnClick() {
     this.router.navigateByUrl('/membership');
