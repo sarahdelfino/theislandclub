@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EventsComponent } from '../events/events.component';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { AlertComponent } from "../alert/alert.component";
@@ -17,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './membership.component.html',
   styleUrl: './membership.component.css'
 })
-export class MembershipComponent {
+export class MembershipComponent implements OnInit {
 
   constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private http: HttpClient,) {
     this.memForm = new FormGroup({
@@ -100,9 +100,9 @@ export class MembershipComponent {
   }
 
   submit(e: Event) {
-    let membership = this.memForm.value;
+    const membership = this.memForm.value;
     e.preventDefault();
-    let form = e.target as HTMLFormElement;
+    const form = e.target as HTMLFormElement;
     if (this.memForm.value.membershipType) {
       const member = new Member(membership.firstName!, membership.lastName!, membership.email!, membership.currentAddress!, membership.membershipType!, membership.phone!)
       this.firebaseService.addMember(member).then(() => {
@@ -137,7 +137,7 @@ export class MembershipComponent {
         } else {
           host = 'https://' + host;
         }
-        let id = resp.key;
+        const id = resp.key;
         form['url'].value = host + '/events/' + id + '/approve';
       });
       emailjs
@@ -173,7 +173,7 @@ export class MembershipComponent {
           },
         );
     }
-    let alert = document.getElementById('buttons');
+    const alert = document.getElementById('buttons');
     alert?.scrollIntoView({ behavior: 'smooth' });
   }
 }

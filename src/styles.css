@@ -48,6 +48,10 @@ input {
     font-size: 1rem;
 }
 
+textarea, input, select {
+    border-radius: 2px;
+}
+
 textarea, select {
     font-size: 1rem;
     height: 50px;

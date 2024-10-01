@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import blogPosts from './blogPosts.json';
 import { CommonModule } from '@angular/common';
 import { FirebaseService } from '../firebase.service';
@@ -10,7 +10,7 @@ import { FirebaseService } from '../firebase.service';
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
-export class BlogComponent {
+export class BlogComponent implements OnInit {
   
   constructor(private db: FirebaseService) {}
   blogs: any;

@@ -3,16 +3,18 @@ import { Router, RouterLink } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { Event } from '../event';
+// import { Event } from '../event';
 import { AlertComponent } from "../alert/alert.component";
 import { FirebaseService } from '../firebase.service';
 import { HttpClient } from '@angular/common/http';
-
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, NavbarComponent, FooterComponent, CommonModule, AlertComponent],
+  imports: [RouterLink, NavbarComponent, FooterComponent, CommonModule, AlertComponent, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -20,6 +22,10 @@ export class HomeComponent {
 
   events: any[] = [];
   data$: any;
+  contactForm: FormGroup;
+  alertText = '';
+  alertType = '';
+  err = false;
 
   constructor(
     private router: Router,
@@ -27,9 +33,9 @@ export class HomeComponent {
     public firebaseService: FirebaseService,
   ) {
     this.http.get('https://get-week-of-events-k7ltwigbhq-ue.a.run.app').subscribe((resp: any) => {
-      let arr = [];
-      for (let row in resp) {
-        let tmp = {
+      const arr = [];
+      for (const row in resp) {
+        const tmp = {
           "date": resp[row].start,
           "start": this.formatTime(resp[row].start),
           "end": this.formatTime(resp[row].end),
@@ -46,51 +52,35 @@ export class HomeComponent {
       this.events.push(arr[1]);
     });
     
-  }
-  //  }
+    this.contactForm = new FormGroup({
+      submitDate: new FormControl(Date.now(), Validators.required),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      message: new FormControl('', [Validators.required, Validators.minLength(25)]),
+    })
 
-  // ngOnInit() {    
-  //   this.http.get('https://get-week-of-events-k7ltwigbhq-ue.a.run.app').subscribe((resp: any) => {
-  //     let arr = [];
-  //     for (let row in resp) {
-  //       let tmp = {
-  //         "date": resp[row].start,
-  //         "start": this.formatTime(resp[row].start),
-  //         "end": this.formatTime(resp[row].end),
-  //         "id": resp[row].id,
-  //         "title": resp[row].title,
-  //         "img": this.getImg(resp[row])
-  //       }
-  //       arr.push(tmp);
-  //       arr.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
-  //     }
-  //     arr[0].date = this.formatDate(arr[0].date);
-  //     arr[1].date = this.formatDate(arr[1].date);
-  //     this.events.push(arr[0]);
-  //     this.events.push(arr[1]);
-  //   });
-    
-  // }
+  }
 
   membershipBtnClick() {
     this.router.navigateByUrl('/membership');
   }
 
   formatTime(data: any) {
-    let time = data.split(" ")[1]
+    const time = data.split(" ")[1]
     if (!time || undefined) {
       return '';
     }
     let hours = time[0] + time[1]
-    let minutes = time[3] + time[4]
-    let amOrPm = hours >= 12 ? 'pm' : 'am';
+    const minutes = time[3] + time[4]
+    const amOrPm = hours >= 12 ? 'pm' : 'am';
     hours = (hours % 12) || 12;
-    let finalTime = hours + ':' + minutes + amOrPm;
+    const finalTime = hours + ':' + minutes + amOrPm;
     return finalTime
   }
 
   formatDate(data: any) {
-    let date = new Date(data);
+    const date = new Date(data);
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',
       month: 'long',
@@ -112,5 +102,28 @@ export class HomeComponent {
       return '/matt-briney-2'
     }
   }
+
+  submit(e: Event) {
+    const message = this.contactForm.value;
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    this.firebaseService.addMessage(message).then(() => {
+      emailjs.sendForm("service_66ijhfa", "template_dk7f0b3", form, {
+        publicKey: 'pp0s7qlmsjt-_40XH',
+      }).catch((err) => {
+        console.log("Unable to send message email: ", err);
+        this.alertText = 'We were not able to process your submission at this time. Please try again.';
+        this.err = true;
+        this.alertType = 'err';
+      });
+    }).catch((err: any) => {
+      this.alertText = 'We were not able to process your submission at this time. Please try again.';
+      this.err = true;
+      this.alertType = 'err';
+      console.log('FAILED...', err);
+    });
+  }
+
+  
 
 }
