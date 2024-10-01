@@ -32,7 +32,7 @@ export class EventsComponent {
 
   eventClick(event: any) {
     console.log("clicked!");
-    let eventTitle = event.srcElement.innerText;
+    const eventTitle = event.srcElement.innerText;
     let eventId;
     console.log(event);
     // if (event.target.classList.contains("sx__month-agenda-event__title")) {

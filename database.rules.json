@@ -14,7 +14,7 @@
       }
     },
     "submittedEvents": {
-      ".read": "false",
+      ".read": "true",
       "$uid": {
         ".write": "newData.exists()"
       }
@@ -29,6 +29,12 @@
       ".read": "true",
       "$uid": {
         ".read": "true"
+      }
+    },
+    "message-submissions": {
+      ".read": "false",
+      "$uid": {
+        ".write": "newData.exists()"
       }
     }
   }

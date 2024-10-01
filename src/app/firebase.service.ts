@@ -10,7 +10,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject, snapshotChange
 })
 export class FirebaseService {
 
-  eventsArray: Array<Event>;
+  eventsArray: Event[];
   eventObj: AngularFireObject<any>;
   eventList: AngularFireList<any>;
   blogsList: AngularFireList<any>;
@@ -48,6 +48,18 @@ export class FirebaseService {
       return error;
     });
     return eventsRef;
+  }
+
+  addMessage(messageData: any): any {
+    const messageListRef = ref(this.database.database, '/message-submissions');
+    const messageRef = push(messageListRef);
+    set(messageRef, messageData).then(() => {
+      console.log("message data saved successfully!");
+    }).catch((error) => {
+      console.log('Failed to save message data with the following error: ', error);
+      return error;
+    });
+    return messageRef;
   }
 
   updateEventState(id: string) {

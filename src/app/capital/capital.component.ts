@@ -8,7 +8,7 @@ import { FirebaseService } from '../firebase.service';
   templateUrl: './capital.component.html',
   styleUrl: './capital.component.css'
 })
-export class CapitalComponent {
+export class CapitalComponent implements OnInit {
 
   constructor(private firebaseService: FirebaseService) {}
 

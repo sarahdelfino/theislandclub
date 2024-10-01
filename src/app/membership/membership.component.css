@@ -45,14 +45,6 @@ label {
     margin-right: auto;
 }
 
-/* .membership-img {
-    width: 100vw;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-} */
-
 .member-buttons {
     margin-bottom: 20px;
     text-align: center;
@@ -69,7 +61,6 @@ label {
 .membership-form {
     display: flex;
     flex-direction: column;
-    /* width: 60vw; */
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -90,7 +81,6 @@ label {
 .event-form {
     display: flex;
     flex-direction: column;
-    /* width: 60vw; */
     margin-left: auto;
     margin-right: auto;
 }

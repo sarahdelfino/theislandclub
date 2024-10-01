@@ -43,7 +43,7 @@ export class NavbarComponent {
   ]
 
   getPageName() { 
-    for (let link in this.navLinks) {
+    for (const link in this.navLinks) {
       if (this.navLinks[link].link === this.location.path()) {
         this.title = this.navLinks[link].title;
       }

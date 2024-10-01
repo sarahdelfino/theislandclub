@@ -1,4 +1,4 @@
-import { Component, Input, Pipe } from '@angular/core';
+import { Component, Input, Pipe, PipeTransform } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { Blog } from '../blog';
 import { Location, CommonModule } from '@angular/common';
@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   name: "safeHtml",
   standalone: true,
 })
-export class SafeHtmlPipe {
+export class SafeHtmlPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
 
   transform(html: any) {
@@ -28,7 +28,7 @@ export class BlogPostComponent {
   public blogPost: any;
   public id: string;
   public html: string;
-  public mobile: boolean = true;
+  public mobile = true;
 
   constructor(private db: FirebaseService,
     private location: Location
