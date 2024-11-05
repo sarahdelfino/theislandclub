@@ -46,6 +46,7 @@ export class HomeComponent {
         arr.push(tmp);
         arr.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
       }
+      console.log(arr);
       arr[0].date = this.formatDate(arr[0].date);
       arr[1].date = this.formatDate(arr[1].date);
       this.events.push(arr[0]);
