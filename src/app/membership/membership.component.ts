@@ -101,11 +101,15 @@ export class MembershipComponent implements OnInit {
 
   submit(e: Event) {
     const membership = this.memForm.value;
+    console.log(membership);
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     if (this.memForm.value.membershipType) {
-      const member = new Member(membership.firstName!, membership.lastName!, membership.email!, membership.currentAddress!, membership.membershipType!, membership.phone!)
-      this.firebaseService.addMember(member).then(() => {
+      // const member = new Member(membership.firstName!, membership.lastName!, membership.email!, membership.currentAddress!, membership.membershipType!, membership.phone!)
+      this.firebaseService.addMember(membership).then(() => {
+        emailjs.sendForm("service_66ijhfa", "template_fu1h6yo", form, {
+          publicKey: 'pp0s7qlmsjt-_40XH'
+        });
         emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
         }).catch((err) => {

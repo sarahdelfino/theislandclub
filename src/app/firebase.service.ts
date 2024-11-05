@@ -69,7 +69,7 @@ export class FirebaseService {
     })
   }
 
-  addMember(memberData: Member) {
+  addMember(memberData: any) {
     const memberListRef = ref(this.database.database, '/members');
     const memberRef = push(memberListRef);
     return set(memberRef, memberData);
