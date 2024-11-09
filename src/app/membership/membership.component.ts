@@ -101,22 +101,32 @@ export class MembershipComponent implements OnInit {
 
   submit(e: Event) {
     const membership = this.memForm.value;
-    console.log(membership);
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     if (this.memForm.value.membershipType) {
-      // const member = new Member(membership.firstName!, membership.lastName!, membership.email!, membership.currentAddress!, membership.membershipType!, membership.phone!)
       this.firebaseService.addMember(membership).then(() => {
-        emailjs.sendForm("service_66ijhfa", "template_fu1h6yo", form, {
-          publicKey: 'pp0s7qlmsjt-_40XH'
-        });
-        emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
+        if (membership.membershipType === 'family') {
+          emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
         }).catch((err) => {
           console.log("Unable to send membership email: ", err);
           this.alertText = 'We were not able to process your submission at this time. Please try again.';
           this.err = true;
           this.alertType = 'err';
+        });
+        } else {
+          // send individual email
+          emailjs.sendForm("service_66ijhfa", "template_hp8pthp", form, {
+            publicKey: 'pp0s7qlmsjt-_40XH',
+        }).catch((err) => {
+          console.log("Unable to send membership email: ", err);
+          this.alertText = 'We were not able to process your submission at this time. Please try again.';
+          this.err = true;
+          this.alertType = 'err';
+        });
+        }
+        emailjs.sendForm("service_66ijhfa", "template_fu1h6yo", form, {
+          publicKey: 'pp0s7qlmsjt-_40XH'
         });
         this.success = true;
         this.alertText = 'Your submission has been received!';
