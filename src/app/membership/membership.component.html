@@ -64,12 +64,15 @@
             </div>
             <label for="first_name">First Name</label>
             <input required id="first_name" name="first_name" formControlName="firstName" />
+            <p class="invalid" *ngIf="memForm.get('firstName')?.touched && memForm.get('firstName')?.hasError('required')">Please enter a valid first name</p>
             <label for="last_name">Last Name</label>
             <input required id="last_name" name="last_name" formControlName="lastName" />
+            <p class="invalid" *ngIf="memForm.get('lastName')?.touched && memForm.get('lastName')?.hasError('required')">Please enter a valid last name</p>
             <label for="email">Email</label>
             <input required id="email" name="email" formControlName="email" />
+            <p class="invalid" *ngIf="memForm.get('email')?.touched && memForm.get('email')?.hasError('email')">Please enter a valid email</p>
             <label for="phone">Phone</label>
-            <input required id="phone" name="phone" formControlName="phone" />
+            <input required type="tel" id="phone" name="phone" formControlName="phone" />
             <div style="display: contents" *ngIf="this.memForm.value.membershipType === 'family'"
                 formGroupName="family">
                 <input type="hidden" id="url" name="url" value="https://buy.stripe.com/eVa28ae8K0cociA146"
@@ -90,13 +93,21 @@
             </div>
             <label for="current_address">Current Address</label>
             <input required id="current_address" name="current_address" formControlName="currentAddress" />
+            <p class="invalid" *ngIf="memForm.get('currentAddress')?.touched && memForm.get('currentAddress')?.hasError('required')">Please enter a valid address</p>
             <label for="prior_address">If your current address is not located on Sullivan's Island, please provide your
                 previous address</label>
             <input id="prior_address" name="prior_address" formControlName="priorAddress" />
             <label for="interest">What are your interests in the club?</label>
             <input required id="interest" name="interest" formControlName="interest" />
+            <p class="invalid" *ngIf="memForm.get('interest')?.touched && memForm.get('interest')?.hasError('required')">Please enter a value</p>
             <label for="hear">How did you hear about us?</label>
-            <input required id="hear" name="hear" formControlName="hear" />
+            <select class="tx-secondary" required id="hear" name="hear" formControlName="hear">
+                <option id="facebook" name="facebook" value="facebook">Facebook</option>
+                <option id="instagram" name="instagram" value="instagram">Instagram</option>
+                <option id="neighbor" name="neighbor" value="neighbor">Neighbor</option>
+                <option id="other" name="other" value="other">Other</option>
+            </select>
+            <p class="invalid" *ngIf="memForm.get('hear')?.touched && memForm.get('hear')?.hasError('required')">Please enter a value</p>
             <label for="committee">Would you like to volunteer for a committee?</label>
             <select class="tx-secondary" required id="committee" name="committee" formControlName="committee">
                 <option id="membership" name="membership" value="membership">Membership Committee</option>
@@ -105,11 +116,14 @@
                 <option id="public_relations" name="public_relations" value="public_relations">Public Relations</option>
                 <option id="not_interested" value="not_interested">Not Interested</option>
             </select>
+            <p class="invalid" *ngIf="memForm.get('committee')?.touched && memForm.get('committee')?.hasError('required')">Please enter a value</p>
             <p>With this application, you hereby acknowledge and agree that upon membership approval, you voluntarily
                 become a member of the club and must pledge yourself, upon your honor, to abide by the By-laws of The
                 Island Club.</p>
-            <button style="margin-left: 0;" class="btn-primary" type="submit"
-                [disabled]="!memForm.valid">Submit</button>
+                <p class="invalid" style="color: red" *ngIf="errorText.length > 0">
+                    {{ errorText }}
+                </p>
+            <button style="margin-left: 0;" class="btn-primary" type="submit">Submit</button>
         </form>
     </div>
 </div>
