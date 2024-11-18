@@ -47,6 +47,7 @@
             <textarea style="margin-bottom: 8px;" required id="event_description" name="event_description"
                 formControlName="eventDescription"></textarea>
                 <p class="invalid" *ngIf="eventForm.get('eventDescription')?.touched && eventForm.get('eventDescription')?.hasError('required')">Please enter a valid description</p>
+                <p class="invalid" *ngIf="eventForm.get('eventDescription')?.touched && eventForm.get('eventDescription')?.hasError('minLength')">Please enter a longer description</p>
                 <p class="invalid" style="color: red" *ngIf="errorText.length > 0">
                     {{ errorText }}
                 </p>

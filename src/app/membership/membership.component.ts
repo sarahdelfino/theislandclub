@@ -70,7 +70,7 @@ export class MembershipComponent implements OnInit {
       startTime: new FormControl('', [Validators.required]),
       endTime: new FormControl('', [Validators.required]),
       eventName: new FormControl('', [Validators.required]),
-      eventDescription: new FormControl('', [Validators.required, Validators.minLength(50)]),
+      eventDescription: new FormControl('', [Validators.required, Validators.minLength(10)]),
     })
   }
 
