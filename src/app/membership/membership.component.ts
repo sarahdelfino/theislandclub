@@ -147,53 +147,52 @@ export class MembershipComponent implements OnInit {
       });
     } else {
       const submittedEvent = new event(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
-      console.log("SUBMITTED: ", submittedEvent);
-      //   this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
-    //     let host = window.location.host;
-    //     let ht;
-    //     if (host === 'localhost:4200') {
-    //       host = 'http://' + host;
-    //     } else {
-    //       host = 'https://' + host;
-    //     }
-    //     const id = resp.key;
-    //     form['url'].value = host + '/events/' + id + '/approve';
-    //   });
-    //   emailjs
-    //     .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
-    //       publicKey: 'pp0s7qlmsjt-_40XH',
-    //     })
-    //     .then(
-    //       () => {
-    //         this.success = true;
-    //         this.alertText = 'Your submission has been received!';
-    //         this.alertType = 'success';
-    //         //send email to admins
-    //         emailjs.sendForm('service_66ijhfa', 'template_6r1j5k9', form, {
-    //           publicKey: 'pp0s7qlmsjt-_40XH',
-    //         }).then(
-    //           (response) => {
-    //             console.log('SUCCESS!', response.status, response.text);
-    //           },
-    //           (error) => {
-    //             console.log('FAILED...', error);
-    //           },
-    //         );
-    //         form.reset();
-    //         setTimeout(() => {
-    //           this.success = false;
-    //         }, 2000);
-    //       },
-    //       (error) => {
-    //         this.alertText = 'We were not able to process your submission at this time. Please try again.';
-    //         this.err = true;
-    //         this.alertType = 'err';
-    //         console.log('FAILED...', error);
-    //       },
-    //     );
+        this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
+        let host = window.location.host;
+        let ht;
+        if (host === 'localhost:4200') {
+          host = 'http://' + host;
+        } else {
+          host = 'https://' + host;
+        }
+        const id = resp.key;
+        form['url'].value = host + '/events/' + id + '/approve';
+      });
+      emailjs
+        .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
+          publicKey: 'pp0s7qlmsjt-_40XH',
+        })
+        .then(
+          () => {
+            this.success = true;
+            this.alertText = 'Your submission has been received!';
+            this.alertType = 'success';
+            //send email to admins
+            emailjs.sendForm('service_66ijhfa', 'template_6r1j5k9', form, {
+              publicKey: 'pp0s7qlmsjt-_40XH',
+            }).then(
+              (response) => {
+                console.log('SUCCESS!', response.status, response.text);
+              },
+              (error) => {
+                console.log('FAILED...', error);
+              },
+            );
+            form.reset();
+            setTimeout(() => {
+              this.success = false;
+            }, 2000);
+          },
+          (error) => {
+            this.alertText = 'We were not able to process your submission at this time. Please try again.';
+            this.err = true;
+            this.alertType = 'err';
+            console.log('FAILED...', error);
+          },
+        );
     }
-    // const alert = document.getElementById('buttons');
-    // alert?.scrollIntoView({ behavior: 'smooth' });
+    const alert = document.getElementById('buttons');
+    alert?.scrollIntoView({ behavior: 'smooth' });
     }
  }
 }
