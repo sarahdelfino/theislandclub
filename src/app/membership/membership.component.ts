@@ -6,8 +6,7 @@ import { AlertComponent } from "../alert/alert.component";
 import { Member } from '../member';
 import { FirebaseService } from '../firebase.service';
 import { Event as event } from '../event';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -20,25 +19,44 @@ import { HttpClient } from '@angular/common/http';
 export class MembershipComponent implements OnInit {
 
   constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private http: HttpClient,) {
-    this.memForm = new FormGroup({
-      submitDate: new FormControl(Date.now(), Validators.required),
-      membershipType: new FormControl('', [Validators.required]),
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', [Validators.required]),
-      currentAddress: new FormControl('', [Validators.required]),
-      priorAddress: new FormControl(''),
-      interest: new FormControl('', [Validators.required]),
-      hear: new FormControl('', [Validators.required]),
-      family: new FormGroup({
-        url: new FormControl(''),
-        spouseFirstName: new FormControl(''),
-        spouseEmail: new FormControl('', [Validators.email]),
-        spousePhone: new FormControl(''),
+    
+  }
+
+  @Input() signUpVisible = false;
+
+  dynamicFormGroup!: FormGroup;
+
+  alertText = '';
+  alertType = '';
+  err = false;
+  success = false;
+  familyChecked = false;
+  memForm: FormGroup;
+  eventForm: FormGroup;
+  errorText = '';
+  requestFormVisible = false;
+
+  ngOnInit() {
+    this.toggleSignup();
+    this.memForm = this.formBuilder.group({
+      submitDate: [Date.now(), Validators.required],
+      membershipType: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      currentAddress: ['', [Validators.required]],
+      priorAddress: [''],
+      interest: ['', [Validators.required]],
+      hear: ['', [Validators.required]],
+      family: this.formBuilder.group({
+        url: [''],
+        spouseFirstName: [''],
+        spouseEmail: ['', [Validators.email]],
+        spousePhone: [''],
         children: this.formBuilder.array([]),
       }),
-      committee: new FormControl('', [Validators.required])
+      committee: ['', [Validators.required]]
     });
     
     this.eventForm = new FormGroup({
@@ -54,24 +72,6 @@ export class MembershipComponent implements OnInit {
       eventName: new FormControl('', [Validators.required]),
       eventDescription: new FormControl('', [Validators.required, Validators.minLength(50)]),
     })
-  }
-
-  @Input() signUpVisible = false;
-
-  dynamicFormGroup!: FormGroup;
-
-  alertText = '';
-  alertType = '';
-  err = false;
-  success = false;
-  familyChecked = false;
-  memForm: FormGroup;
-  eventForm: FormGroup;
-
-  requestFormVisible = false;
-
-  ngOnInit() {
-    this.toggleSignup();
   }
 
   children(): FormArray {
@@ -100,9 +100,13 @@ export class MembershipComponent implements OnInit {
   }
 
   submit(e: Event) {
-    const membership = this.memForm.value;
     e.preventDefault();
+    const membership = this.memForm.value;
     const form = e.target as HTMLFormElement;
+    if (this.memForm.invalid || this.eventForm.invalid) {
+      this.errorText = 'Please ensure all necessary values are provided.'
+    } else {
+    this.errorText = '';
     if (this.memForm.value.membershipType) {
       this.firebaseService.addMember(membership).then(() => {
         if (membership.membershipType === 'family') {
@@ -143,7 +147,7 @@ export class MembershipComponent implements OnInit {
       });
     } else {
       const submittedEvent = new event(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
-      this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
+        this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
         let host = window.location.host;
         let ht;
         if (host === 'localhost:4200') {
@@ -189,5 +193,6 @@ export class MembershipComponent implements OnInit {
     }
     const alert = document.getElementById('buttons');
     alert?.scrollIntoView({ behavior: 'smooth' });
-  }
+    }
+ }
 }
