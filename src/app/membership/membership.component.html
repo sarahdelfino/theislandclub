@@ -15,7 +15,7 @@
     </div>
     <div *ngIf="requestFormVisible" class="membership-text">
         <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
-        <form [formGroup]="eventForm" id="eventForm" class="event-form" (submit)="submit($event)">
+        <form [formGroup]="eventForm" id="eventForm" class="event-form" (submit)="submitEvent($event)">
             <h2 class="tx-secondary">Request an Event</h2>
             <input type="hidden" id="submit_date" name="submit_date" formControlName="submitDate" />
             <input type="hidden" id="url" name="url" formControlName="url" />
@@ -62,7 +62,7 @@
         <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
 
         <!-- <form #membershipForm id="membershipForm" class="membership-form" (submit)="submit($event)"> -->
-        <form class="membership-form" [formGroup]="memForm" (ngSubmit)="submit($event)">
+        <form class="membership-form" [formGroup]="memForm" (ngSubmit)="submitMembership($event)">
             <input type="hidden" formControlName="submitDate" />
             <label>Membership Type</label>
             <div class="radio-buttons">

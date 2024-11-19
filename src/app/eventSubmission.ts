@@ -1,4 +1,4 @@
-export class Event {
+export class eventSubmission {
     id: string;
     title: string;
     date: string;

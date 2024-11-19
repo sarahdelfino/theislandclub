@@ -1,25 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { EventsComponent } from '../events/events.component';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { AlertComponent } from "../alert/alert.component";
 import { Member } from '../member';
 import { FirebaseService } from '../firebase.service';
-import { Event as event } from '../event';
+import { eventSubmission } from '../eventSubmission';
 import { FormControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [CommonModule, EventsComponent, AlertComponent, ReactiveFormsModule],
+  imports: [CommonModule, AlertComponent, ReactiveFormsModule],
   templateUrl: './membership.component.html',
   styleUrl: './membership.component.css'
 })
 export class MembershipComponent implements OnInit {
 
   constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private http: HttpClient,) {
-    
+
   }
 
   @Input() signUpVisible = false;
@@ -50,7 +49,7 @@ export class MembershipComponent implements OnInit {
       interest: ['', [Validators.required]],
       hear: ['', [Validators.required]],
       family: this.formBuilder.group({
-        url: [''],
+        url: ['/'],
         spouseFirstName: [''],
         spouseEmail: ['', [Validators.email]],
         spousePhone: [''],
@@ -58,10 +57,10 @@ export class MembershipComponent implements OnInit {
       }),
       committee: ['', [Validators.required]]
     });
-    
+
     this.eventForm = new FormGroup({
-      submitDate: new FormControl(Date.now(), Validators.required),
-      url: new FormControl('', [Validators.required]),
+      submitDate: new FormControl(Date.now()),
+      url: new FormControl(''),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
@@ -99,35 +98,34 @@ export class MembershipComponent implements OnInit {
     this.requestFormVisible = !this.requestFormVisible;
   }
 
-  submit(e: Event) {
+  submitMembership(e: Event) {
     e.preventDefault();
-    const membership = this.memForm.value;
     const form = e.target as HTMLFormElement;
-    if (this.memForm.invalid || this.eventForm.invalid) {
-      this.errorText = 'Please ensure all necessary values are provided.'
+    if (this.memForm.invalid) {
+      this.errorText = 'Please ensure all necessary values are provided.';
     } else {
-    this.errorText = '';
-    if (this.memForm.value.membershipType) {
+      this.errorText = '';
+      const membership = this.memForm.value;
       this.firebaseService.addMember(membership).then(() => {
         if (membership.membershipType === 'family') {
           emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
-        }).catch((err) => {
-          console.log("Unable to send membership email: ", err);
-          this.alertText = 'We were not able to process your submission at this time. Please try again.';
-          this.err = true;
-          this.alertType = 'err';
-        });
+          }).catch((err) => {
+            console.log("Unable to send membership email: ", err);
+            this.alertText = 'We were not able to process your submission at this time. Please try again.';
+            this.err = true;
+            this.alertType = 'err';
+          });
         } else {
           // send individual email
           emailjs.sendForm("service_66ijhfa", "template_hp8pthp", form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
-        }).catch((err) => {
-          console.log("Unable to send membership email: ", err);
-          this.alertText = 'We were not able to process your submission at this time. Please try again.';
-          this.err = true;
-          this.alertType = 'err';
-        });
+          }).catch((err) => {
+            console.log("Unable to send membership email: ", err);
+            this.alertText = 'We were not able to process your submission at this time. Please try again.';
+            this.err = true;
+            this.alertType = 'err';
+          });
         }
         emailjs.sendForm("service_66ijhfa", "template_fu1h6yo", form, {
           publicKey: 'pp0s7qlmsjt-_40XH'
@@ -141,58 +139,70 @@ export class MembershipComponent implements OnInit {
         }, 2000);
       }).catch((err) => {
         this.alertText = 'We were not able to process your submission at this time. Please try again.';
-          this.err = true;
-          this.alertType = 'err';
-          console.log('FAILED...', err);
+        this.err = true;
+        this.alertType = 'err';
+        console.log('FAILED...', err);
       });
+    }
+  }
+
+  submitEvent(e: Event) {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    if (this.eventForm.invalid) {
+      this.errorText = 'Please ensure all necessary values are provided.';
     } else {
-      const submittedEvent = new event(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
-        this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
-        let host = window.location.host;
-        let ht;
-        if (host === 'localhost:4200') {
-          host = 'http://' + host;
-        } else {
-          host = 'https://' + host;
-        }
-        const id = resp.key;
-        form['url'].value = host + '/events/' + id + '/approve';
-      });
-      emailjs
-        .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
-          publicKey: 'pp0s7qlmsjt-_40XH',
-        })
-        .then(
-          () => {
-            this.success = true;
-            this.alertText = 'Your submission has been received!';
-            this.alertType = 'success';
-            //send email to admins
-            emailjs.sendForm('service_66ijhfa', 'template_6r1j5k9', form, {
-              publicKey: 'pp0s7qlmsjt-_40XH',
-            }).then(
-              (response) => {
-                console.log('SUCCESS!', response.status, response.text);
-              },
-              (error) => {
-                console.log('FAILED...', error);
-              },
-            );
-            form.reset();
-            setTimeout(() => {
-              this.success = false;
-            }, 2000);
-          },
-          (error) => {
-            this.alertText = 'We were not able to process your submission at this time. Please try again.';
-            this.err = true;
-            this.alertType = 'err';
-            console.log('FAILED...', error);
-          },
-        );
+      this.errorText = '';
+      const event = this.eventForm.value;
+      console.log(event);
+      const submittedEvent = new eventSubmission(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
+      console.log(submittedEvent);
+      console.log(form);
+          this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
+          let host = window.location.host;
+          let ht;
+          if (host === 'localhost:4200') {
+            host = 'http://' + host;
+          } else {
+            host = 'https://' + host;
+          }
+          const id = resp.key;
+          form['url'].value = host + '/events/' + id + '/approve';
+        });
+        emailjs
+          .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
+            publicKey: 'pp0s7qlmsjt-_40XH',
+          })
+          .then(
+            () => {
+              this.success = true;
+              this.alertText = 'Your submission has been received!';
+              this.alertType = 'success';
+              //send email to admins
+              emailjs.sendForm('service_66ijhfa', 'template_6r1j5k9', form, {
+                publicKey: 'pp0s7qlmsjt-_40XH',
+              }).then(
+                (response) => {
+                  console.log('SUCCESS!', response.status, response.text);
+                },
+                (error) => {
+                  console.log('FAILED...', error);
+                },
+              );
+              form.reset();
+              setTimeout(() => {
+                this.success = false;
+              }, 2000);
+            },
+            (error) => {
+              this.alertText = 'We were not able to process your submission at this time. Please try again.';
+              this.err = true;
+              this.alertType = 'err';
+              console.log('FAILED...', error);
+            },
+          );
     }
     const alert = document.getElementById('buttons');
     alert?.scrollIntoView({ behavior: 'smooth' });
-    }
- }
+  }
 }
