@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import blogPosts from './blog/blogPosts.json';
-import { Event } from './event';
+import { eventSubmission } from './eventSubmission';
 import { Member } from './member';
 import { Database, ref, set, onValue, push, objectVal, object, update } from '@angular/fire/database';
 import { AngularFireDatabase, AngularFireList, AngularFireObject, snapshotChanges } from '@angular/fire/compat/database';
@@ -10,7 +10,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject, snapshotChange
 })
 export class FirebaseService {
 
-  eventsArray: Event[];
+  eventsArray: eventSubmission[];
   eventObj: AngularFireObject<any>;
   eventList: AngularFireList<any>;
   blogsList: AngularFireList<any>;
@@ -38,7 +38,7 @@ export class FirebaseService {
     return this.blogPost;
   }
 
-  addEvent(eventData: Event): any {
+  addEvent(eventData: eventSubmission): any {
     const eventListRef = ref(this.database.database, '/submittedEvents');
     const eventsRef = push(eventListRef);
     set(eventsRef, eventData).then(() => {
