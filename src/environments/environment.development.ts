@@ -7,6 +7,7 @@ export const environment = {
         projectId: "theislandclub",
         storageBucket: "theislandclub.appspot.com",
         messagingSenderId: "939559041500",
-        appId: "1:939559041500:web:6e456a66fd2c8852aef719"
+        appId: "1:939559041500:web:6e456a66fd2c8852aef719",
+        measurementId: "G-L6KDQGX5B2"
     }
 }
