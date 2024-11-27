@@ -115,7 +115,7 @@ export class HomeComponent {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     this.firebaseService.addMessage(message).then(() => {
-      emailjs.sendForm("service_66ijhfa", "template_dk7f0b3", form, {
+      emailjs.sendForm("service_lwdjtb9", "template_dk7f0b3", form, {
         publicKey: 'pp0s7qlmsjt-_40XH',
       }).catch((err) => {
         console.log("Unable to send message email: ", err);

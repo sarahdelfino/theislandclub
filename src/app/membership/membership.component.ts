@@ -108,7 +108,7 @@ export class MembershipComponent implements OnInit {
       const membership = this.memForm.value;
       this.firebaseService.addMember(membership).then(() => {
         if (membership.membershipType === 'family') {
-          emailjs.sendForm("service_66ijhfa", "template_de4aoh4", form, {
+          emailjs.sendForm("service_lwdjtb9", "template_de4aoh4", form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
           }).catch((err) => {
             console.log("Unable to send membership email: ", err);
@@ -118,7 +118,7 @@ export class MembershipComponent implements OnInit {
           });
         } else {
           // send individual email
-          emailjs.sendForm("service_66ijhfa", "template_hp8pthp", form, {
+          emailjs.sendForm("service_lwdjtb9", "template_hp8pthp", form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
           }).catch((err) => {
             console.log("Unable to send membership email: ", err);
@@ -127,7 +127,7 @@ export class MembershipComponent implements OnInit {
             this.alertType = 'err';
           });
         }
-        emailjs.sendForm("service_66ijhfa", "template_fu1h6yo", form, {
+        emailjs.sendForm("service_lwdjtb9", "template_fu1h6yo", form, {
           publicKey: 'pp0s7qlmsjt-_40XH'
         });
         this.success = true;
@@ -170,7 +170,7 @@ export class MembershipComponent implements OnInit {
           form['url'].value = host + '/events/' + id + '/approve';
         });
         emailjs
-          .sendForm('service_66ijhfa', 'template_jfj2cqe', form, {
+          .sendForm('service_lwdjtb9', 'template_jfj2cqe', form, {
             publicKey: 'pp0s7qlmsjt-_40XH',
           })
           .then(
@@ -179,7 +179,7 @@ export class MembershipComponent implements OnInit {
               this.alertText = 'Your submission has been received!';
               this.alertType = 'success';
               //send email to admins
-              emailjs.sendForm('service_66ijhfa', 'template_6r1j5k9', form, {
+              emailjs.sendForm('service_lwdjtb9', 'template_6r1j5k9', form, {
                 publicKey: 'pp0s7qlmsjt-_40XH',
               }).then(
                 (response) => {
