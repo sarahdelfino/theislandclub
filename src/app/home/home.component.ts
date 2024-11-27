@@ -5,6 +5,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 // import { Event } from '../event';
 import { AlertComponent } from "../alert/alert.component";
+import { getAnalytics, logEvent } from 'firebase/analytics';
 import { FirebaseService } from '../firebase.service';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -14,7 +15,7 @@ import emailjs from '@emailjs/browser';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, NavbarComponent, FooterComponent, CommonModule, AlertComponent, ReactiveFormsModule],
+  imports: [RouterLink, CommonModule, AlertComponent, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -26,6 +27,7 @@ export class HomeComponent {
   alertText = '';
   alertType = '';
   err = false;
+  analytics = getAnalytics();
 
   constructor(
     private router: Router,
@@ -61,6 +63,10 @@ export class HomeComponent {
       message: new FormControl('', [Validators.required, Validators.minLength(25)]),
     })
 
+  }
+
+  viewAllEventsClick() {
+    logEvent(this.analytics, 'click_view_all_events', { pageName: 'home'} );
   }
 
   membershipBtnClick() {
