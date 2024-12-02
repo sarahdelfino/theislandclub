@@ -53,35 +53,35 @@ export class HomeComponent {
         arr.push(tmp);
         arr.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
       }
-      // arr[0].date = this.formatDate(arr[0].date);
-      // arr[1].date = this.formatDate(arr[1].date);
-      // this.events.push(arr[0]);
-      // this.events.push(arr[1]);
+      arr[0].date = this.formatDate(arr[0].date);
+      arr[1].date = this.formatDate(arr[1].date);
+      this.events.push(arr[0]);
+      this.events.push(arr[1]);
 
-      let firstTest = {
-        "date": "December 2, 2024",
-        "start": "6:00pm",
-        "end": "7:15pm",
-        "id": "6pgj6dhj6dh6ab9ncdj66b9kcgp3cbb16gs3gb9j6op68cr46oq3icr6ck@google.com",
-        "title": "Meditative Monday",
-        "img": '/matt-briney-2',
-        "attachment": 'test attachment',
-        "description": 'test description! this one should be longer. we shall see.'
-      }
+      // let firstTest = {
+      //   "date": "December 2, 2024",
+      //   "start": "6:00pm",
+      //   "end": "7:15pm",
+      //   "id": "6pgj6dhj6dh6ab9ncdj66b9kcgp3cbb16gs3gb9j6op68cr46oq3icr6ck@google.com",
+      //   "title": "Meditative Monday",
+      //   "img": '/matt-briney-2',
+      //   "attachment": 'test attachment',
+      //   "description": 'test description! this one should be longer. we shall see.'
+      // }
 
-      let secondTest = {
-        "date": "December 2, 2024",
-        "start": "6:00pm",
-        "end": "7:15pm",
-        "id": "6pgj6dhj6dh6ab9ncdj66b9kcgp3cbb16gs3gb9j6op68cr46oq3icr6ck@google.com",
-        "title": "Teen Yoga",
-        "img": '/matt-briney-2',
-        "attachment": 'test attachment',
-        "description": 'Bring a yoga mat and join us for a little relaxation, mindfulness, and gentle flow through yoga postures. Members are able to bring a guest, since we know teens only tend to go places with friends 🙂Ages: 12-16'
-      }
+      // let secondTest = {
+      //   "date": "December 2, 2024",
+      //   "start": "6:00pm",
+      //   "end": "7:15pm",
+      //   "id": "6pgj6dhj6dh6ab9ncdj66b9kcgp3cbb16gs3gb9j6op68cr46oq3icr6ck@google.com",
+      //   "title": "Teen Yoga",
+      //   "img": '/matt-briney-2',
+      //   "attachment": 'test attachment',
+      //   "description": 'Bring a yoga mat and join us for a little relaxation, mindfulness, and gentle flow through yoga postures. Members are able to bring a guest, since we know teens only tend to go places with friends 🙂Ages: 12-16'
+      // }
 
-      this.events.push(firstTest);
-      this.events.push(secondTest);
+      // this.events.push(firstTest);
+      // this.events.push(secondTest);
 
     });
     
