@@ -35,24 +35,54 @@ export class HomeComponent {
     public firebaseService: FirebaseService,
   ) {
     this.http.get('https://get-week-of-events-k7ltwigbhq-ue.a.run.app').subscribe((resp: any) => {
+      // this.http.get('http://127.0.0.1:5001/theislandclub/us-east1/get_week_of_events').subscribe((resp: any) => {
       const arr = [];
       for (const row in resp) {
+        // console.log(resp[row]);
         const tmp = {
           "date": resp[row].start,
           "start": this.formatTime(resp[row].start),
           "end": this.formatTime(resp[row].end),
           "id": resp[row].id,
           "title": resp[row].title,
-          "img": this.getImg(resp[row])
+          // "img": resp[row]?.attachment || this.getImg(resp[row]),
+          "img": this.getImg(resp[row]),
+          "attachment": resp[row]?.attachment,
+          "description": resp[row]?.description
         }
         arr.push(tmp);
         arr.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
       }
-      console.log(arr);
       arr[0].date = this.formatDate(arr[0].date);
       arr[1].date = this.formatDate(arr[1].date);
       this.events.push(arr[0]);
       this.events.push(arr[1]);
+
+      // let firstTest = {
+      //   "date": "December 2, 2024",
+      //   "start": "6:00pm",
+      //   "end": "7:15pm",
+      //   "id": "6pgj6dhj6dh6ab9ncdj66b9kcgp3cbb16gs3gb9j6op68cr46oq3icr6ck@google.com",
+      //   "title": "Meditative Monday",
+      //   "img": '/matt-briney-2',
+      //   "attachment": 'test attachment',
+      //   "description": 'test description! this one should be longer. we shall see.'
+      // }
+
+      // let secondTest = {
+      //   "date": "December 2, 2024",
+      //   "start": "6:00pm",
+      //   "end": "7:15pm",
+      //   "id": "6pgj6dhj6dh6ab9ncdj66b9kcgp3cbb16gs3gb9j6op68cr46oq3icr6ck@google.com",
+      //   "title": "Teen Yoga",
+      //   "img": '/matt-briney-2',
+      //   "attachment": 'test attachment',
+      //   "description": 'Bring a yoga mat and join us for a little relaxation, mindfulness, and gentle flow through yoga postures. Members are able to bring a guest, since we know teens only tend to go places with friends 🙂Ages: 12-16'
+      // }
+
+      // this.events.push(firstTest);
+      // this.events.push(secondTest);
+
     });
     
     this.contactForm = new FormGroup({
@@ -105,6 +135,8 @@ export class HomeComponent {
       return '/majong'
     } else if (data.title === 'AA') {
       return '/cody-silver'
+    } else if (data.title === 'Meditative Monday ') {
+      return '/meditation'
     } else {
       return '/matt-briney-2'
     }

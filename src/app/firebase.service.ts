@@ -32,9 +32,7 @@ export class FirebaseService {
   }
 
   getBlogPost(id: string): any {
-    console.log(id);
     this.blogPost = this.database.object('blog-posts/' + id);
-    console.log(this.blogPost);
     return this.blogPost;
   }
 

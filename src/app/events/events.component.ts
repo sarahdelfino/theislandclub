@@ -17,7 +17,6 @@ export class EventsComponent {
 
   constructor(private route: ActivatedRoute, private db: FirebaseService) {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(this.route);
     if(id && this.route.snapshot.routeConfig?.path === 'events/:id/approve') {
       this.db.updateEventState(id);
       window.alert("Your approval has been processed. Thank you!");

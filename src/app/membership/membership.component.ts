@@ -154,10 +154,7 @@ export class MembershipComponent implements OnInit {
     } else {
       this.errorText = '';
       const event = this.eventForm.value;
-      console.log(event);
       const submittedEvent = new eventSubmission(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
-      console.log(submittedEvent);
-      console.log(form);
           this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
           let host = window.location.host;
           let ht;
