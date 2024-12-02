@@ -140,10 +140,16 @@ h3 {
     .row {
         flex-direction: column;
     }
+    .row-img-container {
+        width: -webkit-fill-available;
+        overflow: hidden;
+        height: 150px;
+    }
     .row-img {
         max-width: none;
         width: -webkit-fill-available;
         height: auto;
+        margin-right: 0px;
     }
     .row-text {
         max-width: none;

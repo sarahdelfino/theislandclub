@@ -30,8 +30,10 @@
     <div *ngFor="let event of events" class="upcoming-event-card">
       <!-- <RouterLink class="router-link" :to="{ name: 'event', params: { id: event.id } }">  -->
       <div class="row">
+        <div class="row-img-container">
         <img class="row-img" alt="upcoming event image" srcset="{{ event.img }}-s.jpg 650w, {{ event.img }}-m.jpg 1920w"
           sizes="(max-width: 1000px) 100vw, 1000px" />
+          </div>
         <div class="row-text">
           <h2 style="margin: 0;" class="row-title">{{ event.title }}</h2>
           <div class="row-datetime">
