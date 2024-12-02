@@ -138,7 +138,6 @@ export class HomeComponent {
     } else if (data.title === 'Meditative Monday ') {
       return '/meditation'
     } else {
-      console.log(data);
       return '/matt-briney-2'
     }
   }
