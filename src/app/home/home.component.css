@@ -9,8 +9,9 @@ h2 {
 }
 
 h3 {
-    margin: 5px;
+    margin: 5px 0px;
     font-size: 1rem;
+    font-weight: bold;
 }
 
 .heading-container {
@@ -82,6 +83,7 @@ h3 {
     border-radius: 5px;
     padding: 10px;
     align-items: center;
+    min-height: 125px;
 }
 
 .arrow {
@@ -104,7 +106,14 @@ h3 {
 }
 
 .row-text {
+    flex-grow: 2;
+    max-width: 55vw;
     margin: 10px 5px 10px 10px;
+}
+
+.row-datetime {
+    display: flex;
+    flex-direction: row;
 }
 
 .upcoming-event-buttons {
@@ -127,6 +136,17 @@ h3 {
     button {
         margin-top: 0;
         margin-right: 0;
+    }
+    .row {
+        flex-direction: column;
+    }
+    .row-img {
+        max-width: none;
+        width: -webkit-fill-available;
+        height: auto;
+    }
+    .row-text {
+        max-width: none;
     }
     .text-container {
         margin-top: 0;
