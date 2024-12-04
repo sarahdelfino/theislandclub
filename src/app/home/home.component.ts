@@ -38,11 +38,13 @@ export class HomeComponent {
       // this.http.get('http://127.0.0.1:5001/theislandclub/us-east1/get_week_of_events').subscribe((resp: any) => {
       const arr = [];
       for (const row in resp) {
-        // console.log(resp[row]);
+        console.log(resp[row]);
         const tmp = {
           "date": resp[row].start,
-          "start": this.formatTime(resp[row].start),
-          "end": this.formatTime(resp[row].end),
+          // "start": this.formatTime(resp[row].start),
+          // "end": this.formatTime(resp[row].end),
+          "start": resp[row].start,
+          "end": resp[row].end,
           "id": resp[row].id,
           "title": resp[row].title,
           // "img": resp[row]?.attachment || this.getImg(resp[row]),
@@ -105,6 +107,7 @@ export class HomeComponent {
 
   formatTime(data: any) {
     const time = data.split(" ")[1]
+    console.log(time);
     if (!time || undefined) {
       return '';
     }
