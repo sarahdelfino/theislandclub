@@ -41,7 +41,7 @@
             <h3 *ngIf="event.start.length > 1 && event.end.length > 1">{{ event.start | date: 'shortTime':'undefined':'en-US' }} - {{ event.end | date: 'shortTime':'undefined':'en-US' }}</h3>
           </div>
           <div *ngIf="event.description">
-            <p style="margin: 0px; font-weight: 300;">{{ event.description }}</p>
+            <div style="margin: 0px; font-weight: 300;" [innerHTML]="event.description | safeHtml"></div>
           </div>
         </div>
         <!-- <p class="arrow"></p>

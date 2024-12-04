@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { FooterComponent } from '../footer/footer.component';
@@ -12,10 +13,21 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import emailjs from '@emailjs/browser';
 
+@Pipe({
+  name: "safeHtml",
+  standalone: true,
+})
+export class SafeHtmlPipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+
+  transform(html: any) {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+}
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, CommonModule, AlertComponent, ReactiveFormsModule],
+  imports: [SafeHtmlPipe, RouterLink, CommonModule, AlertComponent, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
