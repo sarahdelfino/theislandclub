@@ -109,6 +109,9 @@ h3 {
     flex-grow: 2;
     max-width: 55vw;
     margin: 10px 5px 10px 10px;
+    margin-right: auto;
+    margin-left: auto;
+    word-wrap: break-word;
 }
 
 .row-datetime {
@@ -152,7 +155,7 @@ h3 {
         margin-right: 0px;
     }
     .row-text {
-        max-width: none;
+        max-width: 90vw;
     }
     .text-container {
         margin-top: 0;
