@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule, ViewportScroller } from '@angular/common';
+import { Component, ElementRef, Input, OnInit, ViewChild, afterNextRender } from '@angular/core';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { AlertComponent } from "../alert/alert.component";
 import { Member } from '../member';
@@ -17,11 +17,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MembershipComponent implements OnInit {
 
-  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private http: HttpClient,) {
-
+  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private http: HttpClient, private viewportScroller: ViewportScroller) {
   }
 
-  @Input() signUpVisible = false;
+  // @Input() signUpVisible = false;
+  @ViewChild('membershipTitle', { static: true }) memberDiv: ElementRef;
 
   dynamicFormGroup!: FormGroup;
 
@@ -33,10 +33,10 @@ export class MembershipComponent implements OnInit {
   memForm: FormGroup;
   eventForm: FormGroup;
   errorText = '';
+  signUpVisible = true;
   requestFormVisible = false;
 
   ngOnInit() {
-    this.toggleSignup();
     this.memForm = this.formBuilder.group({
       submitDate: [Date.now(), Validators.required],
       membershipType: ['', [Validators.required]],
@@ -90,17 +90,23 @@ export class MembershipComponent implements OnInit {
 
   toggleSignup() {
     this.requestFormVisible = false;
-    this.signUpVisible = !this.signUpVisible;
+    this.signUpVisible = true;
+    this.err = false;
+    this.errorText = '';
   }
 
   toggleRequest() {
     this.signUpVisible = false;
-    this.requestFormVisible = !this.requestFormVisible;
+    this.requestFormVisible = true;
+    this.err = false;
+    this.errorText = '';
   }
 
   submitMembership(e: Event) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
+    console.log(form)
+    console.log(this.memForm.value);
     if (this.memForm.invalid) {
       this.errorText = 'Please ensure all necessary values are provided.';
     } else {
@@ -136,7 +142,7 @@ export class MembershipComponent implements OnInit {
         form.reset();
         setTimeout(() => {
           this.success = false;
-        }, 2000);
+        }, 5000);
       }).catch((err) => {
         this.alertText = 'We were not able to process your submission at this time. Please try again.';
         this.err = true;
@@ -189,7 +195,7 @@ export class MembershipComponent implements OnInit {
               form.reset();
               setTimeout(() => {
                 this.success = false;
-              }, 2000);
+              }, 5000);
             },
             (error) => {
               this.alertText = 'We were not able to process your submission at this time. Please try again.';
@@ -199,7 +205,5 @@ export class MembershipComponent implements OnInit {
             },
           );
     }
-    const alert = document.getElementById('buttons');
-    alert?.scrollIntoView({ behavior: 'smooth' });
   }
 }

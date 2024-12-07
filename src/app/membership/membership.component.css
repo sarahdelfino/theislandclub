@@ -12,12 +12,46 @@ h3 {
 
 label {
     text-align: left;
-    color: #4f7faa;
+    margin-right: 10px;
+}
+
+#membershipContainer {
+    background-color: #4f7faa;
+    padding: 0px 10px 10px;
+}
+
+#requestContainer {
+    padding: 10px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.flex-items {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
 }
 
 .invalid {
-    color: red;
-    margin-top: 0;
+    color: #FF7474;
+    margin: 0;
+    font-weight: bold;
+}
+
+.anotherFlex {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+.errorFlex {
+    display: flex;
+    flex-direction: row;
 }
 
 .title {
@@ -44,19 +78,51 @@ label {
     background: url('/roger-starnes-s.jpg') no-repeat;
     background-size: 100%;
     width: 100vw;
-    height: 200px;
+    height: 175px;
+    background-position: bottom;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.member-buttons {
-    margin-bottom: 20px;
-    text-align: center;
+.membership-body {
+    margin-top: 10px;
+    background-color: #4f7faa;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: auto;
+    width: 98vw;
 }
 
-.membership-text {
-    padding: 5px 10px 10px 10px;
+.member-tabs {
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+.tab {
+    width: 50%;
+    height: 65px;
+    align-content: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.tab:hover {
+    cursor: pointer;
+}
+
+.primary {
+    color: white;
+    background-color: #4f7faa;
+    text-decoration: underline;
+}
+
+.secondary {
+    background-color: white;
+    color: #4f7faa;
 }
 
 .membership-tagline {
@@ -71,18 +137,6 @@ label {
     margin-top: 10px;
 }
 
-.radio-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 8px;
-}
-
-.radio-button {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-}
-
 .event-form {
     display: flex;
     flex-direction: column;
@@ -91,9 +145,18 @@ label {
 }
 
 @media screen and (min-width: 760px) {
+    .membership-body {
+        margin-top: 10px;
+        width: 80vw;
+        margin: auto;
+    }
     .membership-img {
         background: url('/roger-starnes-m.jpg') no-repeat;
         background-position: bottom 30% right 40%;
         background-size: cover;
+    }
+    #requestContainer, #membershipContainer {
+        width: 70vw;
+        margin: auto;
     }
 }
