@@ -16,7 +16,7 @@ label {
 }
 
 #membershipContainer {
-    background-color: #4f7faa;
+    background-color: #3b5f7f;
     padding: 0px 10px 10px;
 }
 
@@ -87,7 +87,7 @@ label {
 
 .membership-body {
     margin-top: 10px;
-    background-color: #4f7faa;
+    background-color: #3b5f7f;
     border-radius: 5px;
     overflow: hidden;
     margin: auto;
@@ -116,13 +116,13 @@ label {
 
 .primary {
     color: white;
-    background-color: #4f7faa;
+    background-color: #3b5f7f;
     text-decoration: underline;
 }
 
 .secondary {
     background-color: white;
-    color: #4f7faa;
+    color: #3b5f7f;
 }
 
 .membership-tagline {

@@ -66,8 +66,8 @@ h3 {
     max-width: 1200px;
     padding: 10px;
     border-radius: 5px;
-    color: #4f7faa;
-    border: 1px solid #4f7faa;
+    color: #3b5f7f;
+    border: 1px solid #3b5f7f;
 }
 
 .title {
@@ -79,7 +79,7 @@ h3 {
 .row {
     display: flex;
     margin-bottom: 10px;
-    border: 1px solid #4f7faa;
+    border: 1px solid #3b5f7f;
     border-radius: 5px;
     padding: 10px;
     align-items: center;
@@ -97,7 +97,7 @@ h3 {
     max-width: 235px;
     height: 90px;
     margin-right: 10px;
-    border: 1px solid #4f7faa;
+    border: 1px solid #3b5f7f;
     border-radius: 5px;
 }
 

@@ -40,10 +40,10 @@ button:hover {
 }
 
 input {
-    color: #4f7faa;
+    color: #3b5f7f;
     height: 30px;
     /* margin-bottom: 8px; */
-    border: 1px solid #4f7faa;
+    border: 1px solid #3b5f7f;
     /* padding: 5px; */
     font-size: 1rem;
 }
@@ -57,14 +57,14 @@ textarea, input, select {
 textarea, select {
     font-size: 1rem;
     height: 50px;
-    border: 1px solid #4f7faa;
+    border: 1px solid #3b5f7f;
     /* padding: 5px; */
     background-color: white;
 }
 
 .router-link {
     text-decoration: none;
-    color: #4f7faa;
+    color: #3b5f7f;
 }
 
 .bg-primary {
@@ -76,23 +76,23 @@ textarea, select {
 }
 
 .btn-primary {
-    background-color: #4f7faa;
+    background-color: #3b5f7f;
     color: white;
     border: 1px solid white;
 }
 
 .bg-secondary {
-    background-color: #4f7faa;
+    background-color: #3b5f7f;
 }
 
 .btn-secondary {
     background-color: white;
-    color: #4f7faa;
-    border: 1px solid #4f7faa;
+    color: #3b5f7f;
+    border: 1px solid #3b5f7f;
 }
 
 .tx-secondary {
-    color: #4f7faa;
+    color: #3b5f7f;
 }
 
 .top-img {

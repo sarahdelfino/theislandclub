@@ -39,7 +39,7 @@ a {
     z-index: 999;
     top: 5rem;
     border-radius: 5px;
-    border: 1px solid #4f7faa;
+    border: 1px solid #3b5f7f;
 }
 
 .nav-item {
@@ -50,7 +50,7 @@ a {
 }
 
 .nav-item:hover {
-    background-color: #4f7faa;
+    background-color: #3b5f7f;
     color: white;
     border-radius: 5px;
     padding-left: auto;
