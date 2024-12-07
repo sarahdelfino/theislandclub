@@ -42,21 +42,23 @@ button:hover {
 input {
     color: #4f7faa;
     height: 30px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
     border: 1px solid #4f7faa;
-    padding: 5px;
+    /* padding: 5px; */
     font-size: 1rem;
 }
 
 textarea, input, select {
     border-radius: 2px;
+    margin-bottom: 8px;
+    padding: 5px;
 }
 
 textarea, select {
     font-size: 1rem;
     height: 50px;
     border: 1px solid #4f7faa;
-    padding: 5px;
+    /* padding: 5px; */
     background-color: white;
 }
 

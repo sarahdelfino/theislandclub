@@ -150,7 +150,7 @@ export class HomeComponent {
       return '/majong'
     } else if (data.title === 'AA') {
       return '/cody-silver'
-    } else if (data.title === 'Meditative Monday ') {
+    } else if (data.title === 'Meditative Monday ' || data.title === 'Meditative Monday') {
       return '/meditation'
     } else {
       return '/matt-briney-2'
