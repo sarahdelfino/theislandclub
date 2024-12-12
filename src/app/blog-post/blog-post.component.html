@@ -6,6 +6,7 @@
         <img class="blog-post-img" src="{{this.blogPost.img}}-m.png">
     </ng-template>
     <div class="blog-post-text">
+        <!-- <a href="/blog">Blog posts</a> -->
         <div class="blog-post-title">
             <h1>{{ this.blogPost.title }}</h1>
         </div>
@@ -13,5 +14,8 @@
             <p style="margin: 0px; font-size: .75rem;">{{ this.blogPost.date }}</p>
         </div>
         <div [innerHTML]="this.html | safeHtml"></div>
+        <div class="reel-container" *ngIf="reel">
+            <iframe class="reel" src="https://www.instagram.com/reel/DDamTrCRQQQ/embed/" scrolling="no" allowtransparency="true" allowfullscreen="true" width="500px" height="600px" frameborder="0">Iframe not supported</iframe>
+        </div>
     </div>
 </div>

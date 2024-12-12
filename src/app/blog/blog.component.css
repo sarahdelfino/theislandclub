@@ -1,14 +1,21 @@
 h1 {
-    margin: 0px;
+    margin-top: 5px;
+    margin-bottom: 0px;
 }
 
 h2 {
-    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin: 5px 0px;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 p {
-    margin: 0px;
-    font-size: .75rem;
+    margin: 0;
 }
 
 .blog-container {
@@ -29,16 +36,41 @@ p {
 }
 
 .blog-posts-container {
+    display: flex;
+    flex-direction: column-reverse;
     padding-top: 20px;
+    margin-top: 20px;
+    max-width: 1200px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #4f7faa;
 }
 
-.blog-post {
+.blog-description {
+    margin: 0px;
+    font-weight: 300;
+}
+
+/* .blog-post {
     display: flex;
     align-items: center;
     margin: 8px 8px 15px 8px;
     border: 1px solid #4f7faa;
     border-radius: 5px;
     box-shadow: #4f7faa 8px 8px 10px -10px;
+} */
+
+/* .blog-post {
+    max-width: 1200px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #4f7faa;
+} */
+
+.blog-img-container {
+    /* width: 37vw; */
+    /* overflow: hidden; */
+    height: 20vh;
 }
 
 .blog-post-img {
@@ -63,4 +95,68 @@ p {
 
 .blog-info {
     margin-bottom: 2px;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 10px;
+    border: 1px solid #4f7faa;
+    border-radius: 5px;
+    padding: 10px;
+    align-items: center;
+    min-height: 125px;
+}
+
+.row-img {
+    /* width: 25vw; */
+    /* max-width: 235px; */
+    /* height: 90px; */
+    margin-right: 10px;
+    border: 1px solid #4f7faa;
+    border-radius: 5px;
+}
+
+.row-title {
+    font-weight: 400;
+}
+
+.row-text {
+    flex-grow: 2;
+    max-width: 55vw;
+    margin: 10px 5px 10px 10px;
+    margin-right: auto;
+    margin-left: auto;
+    word-wrap: break-word;
+}
+
+.row-datetime {
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 400px) {
+    .row {
+        flex-direction: column;
+    }
+    .row-img-container {
+        width: -webkit-fill-available;
+        overflow: hidden;
+        height: 150px;
+    }
+    .row-img {
+        max-width: none;
+        width: -webkit-fill-available;
+        height: auto;
+        margin-right: 0px;
+    }
+    .row-text {
+        max-width: 90vw;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .row-img {
+        width: 20vw;
+        height: 25vh;
+    }
 }

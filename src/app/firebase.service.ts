@@ -17,9 +17,9 @@ export class FirebaseService {
   blogPost: AngularFireObject<any>;
 
   constructor(
-  private database: AngularFireDatabase,
+    private database: AngularFireDatabase,
 
-) { }
+  ) { }
 
   getEvents(): any {
     this.eventList = this.database.list('events')
@@ -73,10 +73,15 @@ export class FirebaseService {
     return set(memberRef, memberData);
   }
 
-  // addBlog(blogData: any) {
-  //   const blogListRef = ref(this.database.database, '/blog-posts');
-  //   const blogRef = push(blogListRef);
-  //   return set(blogRef, blogData);
-  // }
+  addBlogPost(blogData: any) {
+    const blogListRef = ref(this.database.database, '/blog-posts');
+    const blogRef = push(blogListRef);
+    return set(blogRef, blogData);
+  }
 
+  addBlogSummary(blogData: any) {
+    const blogListRef = ref(this.database.database, '/blogs');
+    const blogRef = push(blogListRef);
+    return set(blogRef, blogData);
+  }
 }

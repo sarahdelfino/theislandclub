@@ -8,7 +8,7 @@
       }
     },
     "members": {
-      ".read": "false",
+      ".read": "true",
       "$uid": {
         ".write": "newData.exists()"
       }

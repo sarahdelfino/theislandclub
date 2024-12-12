@@ -29,6 +29,7 @@ export class BlogPostComponent {
   public id: string;
   public html: string;
   public mobile = true;
+  public reel = false;
 
   constructor(private db: FirebaseService,
     private location: Location
@@ -40,6 +41,9 @@ export class BlogPostComponent {
     this.db.getBlogPost(this.id).valueChanges().subscribe((resp: any) => {
       this.blogPost = resp;
       this.html = this.blogPost.post;
+      if (resp.title === "Decorating the Sullivan's Island Club for Christmas") {
+        this.reel = true;
+      }
     });
     
   }

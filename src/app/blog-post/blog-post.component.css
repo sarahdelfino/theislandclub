@@ -32,3 +32,26 @@ h2 {
     text-align: center;
     margin: 20px 0px 20px 0px;
 }
+
+.reel-container {
+    height: 100vh;
+}
+
+.reel {
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (min-width: 960px) {
+    .reel-container {
+        margin: 20px auto auto auto;
+        text-align: center;
+        width: 50vw;
+        height: 85vh;
+    }
+
+    .reel {
+        width: 50%;
+        height: 100%;
+    }
+}
