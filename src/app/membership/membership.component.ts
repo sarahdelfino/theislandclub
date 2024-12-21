@@ -105,8 +105,6 @@ export class MembershipComponent implements OnInit {
   submitMembership(e: Event) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-    console.log(form)
-    console.log(this.memForm.value);
     if (this.memForm.invalid) {
       this.errorText = 'Please ensure all necessary values are provided.';
     } else {

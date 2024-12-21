@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import emailjs from '@emailjs/browser';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Pipe({
   name: "safeHtml",
@@ -27,7 +28,7 @@ export class SafeHtmlPipe implements PipeTransform {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SafeHtmlPipe, RouterLink, CommonModule, AlertComponent, ReactiveFormsModule],
+  imports: [SafeHtmlPipe, RouterLink, CommonModule, AlertComponent, ReactiveFormsModule, NgxSkeletonLoaderModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -40,17 +41,28 @@ export class HomeComponent {
   alertType = '';
   err = false;
   analytics = getAnalytics();
+  isMobile = false;
+  skelTheme = {
+    width: '20vw',
+    height: '90px',
+    marginRight: '20px'
+  };
+  mobileSkelTheme = {
+    height: '150px'
+  };
 
   constructor(
     private router: Router,
     private http: HttpClient,
     public firebaseService: FirebaseService,
   ) {
+    if (window.innerWidth < 760) {
+      this.isMobile = true;
+    }
     this.http.get('https://get-week-of-events-k7ltwigbhq-ue.a.run.app').subscribe((resp: any) => {
       // this.http.get('http://127.0.0.1:5001/theislandclub/us-east1/get_week_of_events').subscribe((resp: any) => {
       const arr = [];
       for (const row in resp) {
-        console.log(resp[row]);
         const tmp = {
           "date": resp[row].start,
           // "start": this.formatTime(resp[row].start),
@@ -119,7 +131,6 @@ export class HomeComponent {
 
   formatTime(data: any) {
     const time = data.split(" ")[1]
-    console.log(time);
     if (!time || undefined) {
       return '';
     }
@@ -150,7 +161,7 @@ export class HomeComponent {
       return '/majong'
     } else if (data.title === 'AA') {
       return '/cody-silver'
-    } else if (data.title === 'Meditative Monday ' || data.title === 'Meditative Monday') {
+    } else if (data.title.trim() === 'Meditative Monday' || data.title.includes('meditation')) {
       return '/meditation'
     } else {
       return '/matt-briney-2'
