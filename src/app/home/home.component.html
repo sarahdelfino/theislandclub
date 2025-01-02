@@ -39,7 +39,7 @@
         <div class="row-text">
           <h2 style="margin: 0;" class="row-title">{{ event.title }}</h2>
           <div class="row-datetime">
-            <h3 style="margin-right: 10px;">{{ event.date }}</h3>
+            <h3 style="margin-right: 10px;">{{ event.start | date: 'fullDate' }}</h3>
             <h3 *ngIf="event.start.length > 1 && event.end.length > 1">{{ event.start | date:
               'shortTime':'undefined':'en-US' }} - {{ event.end | date: 'shortTime':'undefined':'en-US' }}</h3>
           </div>

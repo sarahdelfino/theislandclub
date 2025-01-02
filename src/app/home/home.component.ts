@@ -64,9 +64,6 @@ export class HomeComponent {
       const arr = [];
       for (const row in resp) {
         const tmp = {
-          "date": resp[row].start,
-          // "start": this.formatTime(resp[row].start),
-          // "end": this.formatTime(resp[row].end),
           "start": resp[row].start,
           "end": resp[row].end,
           "id": resp[row].id,
@@ -77,12 +74,12 @@ export class HomeComponent {
           "description": resp[row]?.description
         }
         arr.push(tmp);
-        arr.sort((a, b) => (a.date > b.date) ? 1 : (b.date > a.date) ? -1 : 0);
+        arr.sort((a, b) => (a.start > b.start) ? 1 : (b.start > a.start) ? -1 : 0);
       }
-      arr[0].date = this.formatDate(arr[0].date);
-      arr[1].date = this.formatDate(arr[1].date);
       this.events.push(arr[0]);
       this.events.push(arr[1]);
+
+      // console.log(this.events);
 
       // let firstTest = {
       //   "date": "December 2, 2024",
