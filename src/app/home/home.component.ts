@@ -158,7 +158,7 @@ export class HomeComponent {
       return '/majong'
     } else if (data.title === 'AA') {
       return '/cody-silver'
-    } else if (data.title.trim() === 'Meditative Monday' || data.title.includes('meditation')) {
+    } else if (data.title.trim() === 'Meditative Monday' || data.title.includes('Meditation')) {
       return '/meditation'
     } else {
       return '/matt-briney-2'
