@@ -11,8 +11,8 @@ import { FirebaseService } from '../firebase.service';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import emailjs from '@emailjs/browser';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ContactComponent } from "../contact/contact.component";
 
 @Pipe({
   name: "safeHtml",
@@ -28,7 +28,7 @@ export class SafeHtmlPipe implements PipeTransform {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SafeHtmlPipe, RouterLink, CommonModule, AlertComponent, ReactiveFormsModule, NgxSkeletonLoaderModule],
+  imports: [SafeHtmlPipe, RouterLink, CommonModule, AlertComponent, ReactiveFormsModule, NgxSkeletonLoaderModule, ContactComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -126,31 +126,6 @@ export class HomeComponent {
     this.router.navigateByUrl('/membership');
   }
 
-  formatTime(data: any) {
-    const time = data.split(" ")[1]
-    if (!time || undefined) {
-      return '';
-    }
-    let hours = time[0] + time[1]
-    const minutes = time[3] + time[4]
-    const amOrPm = hours >= 12 ? 'pm' : 'am';
-    hours = (hours % 12) || 12;
-    const finalTime = hours + ':' + minutes + amOrPm;
-    return finalTime
-  }
-
-  formatDate(data: any) {
-    const date = new Date(data);
-    const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC'
-    };
-    const formattedDate: string = date.toLocaleDateString('en-US', options);
-    return formattedDate;
-  }
-
   getImg(data: any) {
     if (data.title === 'Trinity Wellness Yoga') {
       return '/chelsea-gates'
@@ -164,28 +139,4 @@ export class HomeComponent {
       return '/matt-briney-2'
     }
   }
-
-  submit(e: Event) {
-    const message = this.contactForm.value;
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    this.firebaseService.addMessage(message).then(() => {
-      emailjs.sendForm("service_lwdjtb9", "template_dk7f0b3", form, {
-        publicKey: 'pp0s7qlmsjt-_40XH',
-      }).catch((err) => {
-        console.log("Unable to send message email: ", err);
-        this.alertText = 'We were not able to process your submission at this time. Please try again.';
-        this.err = true;
-        this.alertType = 'err';
-      });
-    }).catch((err: any) => {
-      this.alertText = 'We were not able to process your submission at this time. Please try again.';
-      this.err = true;
-      this.alertType = 'err';
-      console.log('FAILED...', err);
-    });
-  }
-
-  
-
 }
