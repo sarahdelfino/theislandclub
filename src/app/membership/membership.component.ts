@@ -122,6 +122,7 @@ export class MembershipComponent implements OnInit {
     const form = e.target as HTMLFormElement;
     if (this.memForm.invalid) {
       this.errorText = 'Please ensure all necessary values are provided.';
+      this.alertType = 'err';
     } else {
       this.errorText = '';
       const membership = this.memForm.value;

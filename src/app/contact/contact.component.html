@@ -14,7 +14,8 @@
       required id="email" name="email" formControlName="email" />
       <label for="message">Message</label>
       <textarea [class.invalid]="contactForm.get('message')?.touched && contactForm.get('message')?.invalid || contactForm.get('message')?.invalid && this.errorText" required id="message" name="message" formControlName="message"></textarea>
-      <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
+      <app-alert *ngIf="errorText.length > 0" text="{{ errorText }}" type="err"></app-alert>
+      <app-alert *ngIf="success" text="{{ alertText }}" type="success"></app-alert>
       <button style="margin-left: 0; margin-top: 10px;" class="btn-primary" type="submit">Submit</button>
     </form>
   </div>
