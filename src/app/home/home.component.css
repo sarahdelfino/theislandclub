@@ -19,6 +19,7 @@ h3 {
     background-image: url('/matt-benson-TzdnVuPzY1g-unsplash.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position-y: 10%;
 }
 
 .nav-logo {

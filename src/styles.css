@@ -39,7 +39,7 @@ button:hover {
     cursor: pointer;
 }
 
-input {
+input, select {
     color: #4f7faa;
     height: 30px;
     /* margin-bottom: 8px; */

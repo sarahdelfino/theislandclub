@@ -13,38 +13,43 @@ h3 {
 label {
     text-align: left;
     margin-right: 10px;
+    max-width: 300px;
 }
 
-#membershipContainer {
+input {
+    width: 300px;
+}
+
+select {
+    width: 312px;
+}
+
+textarea {
+    max-width: 800px;
+}
+
+#membershipContainer, #requestContainer {
     background-color: #4f7faa;
-    padding: 0px 10px 10px;
-}
-
-#requestContainer {
+    border-radius: 10px;
     padding: 10px;
 }
 
 .flex {
-    display: flex;
     justify-content: space-between;
+    display: flex;
     flex-wrap: wrap;
-    overflow: hidden;
 }
 
 .flex-items {
-    width: 45%;
     display: flex;
     flex-direction: column;
 }
 
 .invalid {
-    color: #FF7474;
-    margin: 0;
-    font-weight: bold;
+    border-left: 5px solid #a94442;
 }
 
 .anotherFlex {
-    width: 48%;
     display: flex;
     flex-direction: column;
 }
@@ -64,8 +69,7 @@ label {
 .membership-container {
     max-width: 1200px;
     min-width: 375px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 
 .membership-title {
@@ -87,15 +91,13 @@ label {
 
 .membership-body {
     margin-top: 10px;
+    border-radius: 10px;
     background-color: #4f7faa;
-    border-radius: 5px;
-    overflow: hidden;
     margin: auto;
-    width: 98vw;
+    max-width: 1200px;
 }
 
 .member-tabs {
-    margin-bottom: 20px;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -118,6 +120,7 @@ label {
     color: white;
     background-color: #4f7faa;
     text-decoration: underline;
+    text-underline-offset: 10px;
 }
 
 .secondary {
@@ -129,19 +132,12 @@ label {
     margin: 20px 0px 20px 0px;
 }
 
-.membership-form {
+.membership-form, .event-form {
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-}
-
-.event-form {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px auto;
+    border-radius: 10px;
+    max-width: 800px;
 }
 
 @media screen and (min-width: 760px) {
@@ -154,9 +150,5 @@ label {
         background: url('/roger-starnes-m.jpg') no-repeat;
         background-position: bottom 30% right 40%;
         background-size: cover;
-    }
-    #requestContainer, #membershipContainer {
-        width: 70vw;
-        margin: auto;
     }
 }

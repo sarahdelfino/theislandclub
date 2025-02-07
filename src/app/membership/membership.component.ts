@@ -1,4 +1,5 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
+import { NgModel } from '@angular/forms';
 import { Component, ElementRef, Input, OnInit, ViewChild, afterNextRender } from '@angular/core';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { AlertComponent } from "../alert/alert.component";
@@ -38,25 +39,39 @@ export class MembershipComponent implements OnInit {
 
   ngOnInit() {
     this.memForm = this.formBuilder.group({
-      submitDate: [Date.now(), Validators.required],
-      membershipType: ['', [Validators.required]],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      currentAddress: ['', [Validators.required]],
-      priorAddress: [''],
-      interest: ['', [Validators.required]],
-      hear: ['', [Validators.required]],
+      submitDate: new FormControl(Date.now(), [Validators.required]),
+      membershipType: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl('', [Validators.required]),
+      currentAddress: new FormControl('', [Validators.required]),
+      priorAddress: new FormControl(''),
+      interest: new FormControl(''),
+      hear: new FormControl(''),
       family: this.formBuilder.group({
-        url: ['/'],
-        spouseFirstName: [''],
-        spouseEmail: ['', [Validators.email]],
-        spousePhone: [''],
+        spouseFirstName: new FormControl('', [Validators.required]),
+        spouseEmail: new FormControl('', [Validators.required, Validators.email]),
+        spousePhone: new FormControl('', [Validators.required]),
         children: this.formBuilder.array([]),
       }),
-      committee: ['', [Validators.required]]
+      committee: new FormControl('')
     });
+
+    this.memForm.get('membershipType')?.valueChanges.subscribe(val => {
+      if (val === 'individual') {
+        this.memForm.get('family.spouseFirstName')?.clearValidators();
+        this.memForm.get('family.spouseEmail')?.clearValidators();
+        this.memForm.get('family.spousePhone')?.clearValidators();
+      } else {
+        this.memForm.get('family.spouseFirstName')?.addValidators(Validators.required);
+        this.memForm.get('family.spouseEmail')?.addValidators([Validators.required, Validators.email]);
+        this.memForm.get('family.spousePhone')?.addValidators(Validators.required);
+      }
+      this.memForm.get('family.spouseFirstName')?.updateValueAndValidity();
+      this.memForm.get('family.spouseEmail')?.updateValueAndValidity();
+      this.memForm.get('family.spousePhone')?.updateValueAndValidity();
+    })
 
     this.eventForm = new FormGroup({
       submitDate: new FormControl(Date.now()),
@@ -69,7 +84,7 @@ export class MembershipComponent implements OnInit {
       startTime: new FormControl('', [Validators.required]),
       endTime: new FormControl('', [Validators.required]),
       eventName: new FormControl('', [Validators.required]),
-      eventDescription: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      eventDescription: new FormControl('', [Validators.required]),
     })
   }
 

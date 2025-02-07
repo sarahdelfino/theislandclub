@@ -3,13 +3,17 @@
     <form [formGroup]="contactForm" id="contactForm" class="contact-form" (ngSubmit)="submit($event)">
       <input type="hidden" id="submit_date" name="submit_date" formControlName="submitDate" />
       <label for="first_name">First Name</label>
-      <input required id="first_name" name="first_name" formControlName="firstName" />
+      <input [class.invalid]="contactForm.get('firstName')?.touched && contactForm.get('firstName')?.invalid || contactForm.get('firstName')?.invalid && this.errorText" required id="first_name" name="first_name" formControlName="firstName" />
       <label for="last_name">Last Name</label>
-      <input required id="last_name" name="last_name" formControlName="lastName" />
+      <input
+      [class.invalid]="contactForm.get('lastName')?.touched && contactForm.get('lastName')?.invalid || contactForm.get('lastName')?.invalid && this.errorText"
+      required id="last_name" name="last_name" formControlName="lastName" />
       <label for="email">Email</label>
-      <input required id="email" name="email" formControlName="email" />
+      <input
+      [class.invalid]="contactForm.get('email')?.touched && contactForm.get('email')?.invalid || contactForm.get('email')?.invalid && this.errorText"
+      required id="email" name="email" formControlName="email" />
       <label for="message">Message</label>
-      <textarea required id="message" name="message" formControlName="message"></textarea>
+      <textarea [class.invalid]="contactForm.get('message')?.touched && contactForm.get('message')?.invalid || contactForm.get('message')?.invalid && this.errorText" required id="message" name="message" formControlName="message"></textarea>
       <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
       <button style="margin-left: 0; margin-top: 10px;" class="btn-primary" type="submit">Submit</button>
     </form>
