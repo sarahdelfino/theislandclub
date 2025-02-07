@@ -83,9 +83,10 @@
             <form #memberForm="ngForm" class="membership-form" [formGroup]="memForm"
                 (ngSubmit)="submitMembership($event)">
                 <input type="hidden" formControlName="submitDate" />
+                <p>Fields marked with an asterisk are required</p>
                 <div class="flex" style="align-self: flex-start;">
                 <div class="anotherFlex">
-                    <label>Membership Type</label>
+                    <label>Membership Type *</label>
                     <select class="tx-secondary"
                         [class.invalid]="memForm.get('membershipType')?.touched && memForm.get('membershipType')?.invalid || memForm.get('membershipType')?.invalid && this.errorText"
                         required id="membershipType" name="membershipType" formControlName="membershipType">
@@ -96,13 +97,13 @@
                 </div>
                 <div class="flex">
                     <div class="anotherFlex">
-                        <label for="first_name">First Name</label>
+                        <label for="first_name">First Name *</label>
                         <input
                             [class.invalid]="memForm.get('firstName')?.touched && memForm.get('firstName')?.invalid || memForm.get('firstName')?.invalid && this.errorText"
                             required id="first_name" name="first_name" formControlName="firstName" />
                     </div>
                     <div class="anotherFlex">
-                        <label for="last_name">Last Name</label>
+                        <label for="last_name">Last Name *</label>
                         <input
                             [class.invalid]="memForm.get('lastName')?.touched && memForm.get('lastName')?.invalid || memForm.get('lastName')?.invalid && this.errorText"
                             required id="last_name" name="last_name" formControlName="lastName" />
@@ -110,20 +111,20 @@
                 </div>
                 <div class="flex">
                     <div class="anotherFlex">
-                        <label for="email">Email</label>
+                        <label for="email">Email *</label>
                         <input
                             [class.invalid]="memForm.get('email')?.touched && memForm.get('email')?.invalid || memForm.get('email')?.invalid && this.errorText"
                             required id="email" name="email" formControlName="email" />
                     </div>
                     <div class="anotherFlex">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Phone *</label>
                         <input
                             [class.invalid]="memForm.get('phone')?.touched && memForm.get('phone')?.invalid || memForm.get('phone')?.invalid && this.errorText"
                             required type="tel" id="phone" name="phone" formControlName="phone" />
                     </div>
                 </div>
                     <div class="anotherFlex">
-                        <label for="current_address">Current Address</label>
+                        <label for="current_address">Current Address *</label>
                         <input
                             [class.invalid]="memForm.get('currentAddress')?.touched && memForm.get('currentAddress')?.invalid || memForm.get('currentAddress')?.invalid && this.errorText"
                             required id="current_address" name="current_address" formControlName="currentAddress" />
@@ -137,20 +138,20 @@
                     formGroupName="family">
                     <h2>Family Information</h2>
                         <div class="flex-items">
-                            <label for="spouse_first_name">Spouse's First Name</label>
+                            <label for="spouse_first_name">Spouse's First Name *</label>
                             <input
                                 [class.invalid]="memForm.get('family.spouseFirstName')?.touched && memForm.get('family.spouseFirstName')?.invalid || memForm.get('family.spouseFirstName')?.invalid && this.errorText"
                                 required id="spouse_first_name" name="spouse_first_name"
                                 formControlName="spouseFirstName" />
                         </div>
                         <div class="flex-items">
-                            <label for="spouse_email">Spouse's Email</label>
+                            <label for="spouse_email">Spouse's Email *</label>
                             <input
                                 [class.invalid]="memForm.get('family.spouseEmail')?.touched && memForm.get('family.spouseEmail')?.invalid || memForm.get('family.spouseEmail')?.invalid && this.errorText"
                                 required id="spouse_email" name="spouse_email" formControlName="spouseEmail" />
                         </div>
                         <div class="flex-items">
-                            <label for="spouse_phone">Spouse's Phone</label>
+                            <label for="spouse_phone">Spouse's Phone *</label>
                             <input
                                 [class.invalid]="memForm.get('family.spousePhone')?.touched && memForm.get('family.spousePhone')?.invalid || memForm.get('family.spousePhone')?.invalid && this.errorText"
                                 required id="spouse_phone" name="spouse_phone" formControlName="spousePhone" />
