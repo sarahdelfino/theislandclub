@@ -63,6 +63,10 @@ h3 {
     margin: -10rem auto 0px auto;
 }
 
+.featured-link {
+    margin: 10px auto 50px;
+}
+
 .upcoming-events-container, .contact-container {
     max-width: 1200px;
     padding: 10px;
@@ -111,6 +115,7 @@ h3 {
     max-width: 55vw;
     margin: 10px 5px 10px 10px;
     word-wrap: break-word;
+    width: -webkit-fill-available;
 }
 
 .upcoming-event-buttons {
