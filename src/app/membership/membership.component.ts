@@ -8,11 +8,12 @@ import { FirebaseService } from '../firebase.service';
 import { eventSubmission } from '../eventSubmission';
 import { FormControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { CheckoutComponent } from "../checkout/checkout.component";
 
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [CommonModule, AlertComponent, ReactiveFormsModule],
+  imports: [CommonModule, AlertComponent, ReactiveFormsModule, CheckoutComponent],
   templateUrl: './membership.component.html',
   styleUrl: './membership.component.css'
 })

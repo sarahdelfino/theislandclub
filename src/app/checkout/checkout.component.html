@@ -1,0 +1,8 @@
+<h1>Stripe Checkout</h1>
+<div class="stripe-container">
+@if (elementsOptions.clientSecret) {
+<ngx-stripe-elements [stripe]="stripe" [elementsOptions]="elementsOptions">
+    <ngx-stripe-payment />
+</ngx-stripe-elements>
+}
+</div>

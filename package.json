@@ -25,11 +25,13 @@
     "@schedule-x/calendar": "^1.60.0",
     "@schedule-x/event-modal": "^1.60.0",
     "@schedule-x/theme-default": "^1.60.0",
+    "@stripe/stripe-js": "^4.10.0",
     "@types/gapi": "^0.0.47",
     "dotenv": "^16.4.5",
     "firebase": "^10.12.5",
     "googleapis": "^142.0.0",
     "ngx-skeleton-loader": "^9.0.0",
+    "ngx-stripe": "^18.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
