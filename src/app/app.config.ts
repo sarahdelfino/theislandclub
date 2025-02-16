@@ -21,5 +21,5 @@ import { provideNgxStripe } from 'ngx-stripe';
 const firebaseConfig = environment.firebase;
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes, withComponentInputBinding()), provideFirebaseApp(() => initializeApp(firebaseConfig)), provideAnalytics(() => getAnalytics()), ScreenTrackingService, NavbarComponent, FooterComponent, provideDatabase(() => getDatabase()), AngularFireDatabase, provideHttpClient(withFetch()), { provide: FIREBASE_OPTIONS, useValue: firebaseConfig}, provideNgxStripe(devEnv.stripe.publicKey)],
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes, withComponentInputBinding()), provideFirebaseApp(() => initializeApp(firebaseConfig)), provideAnalytics(() => getAnalytics()), ScreenTrackingService, NavbarComponent, FooterComponent, provideDatabase(() => getDatabase()), AngularFireDatabase, provideHttpClient(withFetch()), { provide: FIREBASE_OPTIONS, useValue: firebaseConfig}, provideNgxStripe(environment.stripe.publicKey)],
 };

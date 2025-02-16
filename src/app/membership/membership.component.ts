@@ -1,7 +1,5 @@
 import { CommonModule, ViewportScroller } from '@angular/common';
-import { NgModel } from '@angular/forms';
-import { Component, ElementRef, Input, OnInit, ViewChild, afterNextRender } from '@angular/core';
-import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertComponent } from "../alert/alert.component";
 import { Member } from '../member';
 import { FirebaseService } from '../firebase.service';
@@ -9,6 +7,7 @@ import { eventSubmission } from '../eventSubmission';
 import { FormControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CheckoutComponent } from "../checkout/checkout.component";
+import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-membership',
@@ -22,7 +21,6 @@ export class MembershipComponent implements OnInit {
   constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private http: HttpClient, private viewportScroller: ViewportScroller) {
   }
 
-  // @Input() signUpVisible = false;
   @ViewChild('membershipTitle', { static: true }) memberDiv: ElementRef;
 
   dynamicFormGroup!: FormGroup;
@@ -118,53 +116,8 @@ export class MembershipComponent implements OnInit {
     this.errorText = '';
   }
 
-  submitMembership(e: Event) {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    if (this.memForm.invalid) {
-      this.errorText = 'Please ensure all necessary values are provided.';
-      this.alertType = 'err';
-    } else {
-      this.errorText = '';
-      const membership = this.memForm.value;
-      this.firebaseService.addMember(membership).then(() => {
-        if (membership.membershipType === 'family') {
-          emailjs.sendForm("service_lwdjtb9", "template_de4aoh4", form, {
-            publicKey: 'pp0s7qlmsjt-_40XH',
-          }).catch((err) => {
-            console.log("Unable to send membership email: ", err);
-            this.alertText = 'We were not able to process your submission at this time. Please try again.';
-            this.err = true;
-            this.alertType = 'err';
-          });
-        } else {
-          // send individual email
-          emailjs.sendForm("service_lwdjtb9", "template_hp8pthp", form, {
-            publicKey: 'pp0s7qlmsjt-_40XH',
-          }).catch((err) => {
-            console.log("Unable to send membership email: ", err);
-            this.alertText = 'We were not able to process your submission at this time. Please try again.';
-            this.err = true;
-            this.alertType = 'err';
-          });
-        }
-        emailjs.sendForm("service_lwdjtb9", "template_fu1h6yo", form, {
-          publicKey: 'pp0s7qlmsjt-_40XH'
-        });
-        this.success = true;
-        this.alertText = 'Your submission has been received!';
-        this.alertType = 'success';
-        form.reset();
-        setTimeout(() => {
-          this.success = false;
-        }, 5000);
-      }).catch((err) => {
-        this.alertText = 'We were not able to process your submission at this time. Please try again.';
-        this.err = true;
-        this.alertType = 'err';
-        console.log('FAILED...', err);
-      });
-    }
+  receiveMessage($event: any) {
+    console.log($event);
   }
 
   submitEvent(e: Event) {

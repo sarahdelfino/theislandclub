@@ -80,8 +80,7 @@
         </div>
         <div #membershipContainer id="membershipContainer" *ngIf="!requestFormVisible"
             class="membership-text tx-primary">
-            <form #memberForm="ngForm" class="membership-form" [formGroup]="memForm"
-                (ngSubmit)="submitMembership($event)">
+            <form #memberForm="ngForm" id="memberForm" class="membership-form" [formGroup]="memForm">
                 <input type="hidden" formControlName="submitDate" />
                 <p>Fields marked with an asterisk are required</p>
                 <div class="flex" style="align-self: flex-start;">
@@ -184,15 +183,7 @@
                     </option>
                     <option id="not_interested" value="not_interested">Not Interested</option>
                 </select>
-                <p>With this application, you hereby acknowledge and agree that upon membership approval, you
-                    voluntarily
-                    become a member of the club and must pledge yourself, upon your honor, to abide by the By-laws of
-                    The
-                    Island Club.</p>
-                <app-checkout></app-checkout>
-                <app-alert *ngIf="errorText.length > 0" text="{{ errorText }}" type="err"></app-alert>
-                <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
-                <button style="margin-left: 0;" class="btn-secondary" type="submit">Sign Up</button>
+                <app-checkout *ngIf="this.memForm.value.membershipType" [errorText]="errorText" [membershipForm]="this.memForm"></app-checkout>
             </form>
         </div>
     </div>
