@@ -1,0 +1,16 @@
+<h1>Stripe Checkout</h1>
+<div class="stripe-container">
+@if (elementsOptions.clientSecret) {
+<ngx-stripe-elements [stripe]="stripe" [elementsOptions]="elementsOptions">
+    <ngx-stripe-payment />
+</ngx-stripe-elements>
+<h2 style="font-weight: bold;" class="tx-secondary">Total: ${{ this.amount }}.00</h2>
+}
+</div>
+<p>With this application, you hereby acknowledge and agree that upon membership approval, you
+    voluntarily
+    become a member of the club and must pledge yourself, upon your honor, to abide by the By-laws of
+    The
+    Island Club.</p>
+<app-alert *ngIf="errorText.length > 0" text="{{ errorText }}" type="{{ alertType }}"></app-alert>
+<button class="btn-secondary" (click)="pay()">Submit Payment</button>
