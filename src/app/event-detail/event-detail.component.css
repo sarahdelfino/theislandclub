@@ -1,0 +1,82 @@
+h1 {
+    margin: 0px;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+h3 {
+    margin: 0px;
+}
+
+.event-detail-container {
+    max-width: 1200px;
+    min-width: 375px;
+    margin: auto;
+}
+
+.event-detail-title {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+.event-detail-img {
+    background: url('/vincent-keiman-s.jpg') no-repeat;
+    background-size: 100%;
+    width: 100vw;
+    height: 175px;
+    background-position: bottom;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.event-img {
+    /* max-width: 50vw; */
+    width: -webkit-fill-available;
+    /* border-radius: 10px; */
+}
+
+.event-detail-body {
+    display: flex;
+    flex-direction: column;
+    background-color: #4f7faa;
+    color: white;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-detail {
+    margin: auto;
+    padding: 10px;
+}
+
+/* .event-detail-body {
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #4f7faa;
+    margin: auto;
+    max-width: 1200px;
+} */
+
+@media screen and (min-width: 760px) {
+    /* .event-detail-body {
+        margin-top: 10px;
+        width: 80vw;
+        margin: auto;
+    } */
+     .event-img {
+        max-width: 50vw;
+     }
+     .event-detail-body {
+        flex-direction: row;
+     }
+    .event-detail-img {
+        background: url('/vincent-keiman-m.jpg') no-repeat;
+        background-position: bottom 30% right 10%;
+        background-size: cover;
+    }
+}

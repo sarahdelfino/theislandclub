@@ -22,12 +22,12 @@
   <app-alert class="alert-comp"
     text="Please view our Capital Project page for more information on our renovation plans." type="info"></app-alert>
   <div class="upcoming-events-container bg-primary">
-    <div style="text-align: center;" class="featured-event">
+    <!-- <div style="text-align: center;" class="featured-event">
       <h2>Featured Event</h2>
-      <a href="https://www.eventbrite.com/e/an-evening-with-friends-of-charleston-national-parks-tickets-1144424196579?aff=oddtdtcreator" target="_blank"><img style="width: 70vw; max-width: 800px;" src="/FCNPEVENT.jpg"></a>
-      <div class="featured-link"><a href="https://www.eventbrite.com/e/an-evening-with-friends-of-charleston-national-parks-tickets-1144424196579?aff=oddtdtcreator">Click Here to Learn More</a>
+     + <a href="" target="_blank"><img style="width: 70vw; max-width: 800px;" src="/FCNPEVENT.jpg"></a>
+      <div class="featured-link"><a href="">Click Here to Learn More</a>
         </div>
-    </div>
+    </div> -->
     <h2 style="text-align: center;">Upcoming Events</h2>
     <div *ngIf="this.events.length > 0; else skeleton"></div>
     <div *ngFor="let event of events" class="upcoming-event-card">
