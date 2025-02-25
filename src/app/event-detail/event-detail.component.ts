@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { StripeComponent } from "../stripe/stripe.component";
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, StripeComponent],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.css'
 })

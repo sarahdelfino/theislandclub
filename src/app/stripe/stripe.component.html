@@ -1,0 +1,42 @@
+<div class="stripe-container">
+    <form id="tasteForm" class="taste-form" [formGroup]="tasteForm">
+        <input type="hidden" formControlName="submitDate" />
+        <label>Ticket Type</label>
+        <select class="tx-secondary"
+            [class.invalid]="tasteForm.get('ticketType')?.touched && tasteForm.get('ticketType')?.invalid || tasteForm.get('ticketType')?.invalid && this.tasteForm"
+            required id="ticketType" name="ticketType" formControlName="ticketType">
+            <option id="member" name="member" value="member">Member - $60</option>
+            <option id="non" name="non" value="non">Non-member - $80</option>
+        </select>
+        <label>Quantity</label>
+        <div style="display: flex; align-items: center;">
+        <button (click)="decrement()">-</button>
+        {{ quantity() }}
+        <button (click)="increment()">+</button>
+    </div>
+        <label for="first_name">First Name *</label>
+        <input
+            [class.invalid]="tasteForm.get('firstName')?.touched && tasteForm.get('firstName')?.invalid || tasteForm.get('firstName')?.invalid && this.errorText"
+            required id="first_name" name="first_name" formControlName="firstName" />
+        <label for="last_name">Last Name *</label>
+        <input
+            [class.invalid]="tasteForm.get('lastName')?.touched && tasteForm.get('lastName')?.invalid || tasteForm.get('lastName')?.invalid && this.errorText"
+            required id="last_name" name="last_name" formControlName="lastName" />
+        <label for="email">Email *</label>
+        <input
+            [class.invalid]="tasteForm.get('email')?.touched && tasteForm.get('email')?.invalid || tasteForm.get('email')?.invalid && this.errorText"
+            required id="email" name="email" formControlName="email" />
+        <label for="phone">Phone *</label>
+        <input
+            [class.invalid]="tasteForm.get('phone')?.touched && tasteForm.get('phone')?.invalid || tasteForm.get('phone')?.invalid && this.errorText"
+            required type="tel" id="phone" name="phone" formControlName="phone" />
+    </form>
+</div>
+
+
+@if (elementsOptions.clientSecret) {
+<ngx-stripe-elements [stripe]="stripe" [elementsOptions]="elementsOptions">
+    <ngx-stripe-payment />
+</ngx-stripe-elements>
+<h2 style="font-weight: bold;" class="tx-secondary">Total: ${{ this.total }}.00</h2>
+}

@@ -34,7 +34,7 @@ h3 {
 }
 
 .event-img {
-    /* max-width: 50vw; */
+    max-width: 40vw;
     width: -webkit-fill-available;
     /* border-radius: 10px; */
 }
@@ -69,7 +69,7 @@ h3 {
         margin: auto;
     } */
      .event-img {
-        max-width: 50vw;
+        max-width: 40vw;
      }
      .event-detail-body {
         flex-direction: row;
