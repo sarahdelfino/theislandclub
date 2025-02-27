@@ -6,6 +6,7 @@ import { AlertComponent } from "../alert/alert.component";
 import emailjs from '@emailjs/browser';
 import { FirebaseService } from '../firebase.service';
 import { StripeService } from '../stripe.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-checkout',
@@ -42,7 +43,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  stripe = injectStripe();
+  stripe = injectStripe(environment.stripe.publicKey);
 
   async ngOnInit(): Promise<void> {
     this.membershipForm.get("membershipType").value === 'family' ? this.amount = 350 : this.amount = 250;

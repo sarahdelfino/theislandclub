@@ -5,6 +5,7 @@ import { injectStripe, StripeElementsDirective, StripePaymentElementComponent } 
 import { FormControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StripeService } from '../stripe.service';
 import { AlertComponent } from "../alert/alert.component";
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-stripe',
@@ -40,7 +41,7 @@ export class StripeComponent implements OnInit {
     }
   }
 
-  stripe = injectStripe();
+  stripe = injectStripe(environment.stripe.publicKey);
 
   async ngOnInit() {
     this.tasteForm = this.formBuilder.group({
