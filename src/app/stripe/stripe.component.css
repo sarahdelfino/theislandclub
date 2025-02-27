@@ -1,4 +1,27 @@
+button.btn-primary {
+    margin-left: 0;
+}
+
 .taste-form {
     display: flex;
     flex-direction: column;
+}
+
+.invalid {
+    border-left: 5px solid #a94442;
+}
+
+.inc {
+    background-color: #4f7faa;
+    color: white;
+}
+
+.inc, .dec {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.quantity {
+    font-size: 2rem;
+    margin: 10px;
 }

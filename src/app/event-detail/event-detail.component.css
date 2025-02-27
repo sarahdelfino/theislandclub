@@ -23,18 +23,17 @@ h3 {
 }
 
 .event-detail-img {
-    background: url('/vincent-keiman-s.jpg') no-repeat;
-    background-size: 100%;
+    background: url('/stripes-m.png') no-repeat;
+    background-size: cover;
     width: 100vw;
-    height: 175px;
-    background-position: bottom;
+    height: 125px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .event-img {
-    max-width: 40vw;
+    /* max-width: 30vw; */
     width: -webkit-fill-available;
     /* border-radius: 10px; */
 }
@@ -42,41 +41,27 @@ h3 {
 .event-detail-body {
     display: flex;
     flex-direction: column;
-    background-color: #4f7faa;
-    color: white;
+    /* background-color: #4f7faa; */
+    color: #4f7faa;
     border-radius: 10px;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
 }
 
 .event-detail {
     margin: auto;
     padding: 10px;
+    min-width: 350px;
 }
 
-/* .event-detail-body {
-    margin-top: 10px;
-    border-radius: 10px;
-    background-color: #4f7faa;
-    margin: auto;
-    max-width: 1200px;
-} */
-
 @media screen and (min-width: 760px) {
-    /* .event-detail-body {
-        margin-top: 10px;
-        width: 80vw;
-        margin: auto;
-    } */
      .event-img {
-        max-width: 40vw;
-     }
-     .event-detail-body {
-        flex-direction: row;
+        max-width: 640px;
+        margin: auto;
      }
     .event-detail-img {
-        background: url('/vincent-keiman-m.jpg') no-repeat;
-        background-position: bottom 30% right 10%;
+        background: url('/stripes-m.png') no-repeat;
+        background-position: bottom;
         background-size: cover;
     }
 }
