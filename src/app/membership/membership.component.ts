@@ -45,6 +45,8 @@ export class MembershipComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required]),
       currentAddress: new FormControl('', [Validators.required]),
+      zip: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
       priorAddress: new FormControl(''),
       interest: new FormControl(''),
       hear: new FormControl(''),

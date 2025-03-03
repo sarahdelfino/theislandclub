@@ -127,8 +127,6 @@ export class HomeComponent {
   }
 
   getImg(data: any) {
-    console.log(data);
-    console.log(this.events);
     if (data.title === 'Trinity Wellness Yoga') {
       return '/chelsea-gates'
     } else if (data.title === 'Mah Jong') {

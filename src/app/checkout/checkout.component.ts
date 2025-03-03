@@ -73,7 +73,21 @@ export class CheckoutComponent implements OnInit {
       this.alertType = 'info';
       this.stripe.confirmPayment({
         elements: this.paymentElement.elements,
-        redirect: 'if_required'
+        redirect: 'if_required',
+        confirmParams: {
+          payment_method_data: {
+            billing_details: {
+              name: this.membershipForm.get('firstName')?.value + " " + this.membershipForm.get('lastName')?.value as string,
+              email: this.membershipForm.get('email')?.value as string,
+              address: {
+                line1: this.membershipForm.get('currentAddress')?.value as string,
+                postal_code: this.membershipForm.get('zip')?.value as string,
+                city: this.membershipForm.get('city')?.value as string
+              },
+              phone: this.membershipForm.get('phone')?.value as string
+            }
+          }
+        }
       }).subscribe(result => {
         this.paying.set(false);
         if (result.error) {

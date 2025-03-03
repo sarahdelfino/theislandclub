@@ -9,7 +9,7 @@ import { FirebaseService } from '../firebase.service';
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [CommonModule, CalendarComponent],
+  imports: [CommonModule],
   templateUrl: './events.component.html',
   styleUrl: './events.component.css'
 })

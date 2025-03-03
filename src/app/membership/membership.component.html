@@ -133,11 +133,26 @@
                             required type="tel" id="phone" name="phone" formControlName="phone" />
                     </div>
                 </div>
+                <h2>Address Information</h2>
+                <div class="flex">
                 <div class="anotherFlex">
                     <label for="current_address">Current Address *</label>
                     <input
                         [class.invalid]="memForm.get('currentAddress')?.touched && memForm.get('currentAddress')?.invalid || memForm.get('currentAddress')?.invalid && this.errorText"
                         required id="current_address" name="current_address" formControlName="currentAddress" />
+                </div>
+                <div class="anotherFlex">
+                    <label for="current_address">City *</label>
+                    <input
+                        [class.invalid]="memForm.get('city')?.touched && memForm.get('city')?.invalid || memForm.get('city')?.invalid && this.errorText"
+                        required id="city" name="city" formControlName="city" />
+                </div>
+            </div>
+                <div class="anotherFlex">
+                    <label for="current_address">Zip Code *</label>
+                    <input
+                        [class.invalid]="memForm.get('zip')?.touched && memForm.get('zip')?.invalid || memForm.get('zip')?.invalid && this.errorText"
+                        required id="zip" name="zip" formControlName="zip" />
                 </div>
                 <div class="anotherFlex">
                     <label for="prior_address">Please provide your previous address if your current address is not

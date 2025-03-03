@@ -98,7 +98,7 @@ export class StripeComponent implements OnInit {
       this.alertType = 'info';
       this.stripe.confirmPayment({
         elements: this.paymentElement.elements,
-        redirect: 'if_required'
+        redirect: 'if_required',
       }).subscribe(result => {
         this.paying.set(false);
         if (result.error) {
