@@ -1,13 +1,23 @@
 <div class="membership-container">
     <div class="membership-img"></div>
-    <p class="tx-secondary" style="padding: 10px; padding-bottom: 0px; margin: 0px;">The Island Club is open to all
+    <div class="membership-text tx-secondary">
+    <p>The Island Club is open to all
         current and prior residents of
-        Sullivan's Island. Membership
-        allows you to attend & host events and includes one free private rental per year.</p>
-    <p class="tx-secondary" style="padding: 10px; margin-top: 0px;">
-        Individual memberships are available for an annual fee of $250 and cover a single voting member. Family
-        memberships are $350 and provide an additional voting member for the household.
+        Sullivan's Island. We are a community club for all generations.<br><br>
+        Annual membership is:<br>
+        Family: $350 (2 voting members)<br>
+        Individual: $250 (1 voting member)
     </p>
+    <p>Included with your membership:</p>
+    <ul>
+        <li>Monthly member social events</li>
+        <li>Monthly member cultural and health programming</li>
+        <li>One complimentary Island Club rental per year for your private event</li>
+        <li>Early access to Taste of Sullivan's Island tickets</li>
+        <li>Monthly "Kids' Night" babysitting</li>
+        <li>Ongoing support for a community gathering place for neighbors (priceless)</li>
+    </ul>
+</div>
     <div class="membership-body">
         <div id="buttons" class="member-tabs">
             <div class="tab" (click)="toggleSignup()" [ngClass]="this.signUpVisible ? 'primary' : 'secondary'">Become a
@@ -22,57 +32,58 @@
                 <input type="hidden" id="url" name="url" formControlName="url" />
                 <div class="flex">
                     <div class="anotherFlex">
-                            <label for="first_name">First Name</label>
+                        <label for="first_name">First Name</label>
                         <input
-                        [class.invalid]="eventForm.get('firstName')?.touched && eventForm.get('firstName')?.invalid || eventForm.get('firstName')?.invalid && this.errorText"
-                        required id="first_name" name="first_name" formControlName="firstName" />
+                            [class.invalid]="eventForm.get('firstName')?.touched && eventForm.get('firstName')?.invalid || eventForm.get('firstName')?.invalid && this.errorText"
+                            required id="first_name" name="first_name" formControlName="firstName" />
                     </div>
                     <div class="anotherFlex">
-                            <label for="last_name">Last Name</label>
+                        <label for="last_name">Last Name</label>
                         <input
-                        [class.invalid]="eventForm.get('lastName')?.touched && eventForm.get('lastName')?.invalid || eventForm.get('lastName')?.invalid && this.errorText"
-                        required id="last_name" name="last_name" formControlName="lastName" />
+                            [class.invalid]="eventForm.get('lastName')?.touched && eventForm.get('lastName')?.invalid || eventForm.get('lastName')?.invalid && this.errorText"
+                            required id="last_name" name="last_name" formControlName="lastName" />
                     </div>
                     <div class="anotherFlex">
-                            <label for="phone">Phone</label>
-                            <input
+                        <label for="phone">Phone</label>
+                        <input
                             [class.invalid]="eventForm.get('phone')?.touched && eventForm.get('phone')?.invalid || eventForm.get('phone')?.invalid && this.errorText"
                             required id="phone" name="phone" formControlName="phone" />
                     </div>
                     <div class="anotherFlex">
-                            <label for="email">Email</label>
-                            <input
+                        <label for="email">Email</label>
+                        <input
                             [class.invalid]="eventForm.get('email')?.touched && eventForm.get('email')?.invalid || eventForm.get('email')?.invalid && this.errorText"
                             required id="email" name="email" formControlName="email" />
                     </div>
                 </div>
-                    <label for="event_date">Event Date</label>
+                <label for="event_date">Event Date</label>
                 <input
-                [class.invalid]="eventForm.get('eventDate')?.touched && eventForm.get('eventDate')?.invalid || eventForm.get('eventDate')?.invalid && this.errorText"
-                required id="event_date" name="event_date" type="date" formControlName="eventDate" />
+                    [class.invalid]="eventForm.get('eventDate')?.touched && eventForm.get('eventDate')?.invalid || eventForm.get('eventDate')?.invalid && this.errorText"
+                    required id="event_date" name="event_date" type="date" formControlName="eventDate" />
                 <div class="flex">
                     <div class="anotherFlex">
-                            <label for="event_start">Start Time</label>
+                        <label for="event_start">Start Time</label>
                         <input
-                        [class.invalid]="eventForm.get('startTime')?.touched && eventForm.get('startTime')?.invalid || eventForm.get('startTime')?.invalid && this.errorText"
-                        required id="event_start" name="event_start" type="time" formControlName="startTime" />
+                            [class.invalid]="eventForm.get('startTime')?.touched && eventForm.get('startTime')?.invalid || eventForm.get('startTime')?.invalid && this.errorText"
+                            required id="event_start" name="event_start" type="time" formControlName="startTime" />
                     </div>
                     <div class="anotherFlex">
-                            <label for="event_end">End Time</label>
+                        <label for="event_end">End Time</label>
                         <input
-                        [class.invalid]="eventForm.get('endTime')?.touched && eventForm.get('endTime')?.invalid || eventForm.get('endTime')?.invalid && this.errorText"
-                        required id="event_end" name="event_end" type="time" formControlName="endTime" />
+                            [class.invalid]="eventForm.get('endTime')?.touched && eventForm.get('endTime')?.invalid || eventForm.get('endTime')?.invalid && this.errorText"
+                            required id="event_end" name="event_end" type="time" formControlName="endTime" />
                     </div>
 
                 </div>
-                    <label for="event_name">Event Name</label>
+                <label for="event_name">Event Name</label>
                 <input
-                [class.invalid]="eventForm.get('eventName')?.touched && eventForm.get('eventName')?.invalid || eventForm.get('eventName')?.invalid && this.errorText"
-                required id="event_name" name="event_name" formControlName="eventName" />
-                    <label for="event_description">Event Description</label>
-                    <textarea style="margin-bottom: 8px;"
+                    [class.invalid]="eventForm.get('eventName')?.touched && eventForm.get('eventName')?.invalid || eventForm.get('eventName')?.invalid && this.errorText"
+                    required id="event_name" name="event_name" formControlName="eventName" />
+                <label for="event_description">Event Description</label>
+                <textarea style="margin-bottom: 8px;"
                     [class.invalid]="eventForm.get('eventDescription')?.touched && eventForm.get('eventDescription')?.invalid || eventForm.get('eventDescription')?.invalid && this.errorText"
-                    required id="event_description" name="event_description" formControlName="eventDescription"></textarea>
+                    required id="event_description" name="event_description"
+                    formControlName="eventDescription"></textarea>
                 <app-alert *ngIf="errorText.length > 0" text="{{ errorText }}" type="err"></app-alert>
                 <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
                 <button style="margin-left: 0;" class="btn-secondary" type="submit">Request Event</button>
@@ -84,15 +95,15 @@
                 <input type="hidden" formControlName="submitDate" />
                 <p>Fields marked with an asterisk are required</p>
                 <div class="flex" style="align-self: flex-start;">
-                <div class="anotherFlex">
-                    <label>Membership Type *</label>
-                    <select class="tx-secondary"
-                        [class.invalid]="memForm.get('membershipType')?.touched && memForm.get('membershipType')?.invalid || memForm.get('membershipType')?.invalid && this.errorText"
-                        required id="membershipType" name="membershipType" formControlName="membershipType">
-                        <option id="indv" name="indv" value="individual">Individual - $250</option>
-                        <option id="fam" name="fam" value="family">Family - $350</option>
-                    </select>
-                </div>
+                    <div class="anotherFlex">
+                        <label>Membership Type *</label>
+                        <select class="tx-secondary"
+                            [class.invalid]="memForm.get('membershipType')?.touched && memForm.get('membershipType')?.invalid || memForm.get('membershipType')?.invalid && this.errorText"
+                            required id="membershipType" name="membershipType" formControlName="membershipType">
+                            <option id="indv" name="indv" value="individual">Individual - $250</option>
+                            <option id="fam" name="fam" value="family">Family - $350</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="flex">
                     <div class="anotherFlex">
@@ -122,12 +133,12 @@
                             required type="tel" id="phone" name="phone" formControlName="phone" />
                     </div>
                 </div>
-                    <div class="anotherFlex">
-                        <label for="current_address">Current Address *</label>
-                        <input
-                            [class.invalid]="memForm.get('currentAddress')?.touched && memForm.get('currentAddress')?.invalid || memForm.get('currentAddress')?.invalid && this.errorText"
-                            required id="current_address" name="current_address" formControlName="currentAddress" />
-                    </div>
+                <div class="anotherFlex">
+                    <label for="current_address">Current Address *</label>
+                    <input
+                        [class.invalid]="memForm.get('currentAddress')?.touched && memForm.get('currentAddress')?.invalid || memForm.get('currentAddress')?.invalid && this.errorText"
+                        required id="current_address" name="current_address" formControlName="currentAddress" />
+                </div>
                 <div class="anotherFlex">
                     <label for="prior_address">Please provide your previous address if your current address is not
                         on Sullivan's Island</label>
@@ -136,54 +147,56 @@
                 <div style="display: contents" *ngIf="this.memForm.value.membershipType === 'family'"
                     formGroupName="family">
                     <h2>Family Information</h2>
-                        <div class="flex-items">
-                            <label for="spouse_first_name">Spouse's First Name *</label>
-                            <input
-                                [class.invalid]="memForm.get('family.spouseFirstName')?.touched && memForm.get('family.spouseFirstName')?.invalid || memForm.get('family.spouseFirstName')?.invalid && this.errorText"
-                                required id="spouse_first_name" name="spouse_first_name"
-                                formControlName="spouseFirstName" />
+                    <div class="flex-items">
+                        <label for="spouse_first_name">Spouse's First Name *</label>
+                        <input
+                            [class.invalid]="memForm.get('family.spouseFirstName')?.touched && memForm.get('family.spouseFirstName')?.invalid || memForm.get('family.spouseFirstName')?.invalid && this.errorText"
+                            required id="spouse_first_name" name="spouse_first_name"
+                            formControlName="spouseFirstName" />
+                    </div>
+                    <div class="flex-items">
+                        <label for="spouse_email">Spouse's Email *</label>
+                        <input
+                            [class.invalid]="memForm.get('family.spouseEmail')?.touched && memForm.get('family.spouseEmail')?.invalid || memForm.get('family.spouseEmail')?.invalid && this.errorText"
+                            required id="spouse_email" name="spouse_email" formControlName="spouseEmail" />
+                    </div>
+                    <div class="flex-items">
+                        <label for="spouse_phone">Spouse's Phone *</label>
+                        <input
+                            [class.invalid]="memForm.get('family.spousePhone')?.touched && memForm.get('family.spousePhone')?.invalid || memForm.get('family.spousePhone')?.invalid && this.errorText"
+                            required id="spouse_phone" name="spouse_phone" formControlName="spousePhone" />
+                    </div>
+                    <div class="flex-items" *ngFor="let child of children().controls; let i=index"
+                        formArrayName="children">
+                        <div class="anotherFlex" formGroupName="{{i}}">
+                            <label for="child_name_{{i}}">Child's Name</label>
+                            <input id="child_name_{{i}}" name="child_name_{{i}}" formControlName="name" />
                         </div>
-                        <div class="flex-items">
-                            <label for="spouse_email">Spouse's Email *</label>
-                            <input
-                                [class.invalid]="memForm.get('family.spouseEmail')?.touched && memForm.get('family.spouseEmail')?.invalid || memForm.get('family.spouseEmail')?.invalid && this.errorText"
-                                required id="spouse_email" name="spouse_email" formControlName="spouseEmail" />
-                        </div>
-                        <div class="flex-items">
-                            <label for="spouse_phone">Spouse's Phone *</label>
-                            <input
-                                [class.invalid]="memForm.get('family.spousePhone')?.touched && memForm.get('family.spousePhone')?.invalid || memForm.get('family.spousePhone')?.invalid && this.errorText"
-                                required id="spouse_phone" name="spouse_phone" formControlName="spousePhone" />
-                        </div>
-                        <div class="flex-items" *ngFor="let child of children().controls; let i=index"
-                            formArrayName="children">
-                            <div class="anotherFlex" formGroupName="{{i}}">
-                                <label for="child_name_{{i}}">Child's Name</label>
-                                <input id="child_name_{{i}}" name="child_name_{{i}}" formControlName="name" />
-                            </div>
                     </div>
                     <button class="btn-secondary" (click)="addChild($event)">Add Child</button>
                 </div>
                 <h2>Club Information</h2>
-                <label for="interest">What are your interests in the club?</label>
+                <label for="interest">What are your interests in the club? (optional)</label>
                 <input id="interest" name="interest" formControlName="interest" />
-                <label for="hear">How did you hear about us?</label>
+                <label for="hear">How did you hear about us? (optional)</label>
                 <select class="tx-secondary" id="hear" name="hear" formControlName="hear">
                     <option id="facebook" name="facebook" value="facebook">Facebook</option>
                     <option id="instagram" name="instagram" value="instagram">Instagram</option>
                     <option id="neighbor" name="neighbor" value="neighbor">Neighbor</option>
+                    <option id="newspaper" name="newspaper" value="newspaper">Island Eye/Post & Courier</option>
                     <option id="other" name="other" value="other">Other</option>
                 </select>
-                <label for="committee">Would you like to volunteer for a committee?</label>
+                <label for="committee">Would you like to volunteer for a committee? (optional)</label>
                 <select class="tx-secondary" id="committee" name="committee" formControlName="committee">
                     <option id="membership" name="membership" value="membership">Membership Committee</option>
                     <option id="events" name="events" value="events">Events Committee</option>
                     <option id="improvements" name="improvements" value="improvements">Improvements/renovations</option>
                     <option id="public_relations" name="public_relations" value="public_relations">Public Relations
                     </option>
-                    <option id="not_interested" value="not_interested">Not Interested</option>
+                    <option id="not_interested" value="not_interested">Not at this time</option>
                 </select>
-                <app-checkout *ngIf="this.memForm.value.membershipType" [errorText]="errorText" [membershipForm]="this.memForm"></app-checkout>
+                <app-checkout *ngIf="this.memForm.value.membershipType" [errorText]="errorText"
+                    [membershipForm]="this.memForm"></app-checkout>
             </form>
         </div>
     </div>

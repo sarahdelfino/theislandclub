@@ -28,7 +28,7 @@ export class SafeHtmlPipe implements PipeTransform {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SafeHtmlPipe, RouterLink, CommonModule, AlertComponent, ReactiveFormsModule, NgxSkeletonLoaderModule, ContactComponent],
+  imports: [SafeHtmlPipe, RouterLink, CommonModule, ReactiveFormsModule, NgxSkeletonLoaderModule, ContactComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -127,6 +127,8 @@ export class HomeComponent {
   }
 
   getImg(data: any) {
+    console.log(data);
+    console.log(this.events);
     if (data.title === 'Trinity Wellness Yoga') {
       return '/chelsea-gates'
     } else if (data.title === 'Mah Jong') {

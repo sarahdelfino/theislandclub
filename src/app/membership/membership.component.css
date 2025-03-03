@@ -34,6 +34,13 @@ textarea {
     padding: 10px;
 }
 
+.membership-text {
+    max-width: 1200px;
+    padding: 10px;
+    padding-bottom: 0px;
+    margin: auto;
+}
+
 .flex {
     justify-content: space-between;
     display: flex;
@@ -98,6 +105,7 @@ textarea {
 }
 
 .member-tabs {
+    margin-top: 50px;
     text-align: center;
     display: flex;
     flex-direction: row;
