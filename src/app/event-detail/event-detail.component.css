@@ -7,7 +7,12 @@ h2 {
 }
 
 h3 {
-    margin: 0px;
+    margin-top: 0px;
+}
+
+a.btn {
+    display: block;
+    margin-left: 0;
 }
 
 .event-detail-container {
@@ -25,16 +30,18 @@ h3 {
 .event-detail-img {
     background: url('/stripes-m.png') no-repeat;
     background-size: cover;
+    background-position: bottom;
     width: 100vw;
-    height: 125px;
+    height: 50px;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .event-img {
-    /* max-width: 30vw; */
+    max-width: 80vw;
     width: -webkit-fill-available;
+    margin: auto;
     /* border-radius: 10px; */
 }
 
@@ -54,10 +61,13 @@ h3 {
     min-width: 350px;
 }
 
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 600px) {
+    .event-detail-body {
+        flex-direction: row;
+    }
      .event-img {
-        max-width: 640px;
-        margin: auto;
+        width: 50vw;
+        height: auto;
      }
     .event-detail-img {
         background: url('/stripes-m.png') no-repeat;

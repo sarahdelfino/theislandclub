@@ -26,7 +26,7 @@ a {
     text-decoration: none;
 }
 
-button {
+button, a.btn {
     width: fit-content;
     padding: .8rem;
     border: none;
