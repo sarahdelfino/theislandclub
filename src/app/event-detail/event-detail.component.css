@@ -38,9 +38,19 @@ a.btn {
     margin-right: auto;
 }
 
+.event-detail-body {
+    padding: 10px;
+}
+
+.bottom {
+    transform: scaleY(-1);
+    margin-top: -5px;
+}
+
 .event-img {
-    max-width: 80vw;
-    width: -webkit-fill-available;
+    max-width: 90vw;
+    /* max-width: 80vw; */
+    /* width: -webkit-fill-available; */
     margin: auto;
     /* border-radius: 10px; */
 }
@@ -58,7 +68,6 @@ a.btn {
 .event-detail {
     margin: auto;
     padding: 10px;
-    min-width: 350px;
 }
 
 @media screen and (min-width: 600px) {
@@ -66,12 +75,6 @@ a.btn {
         flex-direction: row;
     }
      .event-img {
-        width: 50vw;
         height: auto;
      }
-    .event-detail-img {
-        background: url('/stripes-m.png') no-repeat;
-        background-position: bottom;
-        background-size: cover;
-    }
 }
