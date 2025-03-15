@@ -20,6 +20,10 @@ export class FooterComponent {
       "link": "/events"
     },
     {
+      "title": "Taste of Sullivan's Island",
+      "link": "/taste"
+    },
+    {
       "title": "Membership",
       "link": "/membership"
     },
