@@ -3,11 +3,6 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { environment } from '../environments/environment';
 import { environment as devEnv } from '../environments/environment.development';
 import { routes } from './app.routes';
-
-import { AppComponent } from './app.component';
-import { MembershipComponent } from './membership/membership.component';
-import { CapitalComponent } from './capital/capital.component';
-import { BlogComponent } from './blog/blog.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAnalytics, provideAnalytics, ScreenTrackingService } from '@angular/fire/analytics';
 import { NavbarComponent } from './navbar/navbar.component';
