@@ -27,67 +27,7 @@
                 an Event</div>
         </div>
         <div id="requestContainer" *ngIf="requestFormVisible && !signUpVisible" class="tx-primary">
-            <form [formGroup]="eventForm" id="eventForm" class="event-form" (submit)="submitEvent($event)">
-                <input type="hidden" id="submit_date" name="submit_date" formControlName="submitDate" />
-                <input type="hidden" id="url" name="url" formControlName="url" />
-                <div class="flex">
-                    <div class="anotherFlex">
-                        <label for="first_name">First Name</label>
-                        <input
-                            [class.invalid]="eventForm.get('firstName')?.touched && eventForm.get('firstName')?.invalid || eventForm.get('firstName')?.invalid && this.errorText"
-                            required id="first_name" name="first_name" formControlName="firstName" />
-                    </div>
-                    <div class="anotherFlex">
-                        <label for="last_name">Last Name</label>
-                        <input
-                            [class.invalid]="eventForm.get('lastName')?.touched && eventForm.get('lastName')?.invalid || eventForm.get('lastName')?.invalid && this.errorText"
-                            required id="last_name" name="last_name" formControlName="lastName" />
-                    </div>
-                    <div class="anotherFlex">
-                        <label for="phone">Phone</label>
-                        <input
-                            [class.invalid]="eventForm.get('phone')?.touched && eventForm.get('phone')?.invalid || eventForm.get('phone')?.invalid && this.errorText"
-                            required id="phone" name="phone" formControlName="phone" />
-                    </div>
-                    <div class="anotherFlex">
-                        <label for="email">Email</label>
-                        <input
-                            [class.invalid]="eventForm.get('email')?.touched && eventForm.get('email')?.invalid || eventForm.get('email')?.invalid && this.errorText"
-                            required id="email" name="email" formControlName="email" />
-                    </div>
-                </div>
-                <label for="event_date">Event Date</label>
-                <input
-                    [class.invalid]="eventForm.get('eventDate')?.touched && eventForm.get('eventDate')?.invalid || eventForm.get('eventDate')?.invalid && this.errorText"
-                    required id="event_date" name="event_date" type="date" formControlName="eventDate" />
-                <div class="flex">
-                    <div class="anotherFlex">
-                        <label for="event_start">Start Time</label>
-                        <input
-                            [class.invalid]="eventForm.get('startTime')?.touched && eventForm.get('startTime')?.invalid || eventForm.get('startTime')?.invalid && this.errorText"
-                            required id="event_start" name="event_start" type="time" formControlName="startTime" />
-                    </div>
-                    <div class="anotherFlex">
-                        <label for="event_end">End Time</label>
-                        <input
-                            [class.invalid]="eventForm.get('endTime')?.touched && eventForm.get('endTime')?.invalid || eventForm.get('endTime')?.invalid && this.errorText"
-                            required id="event_end" name="event_end" type="time" formControlName="endTime" />
-                    </div>
-
-                </div>
-                <label for="event_name">Event Name</label>
-                <input
-                    [class.invalid]="eventForm.get('eventName')?.touched && eventForm.get('eventName')?.invalid || eventForm.get('eventName')?.invalid && this.errorText"
-                    required id="event_name" name="event_name" formControlName="eventName" />
-                <label for="event_description">Event Description</label>
-                <textarea style="margin-bottom: 8px;"
-                    [class.invalid]="eventForm.get('eventDescription')?.touched && eventForm.get('eventDescription')?.invalid || eventForm.get('eventDescription')?.invalid && this.errorText"
-                    required id="event_description" name="event_description"
-                    formControlName="eventDescription"></textarea>
-                <app-alert *ngIf="errorText.length > 0" text="{{ errorText }}" type="err"></app-alert>
-                <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
-                <button style="margin-left: 0;" class="btn-secondary" type="submit">Request Event</button>
-            </form>
+            <app-request-event></app-request-event>
         </div>
         <div #membershipContainer id="membershipContainer" *ngIf="!requestFormVisible"
             class="membership-text tx-primary">

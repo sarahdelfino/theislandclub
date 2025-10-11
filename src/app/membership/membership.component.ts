@@ -8,17 +8,18 @@ import { FormControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Va
 import { HttpClient } from '@angular/common/http';
 import { CheckoutComponent } from "../checkout/checkout.component";
 import emailjs from '@emailjs/browser';
+import { RequestEventComponent } from "../request-event/request-event.component";
 
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [CommonModule, AlertComponent, ReactiveFormsModule, CheckoutComponent],
+  imports: [CommonModule, ReactiveFormsModule, CheckoutComponent, RequestEventComponent],
   templateUrl: './membership.component.html',
   styleUrl: './membership.component.css'
 })
 export class MembershipComponent implements OnInit {
 
-  constructor(private firebaseService: FirebaseService, private formBuilder: FormBuilder, private http: HttpClient, private viewportScroller: ViewportScroller) {
+  constructor(private formBuilder: FormBuilder) {
   }
 
   @ViewChild('membershipTitle', { static: true }) memberDiv: ElementRef;
@@ -31,7 +32,6 @@ export class MembershipComponent implements OnInit {
   success = false;
   familyChecked = false;
   memForm: FormGroup;
-  eventForm: FormGroup;
   errorText = '';
   signUpVisible = true;
   requestFormVisible = false;
@@ -73,20 +73,6 @@ export class MembershipComponent implements OnInit {
       this.memForm.get('family.spouseEmail')?.updateValueAndValidity();
       this.memForm.get('family.spousePhone')?.updateValueAndValidity();
     })
-
-    this.eventForm = new FormGroup({
-      submitDate: new FormControl(Date.now()),
-      url: new FormControl(''),
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      eventDate: new FormControl('', [Validators.required]),
-      startTime: new FormControl('', [Validators.required]),
-      endTime: new FormControl('', [Validators.required]),
-      eventName: new FormControl('', [Validators.required]),
-      eventDescription: new FormControl('', [Validators.required]),
-    })
   }
 
   children(): FormArray {
@@ -120,60 +106,5 @@ export class MembershipComponent implements OnInit {
 
   receiveMessage($event: any) {
     console.log($event);
-  }
-
-  submitEvent(e: Event) {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    if (this.eventForm.invalid) {
-      this.errorText = 'Please ensure all necessary values are provided.';
-    } else {
-      this.errorText = '';
-      const event = this.eventForm.value;
-      const submittedEvent = new eventSubmission(Date.now().toString(), form['event_name'].value, form['event_date'].value, form['event_start'].value, form['event_end'].value, form['event_description'].value, form['first_name'].value + ' ' + form['last_name'].value, form['email'].value, 'pending approval', form['phone'].value);
-          this.firebaseService.addEvent(submittedEvent).then((resp: any) => {
-          let host = window.location.host;
-          let ht;
-          if (host === 'localhost:4200') {
-            host = 'http://' + host;
-          } else {
-            host = 'https://' + host;
-          }
-          const id = resp.key;
-          form['url'].value = host + '/events/' + id + '/approve';
-        });
-        emailjs
-          .sendForm('service_lwdjtb9', 'template_jfj2cqe', form, {
-            publicKey: 'pp0s7qlmsjt-_40XH',
-          })
-          .then(
-            () => {
-              this.success = true;
-              this.alertText = 'Your submission has been received!';
-              this.alertType = 'success';
-              //send email to admins
-              emailjs.sendForm('service_lwdjtb9', 'template_6r1j5k9', form, {
-                publicKey: 'pp0s7qlmsjt-_40XH',
-              }).then(
-                (response) => {
-                  console.log('SUCCESS!', response.status, response.text);
-                },
-                (error) => {
-                  console.log('FAILED...', error);
-                },
-              );
-              form.reset();
-              setTimeout(() => {
-                this.success = false;
-              }, 5000);
-            },
-            (error) => {
-              this.alertText = 'We were not able to process your submission at this time. Please try again.';
-              this.err = true;
-              this.alertType = 'err';
-              console.log('FAILED...', error);
-            },
-          );
-    }
   }
 }

@@ -1,0 +1,96 @@
+<div class="rules">
+    <h3>Event Rules</h3>
+    <ul>
+        <li>Unlawful activity is prohibited.</li>
+        <li>Events must end by 11pm.</li>
+        <li>Sparklers are not allowed at the Sullivan's Island Club due to safety issues.</li>
+        <li>No artificial flower petals, confetti or feathers are allowed. These items are hazardous to the environment
+            around the Club.</li>
+        <li>Personal fire pits are strictly prohibited.
+        <li>No smoking or pets are allowed in the venue, with the exception of service animals.
+        <li>If loud music is being played the doors and windows must remain shut.
+        <li>Events must be held inside the building unless special permission is given by the club management, if it is
+            permitted the renter will provide their own liability insurance and permits from the town of Sullivans
+            Island.</li>
+        <li>All items brought to the venue must be removed at the conclusion of your event before you leave the Club.
+            Cleanup or removal of items left overnight may impact the security deposit refund.</li>
+        <li>The limit of guests allowed at an event is 60 people, any larger gathering must have club management
+            approval and may require the renter to provide their own insurance and a larger security deposit.</li>
+        <li>The club reserves the right to end any event if any of the above rules are broken and the security deposit
+            will be forfeited.</li>
+    </ul>
+</div>
+<form [formGroup]="eventForm" id="eventForm" class="event-form" (submit)="submitEvent($event)">
+    <input type="hidden" id="submit_date" name="submit_date" formControlName="submitDate" />
+    <input type="hidden" id="url" name="url" formControlName="url" />
+    <h4>Personal Information</h4>
+    <div class="flex">
+        <div class="anotherFlex">
+            <label for="first_name">First Name</label>
+            <input
+                [class.invalid]="eventForm.get('firstName')?.touched && eventForm.get('firstName')?.invalid || eventForm.get('firstName')?.invalid && this.errorText"
+                required id="first_name" name="first_name" formControlName="firstName" />
+        </div>
+        <div class="anotherFlex">
+            <label for="last_name">Last Name</label>
+            <input
+                [class.invalid]="eventForm.get('lastName')?.touched && eventForm.get('lastName')?.invalid || eventForm.get('lastName')?.invalid && this.errorText"
+                required id="last_name" name="last_name" formControlName="lastName" />
+        </div>
+        <div class="anotherFlex">
+            <label for="phone">Phone</label>
+            <input
+                [class.invalid]="eventForm.get('phone')?.touched && eventForm.get('phone')?.invalid || eventForm.get('phone')?.invalid && this.errorText"
+                required id="phone" name="phone" formControlName="phone" />
+        </div>
+        <div class="anotherFlex">
+            <label for="email">Email</label>
+            <input
+                [class.invalid]="eventForm.get('email')?.touched && eventForm.get('email')?.invalid || eventForm.get('email')?.invalid && this.errorText"
+                required id="email" name="email" formControlName="email" />
+        </div>
+    </div>
+    <h4>Event Details</h4>
+    <label for="event_type">Event Type</label>
+    <select id="event_type" name="event_type" formControlName="eventType" style="width: 312px;" [class.invalid]="eventForm.get('eventType')?.touched && eventForm.get('eventType')?.invalid || eventForm.get('eventType')?.invalid && this.errorText">
+        <option id="public" name="public" value="public">Public</option>
+        <option id="private" name="private" value="private">Private</option>
+    </select>
+    <label for="event_date">Event Date</label>
+    <input
+        [class.invalid]="eventForm.get('eventDate')?.touched && eventForm.get('eventDate')?.invalid || eventForm.get('eventDate')?.invalid && this.errorText"
+        required id="event_date" name="event_date" type="date" formControlName="eventDate" />
+    <div class="flex">
+        <div class="anotherFlex">
+            <label for="event_start">Start Time</label>
+            <input
+                [class.invalid]="eventForm.get('startTime')?.touched && eventForm.get('startTime')?.invalid || eventForm.get('startTime')?.invalid && this.errorText"
+                required id="event_start" name="event_start" type="time" formControlName="startTime" />
+        </div>
+        <div class="anotherFlex">
+            <label for="event_end">End Time</label>
+            <input
+                [class.invalid]="eventForm.get('endTime')?.touched && eventForm.get('endTime')?.invalid || eventForm.get('endTime')?.invalid && this.errorText"
+                required id="event_end" name="event_end" type="time" formControlName="endTime" />
+        </div>
+
+    </div>
+    <label for="event_name">Event Name</label>
+    <input
+        [class.invalid]="eventForm.get('eventName')?.touched && eventForm.get('eventName')?.invalid || eventForm.get('eventName')?.invalid && this.errorText"
+        required id="event_name" name="event_name" formControlName="eventName" />
+    <label for="event_description">Event Description</label>
+    <textarea style="margin-bottom: 8px;"
+        [class.invalid]="eventForm.get('eventDescription')?.touched && eventForm.get('eventDescription')?.invalid || eventForm.get('eventDescription')?.invalid && this.errorText"
+        required id="event_description" name="event_description" formControlName="eventDescription"></textarea>
+    <div class="agree-section">
+        <input type="checkbox" id="agree_rules" name="agree_rules" formControlName="agreeRules"  required />
+        <label for="agree_rules" class="agree-text">
+            By submitting this form, I acknowledge that I have read and agree to the event rules, safety guidelines, and participation terms listed at the top of this request.
+        </label>
+    </div>
+
+    <app-alert *ngIf="errorText.length > 0" text="{{ errorText }}" type="err"></app-alert>
+    <app-alert *ngIf="err || success" text="{{ alertText }}" type="{{ alertType }}"></app-alert>
+    <button style="margin-left: auto;" class="btn-primary" type="submit">Submit Request</button>
+</form>

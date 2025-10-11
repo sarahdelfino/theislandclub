@@ -22,6 +22,7 @@
   text="Click here to buy your Taste of Sullivan's Island tickets today!" type="info"></app-alert>
 </a> -->
   <div class="upcoming-events-container bg-primary">
+    @if (!requestEvent) {
     <!-- <div style="text-align: center;" class="featured-event">
       <h2>Featured Event</h2>
      + <a href="" target="_blank"><img style="width: 70vw; max-width: 800px;" src="/FCNPEVENT.jpg"></a>
@@ -72,10 +73,15 @@
         </div>
       </div>
     </ng-template>
+} @else {
+  <h2 style="text-align: center;">Request Event</h2>
+  <app-request-event></app-request-event>
+  <hr style="margin: 20px auto;">
+}
     <div class="upcoming-event-buttons">
       <button (click)="viewAllEventsClick()" routerLink="/events" class="view-events-button btn-primary">View All Events
       </button>
-      <!-- <button class="req-events-button btn-secondary">Request Event</button> -->
+      <button class="req-events-button btn-secondary" (click)="requestEvent = !requestEvent">Request Event</button>
     </div>
   </div>
   <!-- <div class="featured-event">

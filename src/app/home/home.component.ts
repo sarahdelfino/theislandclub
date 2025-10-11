@@ -13,6 +13,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ContactComponent } from "../contact/contact.component";
+import { RequestEventComponent } from "../request-event/request-event.component";
 
 @Pipe({
   name: "safeHtml",
@@ -28,7 +29,7 @@ export class SafeHtmlPipe implements PipeTransform {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SafeHtmlPipe, RouterLink, CommonModule, ReactiveFormsModule, NgxSkeletonLoaderModule, ContactComponent, AlertComponent],
+  imports: [SafeHtmlPipe, RouterLink, CommonModule, ReactiveFormsModule, NgxSkeletonLoaderModule, ContactComponent, AlertComponent, RequestEventComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -50,6 +51,7 @@ export class HomeComponent {
   mobileSkelTheme = {
     height: '150px'
   };
+  requestEvent: boolean = false;
 
   constructor(
     private router: Router,
