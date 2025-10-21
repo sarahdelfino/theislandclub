@@ -105,15 +105,18 @@ textarea {
 }
 
 .member-tabs {
+    width: 80vw;
+    margin: auto;
     margin-top: 50px;
     text-align: center;
     display: flex;
+    justify-content: space-evenly;
     flex-direction: row;
     background-color: white;
 }
 
 .tab {
-    width: 50%;
+    width: 48%;
     height: 65px;
     align-content: center;
     border-top-left-radius: 10px;
@@ -129,9 +132,12 @@ textarea {
     background-color: #4f7faa;
     text-decoration: underline;
     text-underline-offset: 10px;
+    border-bottom: 1px solid #4f7faa;
 }
 
 .secondary {
+    border: 1px solid #4f7faa;
+    border-bottom: none;
     background-color: white;
     color: #4f7faa;
 }

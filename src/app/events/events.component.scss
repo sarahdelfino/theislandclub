@@ -1,0 +1,77 @@
+@use '@angular/material' as mat;
+
+.events-container {
+    max-width: 1200px;
+    min-width: 375px;
+    margin: auto;
+}
+
+.events-body {
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #4f7faa;
+    color: white;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.event-tabs {
+    width: 80vw;
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    background-color: white;
+}
+
+.tab {
+    width: 48%;
+    height: 65px;
+    align-content: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.tab:hover {
+    cursor: pointer;
+}
+
+.primary {
+    color: white;
+    background-color: #4f7faa;
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    border-bottom: 1px solid #4f7faa;
+}
+
+.secondary {
+    border: 1px solid #4f7faa;
+    border-bottom: none;
+    background-color: white;
+    color: #4f7faa;
+}
+
+.events-img {
+    background: url('/nirvana-frames-s.jpg') no-repeat;
+    background-size: 100%;
+    width: 100vw;
+    height: 175px;
+    background-position: bottom;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.events-content {
+    padding: 10px;
+}
+
+@media screen and (min-width: 760px) {
+    .events-img {
+        background: url('/nirvana-frames-m.jpg') no-repeat;
+        background-position: bottom 30% right 40%;
+        background-size: cover;
+    }
+}

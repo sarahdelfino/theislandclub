@@ -1,31 +1,31 @@
 <div class="membership-container">
     <div class="membership-img"></div>
     <div class="membership-text tx-secondary">
-    <p>The Island Club is open to all
-        current and prior residents of
-        Sullivan's Island. We are a community club for all generations.<br><br>
-        Annual membership is:<br>
-        Family: $350 (2 voting members)<br>
-        Individual: $250 (1 voting member)
-    </p>
-    <p>Included with your membership:</p>
-    <ul>
-        <li>Monthly member social events</li>
-        <li>Monthly member cultural and health programming</li>
-        <li>One complimentary Island Club rental per year for your private event</li>
-        <li>Early access to Taste of Sullivan's Island tickets</li>
-        <li>Monthly "Kids' Night" babysitting</li>
-        <li>Ongoing support for a community gathering place for neighbors (priceless)</li>
-    </ul>
-</div>
-    <div class="membership-body">
-        <div id="buttons" class="member-tabs">
+        <p>The Island Club is open to all
+            current and prior residents of
+            Sullivan's Island. We are a community club for all generations.<br><br>
+            Annual membership is:<br>
+            Family: $350 (2 voting members)<br>
+            Individual: $250 (1 voting member)
+        </p>
+        <p>Included with your membership:</p>
+        <ul>
+            <li>Monthly member social events</li>
+            <li>Monthly member cultural and health programming</li>
+            <li>One complimentary Island Club rental per year for your private event</li>
+            <li>Early access to Taste of Sullivan's Island tickets</li>
+            <li>Monthly "Kids' Night" babysitting</li>
+            <li>Ongoing support for a community gathering place for neighbors (priceless)</li>
+        </ul>
+    </div>
+            <div id="buttons" class="member-tabs">
             <div class="tab" (click)="toggleSignup()" [ngClass]="this.signUpVisible ? 'primary' : 'secondary'">Become a
                 Member</div>
             <div class="tab" (click)="toggleRequest()" [ngClass]="this.requestFormVisible ? 'primary' : 'secondary'">
                 Request
                 an Event</div>
         </div>
+    <div class="membership-body">
         <div id="requestContainer" *ngIf="requestFormVisible && !signUpVisible" class="tx-primary">
             <app-request-event></app-request-event>
         </div>
@@ -75,19 +75,19 @@
                 </div>
                 <h2>Address Information</h2>
                 <div class="flex">
-                <div class="anotherFlex">
-                    <label for="current_address">Current Address *</label>
-                    <input
-                        [class.invalid]="memForm.get('currentAddress')?.touched && memForm.get('currentAddress')?.invalid || memForm.get('currentAddress')?.invalid && this.errorText"
-                        required id="current_address" name="current_address" formControlName="currentAddress" />
+                    <div class="anotherFlex">
+                        <label for="current_address">Current Address *</label>
+                        <input
+                            [class.invalid]="memForm.get('currentAddress')?.touched && memForm.get('currentAddress')?.invalid || memForm.get('currentAddress')?.invalid && this.errorText"
+                            required id="current_address" name="current_address" formControlName="currentAddress" />
+                    </div>
+                    <div class="anotherFlex">
+                        <label for="current_address">City *</label>
+                        <input
+                            [class.invalid]="memForm.get('city')?.touched && memForm.get('city')?.invalid || memForm.get('city')?.invalid && this.errorText"
+                            required id="city" name="city" formControlName="city" />
+                    </div>
                 </div>
-                <div class="anotherFlex">
-                    <label for="current_address">City *</label>
-                    <input
-                        [class.invalid]="memForm.get('city')?.touched && memForm.get('city')?.invalid || memForm.get('city')?.invalid && this.errorText"
-                        required id="city" name="city" formControlName="city" />
-                </div>
-            </div>
                 <div class="anotherFlex">
                     <label for="current_address">Zip Code *</label>
                     <input

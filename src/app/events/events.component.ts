@@ -5,15 +5,25 @@ import { CalendarComponent } from "@schedule-x/angular";
 import { createCalendar, createViewMonthAgenda, createViewMonthGrid, createViewWeek, createViewDay, viewMonthAgenda, viewMonthGrid } from "@schedule-x/calendar";
 import { createEventModalPlugin } from "@schedule-x/event-modal";
 import { FirebaseService } from '../firebase.service';
+import { RequestEventComponent } from "../request-event/request-event.component";
+import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RequestEventComponent, MatTabsModule],
   templateUrl: './events.component.html',
-  styleUrl: './events.component.css'
+  styleUrl: './events.component.scss'
 })
 export class EventsComponent {
+
+  calendarVisible = true;
+  requestFormVisible = false;
+
+  toggle() {
+    this.calendarVisible = !this.calendarVisible;
+    this.requestFormVisible = !this.requestFormVisible;
+  }
 
   constructor(private route: ActivatedRoute, private db: FirebaseService) {
     const id = this.route.snapshot.paramMap.get('id');

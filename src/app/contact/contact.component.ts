@@ -40,14 +40,15 @@ export class ContactComponent {
       this.errorText = 'Please ensure all necessary values are provided.';
     } else {
       this.errorText = '';
-      // this.firebaseService.addMessage(message).then(() => {
-      //   emailjs.sendForm("service_lwdjtb9", "template_dk7f0b3", form, {
-      //     publicKey: 'pp0s7qlmsjt-_40XH',
-      //   }).catch((err) => {
-      //     console.log("Unable to send message email: ", err);
-      //     this.errorText = 'We were not able to process your submission at this time. Please try again.';
-      //     this.err = true;
-      //   });
+      this.firebaseService.addMessage(message).then(() => {
+        emailjs.sendForm("service_lwdjtb9", "template_dk7f0b3", form, {
+          publicKey: 'pp0s7qlmsjt-_40XH',
+        }).catch((err) => {
+          console.log("Unable to send message email: ", err);
+          this.errorText = 'We were not able to process your submission at this time. Please try again.';
+          this.err = true;
+        });
+      console.log(message);
         this.success = true;
         this.alertText = 'Your submission has been received!';
         this.alertType = 'success';
@@ -55,11 +56,11 @@ export class ContactComponent {
         setTimeout(() => {
           this.success = false;
         }, 5000);
-      // }).catch((err: any) => {
-      //   this.errorText = 'We were not able to process your submission at this time. Please try again.';
-      //   this.err = true;
-      //   console.log('FAILED...', err);
-      // });
+      }).catch((err: any) => {
+        this.errorText = 'We were not able to process your submission at this time. Please try again.';
+        this.err = true;
+        console.log('FAILED...', err);
+      });
     }
   }
 

@@ -1,16 +1,73 @@
+h1 {
+    display: none;
+}
+
 .contact-container {
-    max-width: 700px;
+    max-width: 825px;
+    background-size: contain;
+    height: 650px;
     margin: auto;
-    border: 1px solid #4f7faa;
-    border-radius: 10px;
-    padding: 20px;
+    /* border-radius: 10px; */
+    /* padding: 20px; */
+    background-image: url('/Contact.png');
+    background-repeat: no-repeat;
+    position: relative;
 }
 
 .contact-form {
     display: flex;
     flex-direction: column;
+    max-width: 300px;
+    height: 350px;
+    position: absolute;
+    justify-content: space-around;
+    top: 35%;
+    left: 10%;
+    /* border: 50px solid transparent;
+    border-image: url('/Contact.png') 80 round; */
 }
 
 .invalid {
     border-left: 5px solid #a94442;
+}
+
+input,
+textarea {
+    width: 300px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+
+    &::placeholder {
+        color: #4f7faa;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    input, textarea {
+        width: 250px;
+    }
+    .contact-form {
+        top: 28%;
+    }
+}
+
+@media screen and (max-width: 666px) {
+        h1 {
+        display: block;
+}
+    .contact-container {
+        background-image: none;
+                margin: auto;
+        width: 90vw;
+        border: 20px solid transparent;
+        border-image: url('/Contact-m.png') 20 stretch;
+        height: 400px;
+    }
+
+    .contact-form {
+        position: unset;
+        margin: auto;
+    }
 }

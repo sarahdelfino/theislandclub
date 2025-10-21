@@ -1,19 +1,14 @@
-import { CommonModule, ViewportScroller } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AlertComponent } from "../alert/alert.component";
-import { Member } from '../member';
-import { FirebaseService } from '../firebase.service';
-import { eventSubmission } from '../eventSubmission';
 import { FormControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { CheckoutComponent } from "../checkout/checkout.component";
-import emailjs from '@emailjs/browser';
 import { RequestEventComponent } from "../request-event/request-event.component";
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CheckoutComponent, RequestEventComponent],
+  imports: [CommonModule, ReactiveFormsModule, CheckoutComponent, RequestEventComponent, MatTabsModule],
   templateUrl: './membership.component.html',
   styleUrl: './membership.component.css'
 })
