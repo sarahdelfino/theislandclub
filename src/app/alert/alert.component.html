@@ -1,8 +1,24 @@
-<div style="padding: 10px; margin-bottom: 5px; color: white; border-radius: 5px;" [class.info]="this.type === 'info'" [class.success]="this.type === 'success'" [class.err]="this.type === 'err'">
+@if (custom) {
+<div style="padding: 10px; margin-bottom: 5px; color: white; border-radius: 5px;" class="info">
     <div class="alert-flex">
-        <img  class="alert-icon" [alt]="this.type + ' alert logo'" [src]="this.type === 'info' ? '/info.png' 
+        <div style="display: flex; flex-direction: row; align-items: center;">
+        <img class="alert-icon" alt="info alert logo" src="/info.png">
+        <h3>{{ this.text }}</h3>
+        </div>
+        <div>
+        <a class="ticket-btn" target="_blank" href="https://buy.stripe.com/7sYaEW7rfaqgcaUeWS1VK0i">Member tickets</a>
+        <a class="ticket-btn" target="_blank" href="https://buy.stripe.com/dRm5kC5j7cyo7UE1621VK0j">Non-member tickets</a>
+        </div>
+    </div>
+</div>
+} @else {
+<div style="padding: 10px; margin-bottom: 5px; color: white; border-radius: 5px;" [class.info]="this.type === 'info'"
+    [class.success]="this.type === 'success'" [class.err]="this.type === 'err'">
+    <div class="alert-flex">
+        <img class="alert-icon" [alt]="this.type + ' alert logo'" [src]="this.type === 'info' ? '/info.png' 
         : this.type === 'err' ? '/error.png' 
         : '/success.png'">
         <h3>{{ this.text }}</h3>
     </div>
 </div>
+}

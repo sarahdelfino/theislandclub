@@ -8,11 +8,19 @@ h3 {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .alert-icon {
     width: 35px;
     margin-right: 10px;
+}
+
+.ticket-btn {
+    text-decoration: underline;
+    margin-left: 8px;
+    color: white;
 }
 
 .info {
