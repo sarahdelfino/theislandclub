@@ -1,0 +1,23 @@
+table {
+  width: 90vw;
+}
+
+.mat-mdc-button:hover {
+  cursor: pointer;
+}
+
+.table-container {
+  overflow: auto;
+  padding: 1rem;
+}
+
+.status-chip {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: gray;
+}

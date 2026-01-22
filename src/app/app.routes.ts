@@ -8,6 +8,7 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { EventsComponent } from './events/events.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
     { path: '', title: 'Home', component: HomeComponent },
@@ -19,5 +20,6 @@ export const routes: Routes = [
     { path: 'capital-project', title: 'Capital Project', component: CapitalComponent },
     { path: 'blog', title: 'Blog', component: BlogComponent },
     { path: 'blog/:id', component: BlogPostComponent },
+    { path: 'admin', component: AdminComponent },
     { path: '**', component: AppComponent }
 ];

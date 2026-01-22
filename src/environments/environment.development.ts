@@ -1,9 +1,10 @@
 export const environment = {
     production: false,
+    useEmulators: true,
     firebase: {
         apiKey: "AIzaSyC6vSLkiU0Mzb0cpJm7NKlyuNwdnymXqcE",
         authDomain: "theislandclub.firebaseapp.com",
-        databaseURL: "https://theislandclub-default-rtdb.firebaseio.com",
+        databaseURL: "http://localhost:9000?ns=fake-server",
         projectId: "theislandclub",
         storageBucket: "theislandclub.appspot.com",
         messagingSenderId: "939559041500",
