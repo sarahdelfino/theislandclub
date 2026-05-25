@@ -4,6 +4,20 @@ import { eventSubmission } from './eventSubmission';
 import { Member } from './member';
 import { Database, ref, set, onValue, push, objectVal, object, update } from '@angular/fire/database';
 import { AngularFireDatabase, AngularFireList, AngularFireObject, snapshotChanges } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
+
+export interface FeaturedEvent {
+  title: string;
+  date?: string;
+  time?: string;
+  description?: string;
+  imageUrl?: string;
+  ctaText?: string;
+  ctaUrl?: string;
+  isActive?: boolean;
+  location?: string;
+  address?: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -83,5 +97,11 @@ export class FirebaseService {
     const blogListRef = ref(this.database.database, '/blogs');
     const blogRef = push(blogListRef);
     return set(blogRef, blogData);
+  }
+
+    getFeaturedEvent(): Observable<FeaturedEvent | null> {
+    const featuredRef = ref(this.database.database, 'featured');
+
+    return objectVal<FeaturedEvent | null>(featuredRef);
   }
 }

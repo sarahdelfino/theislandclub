@@ -11,6 +11,6 @@ export const environment = {
         measurementId: "G-DWFHWF625B"
     },
     stripe: {
-        publicKey: 'pk_test_51MbtHzD2u9XEzy5nTXzPfhcwm7NWWgvgrxGalUq5iIosxO8Aq374C728fgKOCrivnsSjbqjIz88oJ9JnvYdW6NO1000R4U8kh8'
+        publicKey: 'pk_test_51SLQXcD0OuhPXBYKbv7j1hF7TTSTqSbE160QJQe2eoZea70fFyxupUtd0mcunLyOqHzC0ZDjEtwHsTDcHfA3TgII009XSlF6BF'
     }
 }

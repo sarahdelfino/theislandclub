@@ -5,8 +5,7 @@
         <h1>The Island Club</h1>
       </div>
       <div class="tagline">
-        <!-- <h2>A community gathering place for residents of Sullivan's Island,<br> South Carolina</h2> -->
-         <h2>A community club for residents<br> of Sullivan's Island,<br> past and present,<br> for all generations.</h2>
+        <h2>A community club for residents of Sullivan's Island, past and present, for all generations.</h2>
       </div>
       <div class="heading-btn-container">
         <button routerLink="/membership" class="btn-primary">
@@ -17,27 +16,18 @@
   </div>
 </div>
 <div class="home-container">
-  <!-- <app-alert class="alert-comp"
-  text="Click here to buy your Comedy Show tickets today!" type="info" [custom]="true"></app-alert> -->
+  <app-featured></app-featured>
   <div class="upcoming-events-container bg-primary">
-    @if (!requestEvent) {
-    <!-- <div style="text-align: center;" class="featured-event">
-      <h2>Featured Event</h2>
-     + <a href="" target="_blank"><img style="width: 70vw; max-width: 800px;" src="/FCNPEVENT.jpg"></a>
-      <div class="featured-link"><a href="">Click Here to Learn More</a>
-        </div>
-    </div> -->
-    <h2 style="text-align: center;">Upcoming Events</h2>
-    <div *ngIf="this.events.length > 0; else skeleton"></div>
-    <div *ngFor="let event of events" class="upcoming-event-card">
-      <!-- <RouterLink class="router-link" :to="{ name: 'event', params: { id: event.id } }">  -->
-      <div class="row">
-        <div class="row-img-container">
-          <img class="row-img" alt="upcoming event image"
-            srcset="{{ event.img }}-s.jpg 650w, {{ event.img }}-m.jpg 1920w"
+    <h2 style="text-align: center; font-weight: bold;">Upcoming Events</h2>
+    @if (this.events.length > 0) {
+    <div class="polaroid-container">
+      <div class="upcoming-event" *ngFor="let event of events">
+        @for (event of events; track event.id) {}
+        <div class="polaroid">
+          <img alt="upcoming event image" srcset="{{ event.img }}-s.jpg 650w, {{ event.img }}-m.jpg 1920w"
             sizes="(max-width: 1000px) 100vw, 1000px" />
         </div>
-        <div class="row-text">
+        <div class="event-text">
           <h2 style="margin: 0;" class="row-title">{{ event.title }}</h2>
           <div class="row-datetime">
             <h3 style="margin-right: 10px;">{{ event.start | date: 'fullDate' }}</h3>
@@ -48,15 +38,14 @@
             <div style="margin: 0px; font-weight: 300;" [innerHTML]="event.description | safeHtml"></div>
           </div>
         </div>
-        <!-- <p class="arrow"></p>
-        <i class="arrow pi pi-caret-right"></i> -->
       </div>
-      <!-- </RouterLink> -->
     </div>
+    }
+    @else {
     <ng-template #skeleton>
       <div class="row">
         <div class="row-img-container">
-            <ngx-skeleton-loader [theme]="isMobile ? mobileSkelTheme : skelTheme" />
+          <ngx-skeleton-loader [theme]="isMobile ? mobileSkelTheme : skelTheme" />
         </div>
         <div class="row-text">
           <ngx-skeleton-loader [count]="isMobile ? 1 : 2" [theme]="{width: '40vw'}" />
@@ -65,32 +54,25 @@
       <div class="row">
         <div class="row-img-container">
           <ngx-skeleton-loader [theme]="isMobile ? mobileSkelTheme : skelTheme" />
-          </div>
+        </div>
         <div class="row-text">
           <ngx-skeleton-loader [count]="isMobile ? 1 : 2" [theme]="{width: '40vw'}" />
         </div>
       </div>
     </ng-template>
-} @else {
-  <h2 style="text-align: center;">Request Event</h2>
-  <app-request-event></app-request-event>
-  <hr style="margin: 20px auto;">
-}
+    }
     <div class="upcoming-event-buttons">
-      <button (click)="viewAllEventsClick()" routerLink="/events" class="view-events-button btn-primary">View All Events
+      <button (click)="viewAllEventsClick()" routerLink="/events" class="view-events-button btn-primary">View Full
+        Calendar
       </button>
       <button class="req-events-button btn-secondary" routerLink="/events">Request Event</button>
     </div>
   </div>
-  <!-- <div class="featured-event">
-    <img style="max-width: 800px;" src="/fooddrive.png">
-  </div> -->
-  <div class="polaroids-container">
-    <!-- <a href="/about"><img src="/about.svg"></a> -->
+  <!-- <div class="polaroids-container">
     <a href="/membership"><img alt="link to membership page" src="/membership.svg"></a>
     <a href="https://buy.stripe.com/aEU5kmaWy9MYbew9AD" target="_blank"><img alt="link to donate page"
         src="/donate.svg"></a>
     <a href="/blog"><img alt="link to blogs page" src="/blog.svg"></a>
-  </div>
+  </div> -->
   <app-contact></app-contact>
 </div>

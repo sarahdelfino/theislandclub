@@ -13,7 +13,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ContactComponent } from "../contact/contact.component";
-import { RequestEventComponent } from "../request-event/request-event.component";
+import { FeaturedComponent } from "../featured/featured.component";
 
 @Pipe({
   name: "safeHtml",
@@ -29,7 +29,7 @@ export class SafeHtmlPipe implements PipeTransform {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SafeHtmlPipe, RouterLink, CommonModule, ReactiveFormsModule, NgxSkeletonLoaderModule, ContactComponent, AlertComponent, RequestEventComponent],
+  imports: [SafeHtmlPipe, RouterLink, CommonModule, ReactiveFormsModule, NgxSkeletonLoaderModule, ContactComponent, AlertComponent, FeaturedComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -51,7 +51,6 @@ export class HomeComponent {
   mobileSkelTheme = {
     height: '150px'
   };
-  requestEvent: boolean = false;
 
   constructor(
     private router: Router,
@@ -70,9 +69,7 @@ export class HomeComponent {
           "end": resp[row].end,
           "id": resp[row].id,
           "title": resp[row].title,
-          // "img": resp[row]?.attachment || this.getImg(resp[row]),
-          "img": this.getImg(resp[row]),
-          "attachment": resp[row]?.attachment,
+          "img": resp[row].imageUrl ? this.toDriveThumbnailUrl(resp[row].imageUrl) : this.getImg(resp[row]),
           "description": resp[row]?.description
         }
         arr.push(tmp);
@@ -80,33 +77,7 @@ export class HomeComponent {
       }
       this.events.push(arr[0]);
       this.events.push(arr[1]);
-
-      // console.log(this.events);
-
-      // let firstTest = {
-      //   "date": "December 2, 2024",
-      //   "start": "6:00pm",
-      //   "end": "7:15pm",
-      //   "id": "6pgj6dhj6dh6ab9ncdj66b9kcgp3cbb16gs3gb9j6op68cr46oq3icr6ck@google.com",
-      //   "title": "Meditative Monday",
-      //   "img": '/matt-briney-2',
-      //   "attachment": 'test attachment',
-      //   "description": 'test description! this one should be longer. we shall see.'
-      // }
-
-      // let secondTest = {
-      //   "date": "December 2, 2024",
-      //   "start": "6:00pm",
-      //   "end": "7:15pm",
-      //   "id": "6pgj6dhj6dh6ab9ncdj66b9kcgp3cbb16gs3gb9j6op68cr46oq3icr6ck@google.com",
-      //   "title": "Teen Yoga",
-      //   "img": '/matt-briney-2',
-      //   "attachment": 'test attachment',
-      //   "description": 'Bring a yoga mat and join us for a little relaxation, mindfulness, and gentle flow through yoga postures. Members are able to bring a guest, since we know teens only tend to go places with friends 🙂Ages: 12-16'
-      // }
-
-      // this.events.push(firstTest);
-      // this.events.push(secondTest);
+      console.log(this.events)
 
     });
     
@@ -141,4 +112,13 @@ export class HomeComponent {
       return '/matt-briney-2'
     }
   }
+
+  toDriveThumbnailUrl(url: string) {
+  const match = url.match(/[?&]id=([^&]+)/);
+  const fileId = match?.[1];
+
+  if (!fileId) return url;
+
+  return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`;
+}
 }

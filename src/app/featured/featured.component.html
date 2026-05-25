@@ -1,0 +1,57 @@
+@if (featuredEvent$ | async; as event) {
+  <section class="featured-container">
+
+    <div class="polaroid">
+      <img
+        *ngIf="event.imageUrl"
+        [src]="event.imageUrl"
+        [alt]="event.title"
+      />
+
+      <div class="polaroid__label">
+        {{ event.title }}
+      </div>
+    </div>
+
+    <div class="featured-copy featured-paper">
+      <h2 style="font-family: Caveat;">Featured This Month</h2>
+
+      <h3 style="font-weight: bold;">{{ event.title }}</h3>
+
+      <p *ngIf="event.description">
+        {{ event.description }}
+      </p>
+
+      <div class="event-details">
+  <div class="event-detail">
+    <span class="material-symbols-outlined event-detail__icon">
+      calendar_month
+    </span>
+
+    <div class="event-detail__text">
+        @if (event.date) {
+      <span>{{ event.date | date: 'fullDate' }}</span>
+        }
+        @if (event.time) {
+      <span>{{ event.time }}</span>
+        }
+    </div>
+  </div>
+
+  @if (event.location || event.address) {
+  <div class="event-detail">
+    <span class="material-symbols-outlined event-detail__icon">
+      location_on
+    </span>
+
+    <div class="event-detail__text">
+      <span>{{ event?.location }}</span>
+      <span>{{ event?.address }}</span>
+    </div>
+  </div>
+}
+</div>
+    </div>
+
+  </section>
+}

@@ -19,7 +19,7 @@ h3 {
     background-image: url('/matt-benson-TzdnVuPzY1g-unsplash.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-y: 10%;
+    background-position-y: 12%;
 }
 
 .nav-logo {
@@ -40,6 +40,8 @@ h3 {
     width: 300px;
     text-align: right;
     position: relative;
+    top: 50px;
+    right: 10px;
     margin-right: 1rem;
     height: fit-content;
 }
@@ -47,6 +49,9 @@ h3 {
 .title {
     font-size: 32px;
     line-height: 70px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: right;
 }
 
 .tagline {
@@ -59,7 +64,7 @@ h3 {
 }
 
 .home-container {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: -5rem auto 0px auto;
 }
 
@@ -67,29 +72,83 @@ h3 {
     margin: 10px auto 50px;
 }
 
-.upcoming-events-container, .contact-container {
-    max-width: 1200px;
-    min-height: 300px;
-    padding: 10px;
-    border-radius: 5px;
-    color: #4f7faa;
-    border: 1px solid #4f7faa;
+.polaroid::before {
+  content: '';
+
+  position: absolute;
+
+  width: 14px;
+  height: 14px;
+
+  top: -7px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      #f6df9e 0%,
+      #d2aa5c 45%,
+      #8d6423 100%
+    );
+
+  box-shadow:
+    inset -1px -2px 2px rgba(0,0,0,0.22),
+    inset 1px 1px 2px rgba(255,255,255,0.55),
+    0 3px 5px rgba(0,0,0,0.18);
+
+  z-index: 2;
 }
 
-.title {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    text-align: right;
+.polaroid {
+  display: inline-flex;
+  flex-direction: column;
+  background: #f8f5ef;
+  padding: 0.75rem 0.75rem 1.4rem;
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.12),
+    0 2px 4px rgba(0,0,0,0.08);
+
+  border: 1px solid rgba(0,0,0,0.08);
+
+  text-decoration: none;
+
+  max-width: 300px;
+
+  position: relative;
 }
 
-.row {
-    display: flex;
-    margin-bottom: 10px;
-    border: 1px solid #4f7faa;
-    border-radius: 5px;
-    padding: 10px;
-    align-items: center;
-    min-height: 125px;
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+  background: #eee7dc;
+
+  display: block;
+}
+
+.polaroid__label {
+  margin-top: 0.9rem;
+
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 600;
+
+  color: #456b9a;
+
+  text-align: center;
+}
+
+.rotate-left {
+  transform: rotate(-3deg);
+}
+
+.rotate-right {
+  transform: rotate(2deg);
 }
 
 .arrow {
@@ -98,20 +157,11 @@ h3 {
     font-size: 18px;
 }
 
-.row-img {
-    width: 25vw;
-    max-width: 235px;
-    height: 90px;
-    margin-right: 10px;
-    border: 1px solid #4f7faa;
-    border-radius: 5px;
-}
-
 .row-title {
     font-weight: 400;
 }
 
-.row-text {
+.event-text {
     flex-grow: 2;
     max-width: 55vw;
     margin: 10px 5px 10px 10px;
@@ -119,13 +169,44 @@ h3 {
     width: -webkit-fill-available;
 }
 
-.upcoming-event-buttons {
-    text-align: center;
+.upcoming-events-container {
+    margin: 50px auto;
 }
 
-.polaroids-container {
+.polaroid-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 60vw;
+    margin: auto;
+}
+
+.upcoming-event {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 12px;
+    align-items: center;
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+@media screen and (max-width: 600px) {
+    .polaroid-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 100%;
+    }
+    .upcoming-event {
+        flex-direction: column;
+        align-items: flex-start;
+        /* border: none; */
+    }
+}
+
+.upcoming-event-buttons {
     text-align: center;
-    margin: 30px 0 30px 0;
 }
 
 .contact-form {
@@ -164,19 +245,6 @@ h3 {
         margin-top: -10rem;
     }
 }
-
-@media screen and (max-width: 500px) {
-        .row-datetime {
-        display: block;
-    }
-}
-
-/* @media screen and (min-width: 500px) {
-    .heading-container {
-        background-position: top 15% left 5%;
-    }
-
-} */
 
 @media screen and (min-width: 960px) {
     .row-img {
