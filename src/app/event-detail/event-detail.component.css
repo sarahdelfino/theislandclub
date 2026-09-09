@@ -1,45 +1,27 @@
-h1 {
-    margin: 0px;
-}
-
-h2 {
-    margin-top: 10px;
-}
-
-h3 {
-    margin-top: 0px;
-}
-
-a.btn {
-    display: block;
-    margin-left: 0;
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
 }
 
 .event-detail-container {
+    width: 100%;
     max-width: 1200px;
     min-width: 375px;
-    margin: auto;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-.event-detail-title {
-    position: absolute;
-    top: 10%;
-    right: 5%;
-}
+/* STRIPED TOP / BOTTOM BORDER */
 
 .event-detail-img {
+    width: 100%;
+    height: 50px;
+
     background: url('/stripes-m.png') no-repeat;
     background-size: cover;
     background-position: bottom;
-    width: 100vw;
-    height: 50px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.event-detail-body {
-    padding: 10px;
 }
 
 .bottom {
@@ -47,34 +29,200 @@ a.btn {
     margin-top: -5px;
 }
 
-.event-img {
-    max-width: 90vw;
-    /* max-width: 80vw; */
-    /* width: -webkit-fill-available; */
-    margin: auto;
-    /* border-radius: 10px; */
-}
+/* MAIN CONTENT */
 
 .event-detail-body {
+    padding: 35px 20px 45px;
+
+    color: #4f7faa;
+
+    text-align: center;
+}
+
+/* EVENT HEADER */
+
+.event-header {
     display: flex;
     flex-direction: column;
-    /* background-color: #4f7faa; */
+    align-items: center;
+}
+
+.event-img {
+    display: block;
+
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+
+    margin: 0 auto;
+}
+
+.event-info {
+    margin-top: 25px;
+}
+
+.event-info h2 {
+    margin: 5px 0;
+
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: normal;
+}
+
+.event-location {
+    margin-top: 12px;
+    margin-bottom: 0;
+
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* TICKET SECTION */
+
+.ticket-section {
+    width: 100%;
+    max-width: 540px;
+
+    margin: 45px auto 20px;
+    padding-top: 40px;
+
+    border-top: 1px solid rgba(79, 127, 170, 0.3);
+}
+
+.ticket-eyebrow {
+    margin-bottom: 10px;
+
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.ticket-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    line-height: 1;
+    font-weight: bold;
+}
+
+.price-label {
+    margin-top: 5px;
+
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.ticket-description {
+    max-width: 480px;
+
+    margin: 0 auto 28px;
+
+    color: #444;
+
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+/* PURCHASE BUTTON */
+
+.ticket-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 240px;
+
+    padding: 15px 30px;
+
+    border: 2px solid #4f7faa;
+
+    background-color: #4f7faa;
+    color: #fff;
+
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.ticket-button:hover {
+    background-color: transparent;
     color: #4f7faa;
-    border-radius: 10px;
-    justify-content: space-between;
-    align-items: baseline;
 }
 
-.event-detail {
-    margin: auto;
-    padding: 10px;
+.ticket-button:focus-visible {
+    outline: 3px solid rgba(79, 127, 170, 0.35);
+    outline-offset: 4px;
 }
 
-@media screen and (min-width: 600px) {
+.checkout-note {
+    margin-top: 12px;
+    margin-bottom: 0;
+
+    color: #777;
+
+    font-size: 0.8rem;
+}
+
+/* SIPS GRAPHIC */
+
+.sips-img {
+    display: block;
+
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 20px auto 0;
+}
+
+/* DESKTOP */
+
+@media screen and (min-width: 700px) {
     .event-detail-body {
-        flex-direction: row;
+        padding: 50px 50px 60px;
     }
-     .event-img {
-        height: auto;
-     }
+
+    .event-header {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        gap: clamp(40px, 7vw, 90px);
+    }
+
+    .event-img {
+        width: 55%;
+        max-width: 620px;
+
+        margin: 0;
+    }
+
+    .event-info {
+        flex-shrink: 0;
+
+        margin-top: 0;
+
+        text-align: left;
+    }
+
+    .ticket-section {
+        margin-top: 55px;
+        padding-top: 45px;
+    }
 }
