@@ -13,6 +13,9 @@
         ".write": "newData.exists()"
       }
     },
+    "featured": {
+      ".read": "true"
+    },
     "submittedEvents": {
       ".read": "true",
       "$uid": {
