@@ -28,10 +28,10 @@ export class NavbarComponent {
         "title": "Events",
         "link": "/events"
       },
-      {
-        "title": "Taste of Sullivan's Island",
-        "link": "/taste"
-      },
+      // {
+      //   "title": "Taste of Sullivan's Island",
+      //   "link": "/taste"
+      // },
       {
         "title": "Membership",
         "link": "/membership"
@@ -40,10 +40,10 @@ export class NavbarComponent {
         "title": "Capital Project",
         "link": "/capital-project"
       },
-      {
-        "title": "Blog",
-        "link": "/blog"
-      }
+      // {
+      //   "title": "Blog",
+      //   "link": "/blog"
+      // }
   ]
 
   getPageName() { 

@@ -13,11 +13,11 @@ export const routes: Routes = [
     { path: '', title: 'Home', component: HomeComponent },
     { path: 'membership', title: 'Membership', component: MembershipComponent },
     { path: 'events', title: 'Events', component: EventsComponent },
-    { path: 'taste', title: 'Taste of Sullivan\'s Island', component: EventDetailComponent },
+    // { path: 'taste', title: 'Taste of Sullivan\'s Island', component: EventDetailComponent },
     // { path: 'events/:id', title: 'Event', component: EventDetailComponent },
     { path: 'events/:id/approve', title: 'Event', component: EventsComponent },
     { path: 'capital-project', title: 'Capital Project', component: CapitalComponent },
-    { path: 'blog', title: 'Blog', component: BlogComponent },
-    { path: 'blog/:id', component: BlogPostComponent },
+    // { path: 'blog', title: 'Blog', component: BlogComponent },
+    // { path: 'blog/:id', component: BlogPostComponent },
     { path: '**', component: AppComponent }
 ];

@@ -1,78 +1,131 @@
-<div class="heading-container">
-  <div class="text">
-    <div class="text-container tx-primary">
-      <div class="title">
-        <h1>The Island Club</h1>
-      </div>
-      <div class="tagline">
-        <h2>A community club for residents of Sullivan's Island, past and present, for all generations.</h2>
-      </div>
-      <div class="heading-btn-container">
-        <button routerLink="/membership" class="btn-primary">
-          Join now!
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-content tx-primary">
+      <h1 id="hero-title">The Island Club</h1>
+
+      <p class="hero-tagline">
+        A community club for residents of Sullivan's Island,
+        past and present, for all generations.
+      </p>
+
+      <button routerLink="/membership" class="btn-primary">
+        Join the Club
+      </button>
+    </div>
+  </div>
+</section>
+
+<main class="home-container">
+  <section
+    class="upcoming-events bg-primary"
+    aria-labelledby="events-title"
+  >
+    <div class="section-inner">
+      <header class="section-heading">
+        <h2 id="events-title">Upcoming Events</h2>
+        <p>
+          Gather, connect, and celebrate with your island community.
+        </p>
+      </header>
+
+      @if (isLoading()) {
+        <div class="events-grid" aria-busy="true">
+          @for (placeholder of [1, 2]; track placeholder) {
+            <div class="event-card skeleton-card">
+              <ngx-skeleton-loader
+                [theme]="{
+                  width: '100%',
+                  height: '240px',
+                  'border-radius': '0'
+                }"
+              />
+
+              <ngx-skeleton-loader
+                [count]="3"
+                [theme]="{ width: '100%' }"
+              />
+            </div>
+          }
+        </div>
+      } @else if (hasError()) {
+        <div class="events-message" role="status">
+          <p>
+            We're unable to load upcoming events right now.
+            Please visit our full calendar for more information.
+          </p>
+        </div>
+      } @else {
+        <div class="events-grid">
+          @for (event of events(); track event.id) {
+            <article class="event-card">
+              <div class="polaroid">
+                <img
+                  [src]="event.image"
+                  [attr.srcset]="event.imageSrcset"
+                  sizes="(max-width: 700px) 85vw, 340px"
+                  [alt]="event.title"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="event-content">
+                <h3 class="event-title">
+                  {{ event.title }}
+                </h3>
+
+                <div class="event-datetime">
+                  <span class="event-date">
+                    {{ event.start | date: 'fullDate' }}
+                  </span>
+
+                  @if (!event.allDay && event.end) {
+                    <span class="event-time">
+                      {{ event.start | date: 'shortTime' }}
+                      &ndash;
+                      {{ event.end | date: 'shortTime' }}
+                    </span>
+                  }
+                </div>
+
+                @if (event.description) {
+                  <div
+                    class="event-description"
+                    [innerHTML]="event.description"
+                  ></div>
+                }
+              </div>
+            </article>
+          } @empty {
+            <div class="events-message">
+              <p>
+                More events are coming soon!
+                Check our calendar for future gatherings.
+              </p>
+            </div>
+          }
+        </div>
+      }
+
+      <div class="event-actions">
+        <button
+          class="btn-primary"
+          routerLink="/events"
+          (click)="viewAllEventsClick()"
+        >
+          View Full Calendar
+        </button>
+
+        <button
+          class="btn-secondary"
+          routerLink="/events"
+        >
+          Request an Event
         </button>
       </div>
     </div>
-  </div>
-</div>
-<div class="home-container">
-  <app-featured></app-featured>
-  <div class="upcoming-events-container bg-primary">
-    <h2 style="text-align: center; font-weight: bold;">Upcoming Events</h2>
-    @if (this.events.length > 0) {
-    <div class="polaroid-container">
-      <div class="upcoming-event" *ngFor="let event of events">
-        @for (event of events; track event.id) {}
-        <div class="polaroid">
-          <img alt="upcoming event image" srcset="{{ event.img }}-s.jpg 650w, {{ event.img }}-m.jpg 1920w"
-            sizes="(max-width: 1000px) 100vw, 1000px" />
-        </div>
-        <div class="event-text">
-          <h2 style="margin: 0;" class="row-title">{{ event.title }}</h2>
-          <div class="row-datetime">
-            <h3 style="margin-right: 10px;">{{ event.start | date: 'fullDate' }}</h3>
-            <h3 *ngIf="event.start.length > 1 && event.end.length > 1">{{ event.start | date:
-              'shortTime':'undefined':'en-US' }} - {{ event.end | date: 'shortTime':'undefined':'en-US' }}</h3>
-          </div>
-          <div *ngIf="event.description">
-            <div style="margin: 0px; font-weight: 300;" [innerHTML]="event.description | safeHtml"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    }
-    @else {
-    <ng-template #skeleton>
-      <div class="row">
-        <div class="row-img-container">
-          <ngx-skeleton-loader [theme]="isMobile ? mobileSkelTheme : skelTheme" />
-        </div>
-        <div class="row-text">
-          <ngx-skeleton-loader [count]="isMobile ? 1 : 2" [theme]="{width: '40vw'}" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-img-container">
-          <ngx-skeleton-loader [theme]="isMobile ? mobileSkelTheme : skelTheme" />
-        </div>
-        <div class="row-text">
-          <ngx-skeleton-loader [count]="isMobile ? 1 : 2" [theme]="{width: '40vw'}" />
-        </div>
-      </div>
-    </ng-template>
-    }
-    <div class="upcoming-event-buttons">
-      <button (click)="viewAllEventsClick()" routerLink="/events" class="view-events-button btn-primary">View Full
-        Calendar
-      </button>
-      <button class="req-events-button btn-secondary" routerLink="/events">Request Event</button>
-    </div>
-  </div>
-  <!-- <div class="polaroids-container">
-    <a href="/membership"><img alt="link to membership page" src="/membership.svg"></a>
-    <a href="https://buy.stripe.com/aEU5kmaWy9MYbew9AD" target="_blank"><img alt="link to donate page"
-        src="/donate.svg"></a>
-    <a href="/blog"><img alt="link to blogs page" src="/blog.svg"></a>
-  </div> -->
+  </section>
+
   <app-contact></app-contact>
-</div>
+</main>

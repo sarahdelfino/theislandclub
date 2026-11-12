@@ -1,124 +1,233 @@
-import { Component, Pipe, PipeTransform } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Router, RouterLink } from '@angular/router';
-import { NavbarComponent } from "../navbar/navbar.component";
-import { FooterComponent } from '../footer/footer.component';
-import { CommonModule } from '@angular/common';
-// import { Event } from '../event';
-import { AlertComponent } from "../alert/alert.component";
-import { getAnalytics, logEvent } from 'firebase/analytics';
-import { FirebaseService } from '../firebase.service';
+
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import { getAnalytics, isSupported, logEvent } from 'firebase/analytics';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { ContactComponent } from "../contact/contact.component";
-import { FeaturedComponent } from "../featured/featured.component";
+import { ContactComponent } from '../contact/contact.component';
 
-@Pipe({
-  name: "safeHtml",
-  standalone: true,
-})
-export class SafeHtmlPipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {}
-
-  transform(html: any) {
-    return this.sanitizer.bypassSecurityTrustHtml(html);
-  }
+interface ApiEvent {
+  id: string;
+  title: string;
+  start: string;
+  end: string;
+  imageUrl?: string;
+  description?: string;
 }
+
+interface HomeEvent {
+  id: string;
+  title: string;
+  start: string;
+  end: string;
+  description?: string;
+  image: string;
+  imageSrcset: string | null;
+  allDay: boolean;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SafeHtmlPipe, RouterLink, CommonModule, ReactiveFormsModule, NgxSkeletonLoaderModule, ContactComponent, AlertComponent, FeaturedComponent],
+  imports: [
+    DatePipe,
+    RouterLink,
+    NgxSkeletonLoaderModule,
+    ContactComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  private readonly http = inject(HttpClient);
 
-  events: any[] = [];
-  data$: any;
-  contactForm: FormGroup;
-  alertText = '';
-  alertType = '';
-  err = false;
-  analytics = getAnalytics();
-  isMobile = false;
-  skelTheme = {
-    width: '20vw',
-    height: '90px',
-    marginRight: '20px'
-  };
-  mobileSkelTheme = {
-    height: '150px'
-  };
+  private readonly eventsUrl =
+    'https://get-week-of-events-k7ltwigbhq-ue.a.run.app';
 
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-    public firebaseService: FirebaseService,
-  ) {
-    if (window.innerWidth < 760) {
-      this.isMobile = true;
-    }
-    this.http.get('https://get-week-of-events-k7ltwigbhq-ue.a.run.app').subscribe((resp: any) => {
-      // this.http.get('http://127.0.0.1:5001/theislandclub/us-east1/get_week_of_events').subscribe((resp: any) => {
-      const arr = [];
-      for (const row in resp) {
-        const tmp = {
-          "start": resp[row].start,
-          "end": resp[row].end,
-          "id": resp[row].id,
-          "title": resp[row].title,
-          "img": resp[row].imageUrl ? this.toDriveThumbnailUrl(resp[row].imageUrl) : this.getImg(resp[row]),
-          "description": resp[row]?.description
+  private readonly defaultImages = [
+    '/matt-briney-2',
+    '/your-second-default-image'
+  ];
+
+  readonly events = signal<HomeEvent[]>([]);
+  readonly isLoading = signal(true);
+  readonly hasError = signal(false);
+
+  ngOnInit(): void {
+    this.loadEvents();
+  }
+
+  private loadEvents(): void {
+    this.isLoading.set(true);
+    this.hasError.set(false);
+
+    this.http
+      .get<ApiEvent[] | Record<string, ApiEvent>>(this.eventsUrl)
+      .subscribe({
+        next: (response) => {
+          const upcomingEvents = Object.values(response ?? {})
+            .filter(event => event?.id && event?.start)
+            .sort((a, b) =>
+              new Date(a.start).getTime() -
+              new Date(b.start).getTime()
+            )
+            .slice(0, 2);
+
+          const usedImages = new Set<string>();
+
+          // Reserve custom images before assigning fallbacks.
+          const customImages = new Map<ApiEvent, string>();
+
+          for (const event of upcomingEvents) {
+            const customImage = event.imageUrl?.trim();
+
+            if (!customImage) continue;
+
+            const image = this.toDriveThumbnailUrl(customImage);
+
+            if (!usedImages.has(image)) {
+              customImages.set(event, image);
+              usedImages.add(image);
+            }
+          }
+
+          const events = upcomingEvents.map(event =>
+            this.mapEvent(event, usedImages, customImages.get(event))
+          );
+
+          this.events.set(events);
+          this.isLoading.set(false);
+        },
+        error: (error) => {
+          console.error('Unable to load upcoming events:', error);
+
+          this.hasError.set(true);
+          this.isLoading.set(false);
         }
-        arr.push(tmp);
-        arr.sort((a, b) => (a.start > b.start) ? 1 : (b.start > a.start) ? -1 : 0);
-      }
-      this.events.push(arr[0]);
-      this.events.push(arr[1]);
-      console.log(this.events)
-
-    });
-    
-    this.contactForm = new FormGroup({
-      submitDate: new FormControl(Date.now(), Validators.required),
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      message: new FormControl('', [Validators.required, Validators.minLength(25)]),
-    })
-
+      });
   }
 
-  viewAllEventsClick() {
-    logEvent(this.analytics, 'click_view_all_events', { pageName: 'home'} );
-  }
+  private mapEvent(
+    event: ApiEvent,
+    usedImages: Set<string>,
+    customImage?: string
+  ): HomeEvent {
+    let image: string;
+    let imageSrcset: string | null = null;
 
-  membershipBtnClick() {
-    this.router.navigateByUrl('/membership');
-  }
-
-  getImg(data: any) {
-    if (data.title === 'Trinity Wellness Yoga') {
-      return '/chelsea-gates'
-    } else if (data.title === 'Mah Jong') {
-      return '/majong'
-    } else if (data.title === 'AA') {
-      return '/cody-silver'
-    } else if (data.title.trim() === 'Meditative Monday' || data.title.includes('Meditation')) {
-      return '/meditation'
+    if (customImage) {
+      image = customImage;
     } else {
-      return '/matt-briney-2'
+      const fallback = this.getFallbackImage(
+        event.title,
+        usedImages
+      );
+
+      image = `${fallback}-s.jpg`;
+      imageSrcset =
+        `${fallback}-s.jpg 650w, ${fallback}-m.jpg 1920w`;
+
+      usedImages.add(image);
+      usedImages.add(`${fallback}-m.jpg`);
+    }
+
+    return {
+      id: event.id,
+      title: event.title,
+      start: event.start,
+      end: event.end,
+      description: event.description,
+      allDay: /^\d{4}-\d{2}-\d{2}$/.test(event.start),
+      image,
+      imageSrcset
+    };
+  }
+
+  private getFallbackImage(
+    title: string,
+    usedImages: Set<string>
+  ): string {
+    const preferredImage = this.getEventSpecificImage(title);
+
+    const candidates = preferredImage
+      ? [preferredImage, ...this.defaultImages]
+      : this.defaultImages;
+
+    const availableImage = candidates.find(image =>
+      !usedImages.has(`${image}-s.jpg`) &&
+      !usedImages.has(`${image}-m.jpg`)
+    );
+
+    if (!availableImage) {
+      throw new Error('Not enough unique fallback event images.');
+    }
+
+    return availableImage;
+  }
+
+  private getEventSpecificImage(title: string): string | null {
+    const normalized = title.trim().toLowerCase();
+
+    switch (normalized) {
+      case 'trinity wellness yoga':
+        return '/chelsea-gates';
+
+      case 'mah jong':
+      case 'mahjong':
+        return '/majong';
+
+      case 'aa':
+        return '/cody-silver';
+
+      case 'meditative monday':
+        return '/meditation';
+
+      default:
+        return normalized.includes('meditation')
+          ? '/meditation'
+          : null;
     }
   }
 
-  toDriveThumbnailUrl(url: string) {
-  const match = url.match(/[?&]id=([^&]+)/);
-  const fileId = match?.[1];
+  private toDriveThumbnailUrl(url: string): string {
+    try {
+      const parsed = new URL(url);
 
-  if (!fileId) return url;
+      if (parsed.hostname !== 'drive.google.com') {
+        return url;
+      }
 
-  return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`;
-}
+      const fileId =
+        parsed.searchParams.get('id') ??
+        parsed.pathname.match(/\/file\/d\/([^/]+)/)?.[1];
+
+      if (!fileId) {
+        return url;
+      }
+
+      const thumbnail = new URL(
+        'https://drive.google.com/thumbnail'
+      );
+
+      thumbnail.searchParams.set('id', fileId);
+      thumbnail.searchParams.set('sz', 'w1200');
+
+      return thumbnail.toString();
+    } catch {
+      return url;
+    }
+  }
+
+  async viewAllEventsClick(): Promise<void> {
+    try {
+      if (await isSupported()) {
+        logEvent(getAnalytics(), 'click_view_all_events', {
+          pageName: 'home'
+        });
+      }
+    } catch (error) {
+      console.warn('Unable to log analytics event:', error);
+    }
+  }
 }
